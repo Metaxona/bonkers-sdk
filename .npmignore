@@ -1,0 +1,11 @@
+test
+src
+documents
+biome.json
+typedoc.json
+vitest.config.ts
+tsconfig.tsup.json
+tsup.config.ts
+node_modules
+.changeset
+.github
