@@ -1,6 +1,6 @@
 {
 	"name": "bonkers-sdk",
-	"version": "0.0.2",
+	"version": "0.0.4",
 	"description": "A Library For Interacting With Bonkers EVM Contracts: Controller, Vault Factory, Vault, and More",
 	"type": "module",
 	"main": "./dist/index.js",
@@ -53,7 +53,10 @@
 		"Metaxona"
 	],
 	"license": "MIT",
-	"repository": "github:Metaxona/bonkers-sdk",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Metaxona/bonkers-sdk.git"
+	},
 	"dependencies": {
 		"@wagmi/core": "^2.12.2",
 		"viem": "^2.17.5"
