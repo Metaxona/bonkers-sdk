@@ -5,6 +5,8 @@
 ![Functions](https://img.shields.io/badge/functions-99.37%25-brightgreen.svg?style=flat)
 ![Lines](https://img.shields.io/badge/lines-99.17%25-brightgreen.svg?style=flat)
 
+[![Test](https://github.com/Metaxona/bonkers-sdk/actions/workflows/test.yaml/badge.svg)](https://github.com/Metaxona/bonkers-sdk/actions/workflows/test.yaml)
+
 A Javascript SDK for interacting with Bonkers Contracts
 
 ## Installation
