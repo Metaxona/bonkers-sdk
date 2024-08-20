@@ -1,6 +1,6 @@
 {
 	"name": "bonkers-sdk",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "A Library For Interacting With Bonkers EVM Contracts: Controller, Vault Factory, Vault, and More",
 	"type": "module",
 	"main": "./dist/index.js",
