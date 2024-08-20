@@ -1,0 +1,46 @@
+name: Test
+
+on:
+  push:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+# env:
+#   FOUNDRY_PROFILE: ci
+
+jobs:
+  check:
+    strategy:
+      fail-fast: true
+
+    name: Foundry project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Install NPM Packages
+        run: |
+          npm ci
+        id: npm_install
+
+      - name: Run Tests
+        run: |
+          npm run test
+        id: test
+
+      - name: Stop Anvil
+        run: |
+          lsof -t -i tcp:8545 | xargs kill
+        id: anvilstop

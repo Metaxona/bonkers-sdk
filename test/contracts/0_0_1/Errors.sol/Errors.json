@@ -1,0 +1,405 @@
+{
+    "abi": [
+        { "type": "error", "name": "CallFailed", "inputs": [] },
+        { "type": "error", "name": "CanNotBeZeroAddress", "inputs": [] },
+        { "type": "error", "name": "InsufficientRewardAllowance", "inputs": [] },
+        { "type": "error", "name": "InsufficientRewardQuota", "inputs": [] },
+        { "type": "error", "name": "InvalidCreationFee", "inputs": [] },
+        { "type": "error", "name": "InvalidLayer", "inputs": [] },
+        { "type": "error", "name": "NoReceiversFound", "inputs": [] },
+        { "type": "error", "name": "NotControllerOwner", "inputs": [] },
+        { "type": "error", "name": "NotVaultFactoryOwner", "inputs": [] },
+        { "type": "error", "name": "NotVaultOwner", "inputs": [] },
+        {
+            "type": "error",
+            "name": "UnauthorizedAccess",
+            "inputs": [{ "name": "account", "type": "address", "internalType": "address" }]
+        },
+        {
+            "type": "error",
+            "name": "VaultNotDeployedByFactory",
+            "inputs": [{ "name": "factory", "type": "address", "internalType": "address" }]
+        },
+        { "type": "error", "name": "VaultNotFound", "inputs": [] }
+    ],
+    "bytecode": {
+        "object": "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220f658723378518c90985c5b874dcc4c8140a166ad47a2619d32132488751bec7764736f6c63430008140033",
+        "sourceMap": "268:512:117:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;268:512:117;;;;;;;;;;;;;;;;;",
+        "linkReferences": {}
+    },
+    "deployedBytecode": {
+        "object": "0x73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220f658723378518c90985c5b874dcc4c8140a166ad47a2619d32132488751bec7764736f6c63430008140033",
+        "sourceMap": "268:512:117:-:0;;;;;;;;",
+        "linkReferences": {}
+    },
+    "methodIdentifiers": {},
+    "rawMetadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"CallFailed\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"CanNotBeZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientRewardAllowance\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientRewardQuota\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidCreationFee\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidLayer\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NoReceiversFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotControllerOwner\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotVaultFactoryOwner\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotVaultOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"UnauthorizedAccess\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"factory\",\"type\":\"address\"}],\"name\":\"VaultNotDeployedByFactory\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"VaultNotFound\",\"type\":\"error\"}],\"devdoc\":{\"author\":\"Metaxona\",\"custom:github\":\"https://github.com/Metaxona\",\"custom:version\":\"0.0.1\",\"details\":\"this is a library containing all errors used accross several contracts\",\"kind\":\"dev\",\"methods\":{},\"title\":\"Errors Library\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/common/library/Errors.sol\":\"Errors\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@common/=src/common/\",\":@contracts/=src/contracts/\",\":@helpers/=helpers/\",\":@interfaces/=src/interfaces/\",\":@openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/\",\":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/\",\":@test-utils/=test/common/\",\":@types/=src/types/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/\",\":sizeChecker/=lib/Solidity_Contract_Size_Checker/\",\":solidity-stringutils/=lib/openzeppelin-foundry-upgrades/lib/solidity-stringutils/\"]},\"sources\":{\"src/common/library/Errors.sol\":{\"keccak256\":\"0x5358b0dd38c5981b64477d22825848eb1d46e531d8a8a58dd02545dad9f3c81c\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://7045d57438b28c27200f380be35721bc1540b29dc8eb3e04f478ab3d672e818e\",\"dweb:/ipfs/Qmen497ng8v9YEu2JgDmLnkMBAkvkWJWpqop8FwArWjteu\"]}},\"version\":1}",
+    "metadata": {
+        "compiler": { "version": "0.8.20+commit.a1b79de6" },
+        "language": "Solidity",
+        "output": {
+            "abi": [
+                { "inputs": [], "type": "error", "name": "CallFailed" },
+                { "inputs": [], "type": "error", "name": "CanNotBeZeroAddress" },
+                { "inputs": [], "type": "error", "name": "InsufficientRewardAllowance" },
+                { "inputs": [], "type": "error", "name": "InsufficientRewardQuota" },
+                { "inputs": [], "type": "error", "name": "InvalidCreationFee" },
+                { "inputs": [], "type": "error", "name": "InvalidLayer" },
+                { "inputs": [], "type": "error", "name": "NoReceiversFound" },
+                { "inputs": [], "type": "error", "name": "NotControllerOwner" },
+                { "inputs": [], "type": "error", "name": "NotVaultFactoryOwner" },
+                { "inputs": [], "type": "error", "name": "NotVaultOwner" },
+                {
+                    "inputs": [{ "internalType": "address", "name": "account", "type": "address" }],
+                    "type": "error",
+                    "name": "UnauthorizedAccess"
+                },
+                {
+                    "inputs": [{ "internalType": "address", "name": "factory", "type": "address" }],
+                    "type": "error",
+                    "name": "VaultNotDeployedByFactory"
+                },
+                { "inputs": [], "type": "error", "name": "VaultNotFound" }
+            ],
+            "devdoc": { "kind": "dev", "methods": {}, "version": 1 },
+            "userdoc": { "kind": "user", "methods": {}, "version": 1 }
+        },
+        "settings": {
+            "remappings": [
+                "@common/=src/common/",
+                "@contracts/=src/contracts/",
+                "@helpers/=helpers/",
+                "@interfaces/=src/interfaces/",
+                "@openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/",
+                "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+                "@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/",
+                "@test-utils/=test/common/",
+                "@types/=src/types/",
+                "ds-test/=lib/forge-std/lib/ds-test/src/",
+                "erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/",
+                "forge-std/=lib/forge-std/src/",
+                "openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/",
+                "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+                "openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/",
+                "sizeChecker/=lib/Solidity_Contract_Size_Checker/",
+                "solidity-stringutils/=lib/openzeppelin-foundry-upgrades/lib/solidity-stringutils/"
+            ],
+            "optimizer": { "enabled": true, "runs": 200 },
+            "metadata": { "bytecodeHash": "ipfs" },
+            "compilationTarget": { "src/common/library/Errors.sol": "Errors" },
+            "evmVersion": "paris",
+            "libraries": {}
+        },
+        "sources": {
+            "src/common/library/Errors.sol": {
+                "keccak256": "0x5358b0dd38c5981b64477d22825848eb1d46e531d8a8a58dd02545dad9f3c81c",
+                "urls": [
+                    "bzz-raw://7045d57438b28c27200f380be35721bc1540b29dc8eb3e04f478ab3d672e818e",
+                    "dweb:/ipfs/Qmen497ng8v9YEu2JgDmLnkMBAkvkWJWpqop8FwArWjteu"
+                ],
+                "license": "BUSL-1.1"
+            }
+        },
+        "version": 1
+    },
+    "storageLayout": { "storage": [], "types": {} },
+    "ast": {
+        "absolutePath": "src/common/library/Errors.sol",
+        "id": 67684,
+        "exportedSymbols": { "Errors": [67683] },
+        "nodeType": "SourceUnit",
+        "src": "37:744:117",
+        "nodes": [
+            {
+                "id": 67651,
+                "nodeType": "PragmaDirective",
+                "src": "37:23:117",
+                "nodes": [],
+                "literals": ["solidity", "0.8", ".20"]
+            },
+            {
+                "id": 67683,
+                "nodeType": "ContractDefinition",
+                "src": "268:512:117",
+                "nodes": [
+                    {
+                        "id": 67654,
+                        "nodeType": "ErrorDefinition",
+                        "src": "304:28:117",
+                        "nodes": [],
+                        "errorSelector": "45281e4c",
+                        "name": "CanNotBeZeroAddress",
+                        "nameLocation": "310:19:117",
+                        "parameters": {
+                            "id": 67653,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "329:2:117"
+                        }
+                    },
+                    {
+                        "id": 67656,
+                        "nodeType": "ErrorDefinition",
+                        "src": "337:21:117",
+                        "nodes": [],
+                        "errorSelector": "58e3183a",
+                        "name": "InvalidLayer",
+                        "nameLocation": "343:12:117",
+                        "parameters": {
+                            "id": 67655,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "355:2:117"
+                        }
+                    },
+                    {
+                        "id": 67658,
+                        "nodeType": "ErrorDefinition",
+                        "src": "383:19:117",
+                        "nodes": [],
+                        "errorSelector": "3204506f",
+                        "name": "CallFailed",
+                        "nameLocation": "389:10:117",
+                        "parameters": {
+                            "id": 67657,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "399:2:117"
+                        }
+                    },
+                    {
+                        "id": 67660,
+                        "nodeType": "ErrorDefinition",
+                        "src": "407:25:117",
+                        "nodes": [],
+                        "errorSelector": "4030268d",
+                        "name": "NoReceiversFound",
+                        "nameLocation": "413:16:117",
+                        "parameters": {
+                            "id": 67659,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "429:2:117"
+                        }
+                    },
+                    {
+                        "id": 67662,
+                        "nodeType": "ErrorDefinition",
+                        "src": "437:27:117",
+                        "nodes": [],
+                        "errorSelector": "0a5c7970",
+                        "name": "NotControllerOwner",
+                        "nameLocation": "443:18:117",
+                        "parameters": {
+                            "id": 67661,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "461:2:117"
+                        }
+                    },
+                    {
+                        "id": 67664,
+                        "nodeType": "ErrorDefinition",
+                        "src": "484:29:117",
+                        "nodes": [],
+                        "errorSelector": "7ecec4a0",
+                        "name": "NotVaultFactoryOwner",
+                        "nameLocation": "490:20:117",
+                        "parameters": {
+                            "id": 67663,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "510:2:117"
+                        }
+                    },
+                    {
+                        "id": 67666,
+                        "nodeType": "ErrorDefinition",
+                        "src": "518:22:117",
+                        "nodes": [],
+                        "errorSelector": "0e7fea9d",
+                        "name": "NotVaultOwner",
+                        "nameLocation": "524:13:117",
+                        "parameters": {
+                            "id": 67665,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "537:2:117"
+                        }
+                    },
+                    {
+                        "id": 67670,
+                        "nodeType": "ErrorDefinition",
+                        "src": "545:42:117",
+                        "nodes": [],
+                        "errorSelector": "dccef964",
+                        "name": "UnauthorizedAccess",
+                        "nameLocation": "551:18:117",
+                        "parameters": {
+                            "id": 67669,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 67668,
+                                    "mutability": "mutable",
+                                    "name": "account",
+                                    "nameLocation": "578:7:117",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 67670,
+                                    "src": "570:15:117",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 67667,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "570:7:117",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "569:17:117"
+                        }
+                    },
+                    {
+                        "id": 67672,
+                        "nodeType": "ErrorDefinition",
+                        "src": "592:36:117",
+                        "nodes": [],
+                        "errorSelector": "202c0d70",
+                        "name": "InsufficientRewardAllowance",
+                        "nameLocation": "598:27:117",
+                        "parameters": {
+                            "id": 67671,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "625:2:117"
+                        }
+                    },
+                    {
+                        "id": 67674,
+                        "nodeType": "ErrorDefinition",
+                        "src": "633:32:117",
+                        "nodes": [],
+                        "errorSelector": "817b6b53",
+                        "name": "InsufficientRewardQuota",
+                        "nameLocation": "639:23:117",
+                        "parameters": {
+                            "id": 67673,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "662:2:117"
+                        }
+                    },
+                    {
+                        "id": 67676,
+                        "nodeType": "ErrorDefinition",
+                        "src": "670:27:117",
+                        "nodes": [],
+                        "errorSelector": "5623662d",
+                        "name": "InvalidCreationFee",
+                        "nameLocation": "676:18:117",
+                        "parameters": {
+                            "id": 67675,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "694:2:117"
+                        }
+                    },
+                    {
+                        "id": 67678,
+                        "nodeType": "ErrorDefinition",
+                        "src": "702:22:117",
+                        "nodes": [],
+                        "errorSelector": "dee790fb",
+                        "name": "VaultNotFound",
+                        "nameLocation": "708:13:117",
+                        "parameters": {
+                            "id": 67677,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "721:2:117"
+                        }
+                    },
+                    {
+                        "id": 67682,
+                        "nodeType": "ErrorDefinition",
+                        "src": "729:49:117",
+                        "nodes": [],
+                        "errorSelector": "f3e9cca1",
+                        "name": "VaultNotDeployedByFactory",
+                        "nameLocation": "735:25:117",
+                        "parameters": {
+                            "id": 67681,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 67680,
+                                    "mutability": "mutable",
+                                    "name": "factory",
+                                    "nameLocation": "769:7:117",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 67682,
+                                    "src": "761:15:117",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 67679,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "761:7:117",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "760:17:117"
+                        }
+                    }
+                ],
+                "abstract": false,
+                "baseContracts": [],
+                "canonicalName": "Errors",
+                "contractDependencies": [],
+                "contractKind": "library",
+                "documentation": {
+                    "id": 67652,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "62:205:117",
+                    "text": " @title Errors Library\n @author Metaxona\n @custom:github https://github.com/Metaxona\n @custom:version 0.0.1\n @dev this is a library containing all errors\n used accross several contracts"
+                },
+                "fullyImplemented": true,
+                "linearizedBaseContracts": [67683],
+                "name": "Errors",
+                "nameLocation": "276:6:117",
+                "scope": 67684,
+                "usedErrors": [
+                    67654, 67656, 67658, 67660, 67662, 67664, 67666, 67670, 67672, 67674, 67676,
+                    67678, 67682
+                ],
+                "usedEvents": []
+            }
+        ],
+        "license": "BUSL-1.1"
+    },
+    "id": 117
+}

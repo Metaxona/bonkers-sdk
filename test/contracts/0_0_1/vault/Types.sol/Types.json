@@ -1,0 +1,461 @@
+{
+    "abi": [],
+    "bytecode": { "object": "0x", "linkReferences": {} },
+    "deployedBytecode": { "object": "0x", "linkReferences": {} },
+    "ast": {
+        "absolutePath": "src/types/vault/Types.sol",
+        "id": 72204,
+        "exportedSymbols": {
+            "Controller": [72197],
+            "ControllerLimits": [72203],
+            "VaultInfo": [72185]
+        },
+        "nodeType": "SourceUnit",
+        "src": "37:2705:137",
+        "nodes": [
+            {
+                "id": 72169,
+                "nodeType": "PragmaDirective",
+                "src": "37:23:137",
+                "nodes": [],
+                "literals": ["solidity", "0.8", ".20"]
+            },
+            {
+                "id": 72185,
+                "nodeType": "StructDefinition",
+                "src": "1462:176:137",
+                "nodes": [],
+                "canonicalName": "VaultInfo",
+                "documentation": {
+                    "id": 72170,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "884:577:137",
+                    "text": " @custom:struct VaultInfo\n @param id the vault id\n @param version the version the vault is using\n @param projectOwner the current owner of the vault\n @param projectName the name of the project using the vault\n @param rewardToken the erc20 token address of the token used to reward users\n @param createdAt the timestamp in seconds when the vault was created\n @param deployer the deployer who deployed the vault contract, usually the vault factory\n @dev this struct is used to keeep track of the vault info in both vault and vault factory registry"
+                },
+                "members": [
+                    {
+                        "constant": false,
+                        "id": 72172,
+                        "mutability": "mutable",
+                        "name": "id",
+                        "nameLocation": "1493:2:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72185,
+                        "src": "1485:10:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                        },
+                        "typeName": {
+                            "id": 72171,
+                            "name": "uint256",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1485:7:137",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                            }
+                        },
+                        "visibility": "internal"
+                    },
+                    {
+                        "constant": false,
+                        "id": 72174,
+                        "mutability": "mutable",
+                        "name": "version",
+                        "nameLocation": "1508:7:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72185,
+                        "src": "1501:14:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_string_storage_ptr",
+                            "typeString": "string"
+                        },
+                        "typeName": {
+                            "id": 72173,
+                            "name": "string",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1501:6:137",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_string_storage_ptr",
+                                "typeString": "string"
+                            }
+                        },
+                        "visibility": "internal"
+                    },
+                    {
+                        "constant": false,
+                        "id": 72176,
+                        "mutability": "mutable",
+                        "name": "projectOwner",
+                        "nameLocation": "1529:12:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72185,
+                        "src": "1521:20:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                        },
+                        "typeName": {
+                            "id": 72175,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1521:7:137",
+                            "stateMutability": "nonpayable",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                            }
+                        },
+                        "visibility": "internal"
+                    },
+                    {
+                        "constant": false,
+                        "id": 72178,
+                        "mutability": "mutable",
+                        "name": "projectName",
+                        "nameLocation": "1554:11:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72185,
+                        "src": "1547:18:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_string_storage_ptr",
+                            "typeString": "string"
+                        },
+                        "typeName": {
+                            "id": 72177,
+                            "name": "string",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1547:6:137",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_string_storage_ptr",
+                                "typeString": "string"
+                            }
+                        },
+                        "visibility": "internal"
+                    },
+                    {
+                        "constant": false,
+                        "id": 72180,
+                        "mutability": "mutable",
+                        "name": "rewardToken",
+                        "nameLocation": "1579:11:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72185,
+                        "src": "1571:19:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                        },
+                        "typeName": {
+                            "id": 72179,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1571:7:137",
+                            "stateMutability": "nonpayable",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                            }
+                        },
+                        "visibility": "internal"
+                    },
+                    {
+                        "constant": false,
+                        "id": 72182,
+                        "mutability": "mutable",
+                        "name": "createdAt",
+                        "nameLocation": "1604:9:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72185,
+                        "src": "1596:17:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                        },
+                        "typeName": {
+                            "id": 72181,
+                            "name": "uint256",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1596:7:137",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                            }
+                        },
+                        "visibility": "internal"
+                    },
+                    {
+                        "constant": false,
+                        "id": 72184,
+                        "mutability": "mutable",
+                        "name": "deployer",
+                        "nameLocation": "1627:8:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72185,
+                        "src": "1619:16:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                        },
+                        "typeName": {
+                            "id": 72183,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1619:7:137",
+                            "stateMutability": "nonpayable",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                            }
+                        },
+                        "visibility": "internal"
+                    }
+                ],
+                "name": "VaultInfo",
+                "nameLocation": "1469:9:137",
+                "scope": 72204,
+                "visibility": "public"
+            },
+            {
+                "id": 72197,
+                "nodeType": "StructDefinition",
+                "src": "2239:141:137",
+                "nodes": [],
+                "canonicalName": "Controller",
+                "documentation": {
+                    "id": 72186,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "1640:598:137",
+                    "text": " @custom:struct Controller\n @param isController state to check if the address is a controller or not\n @param controller the address of the controller\n @param permittedBy who permitted the controller\n @param quota the max amount of users the controller can reward to users\n @param rewardAllowance the max amount of reward token the controller can reward to users\n @dev this struct is used to keeep track of the controller permissions, quota, and allowance\n which allows the vault and vault factory contract to have a third party control certain functions\n with limits"
+                },
+                "members": [
+                    {
+                        "constant": false,
+                        "id": 72188,
+                        "mutability": "mutable",
+                        "name": "isController",
+                        "nameLocation": "2268:12:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72197,
+                        "src": "2263:17:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": { "typeIdentifier": "t_bool", "typeString": "bool" },
+                        "typeName": {
+                            "id": 72187,
+                            "name": "bool",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2263:4:137",
+                            "typeDescriptions": { "typeIdentifier": "t_bool", "typeString": "bool" }
+                        },
+                        "visibility": "internal"
+                    },
+                    {
+                        "constant": false,
+                        "id": 72190,
+                        "mutability": "mutable",
+                        "name": "controller",
+                        "nameLocation": "2294:10:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72197,
+                        "src": "2286:18:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                        },
+                        "typeName": {
+                            "id": 72189,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2286:7:137",
+                            "stateMutability": "nonpayable",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                            }
+                        },
+                        "visibility": "internal"
+                    },
+                    {
+                        "constant": false,
+                        "id": 72192,
+                        "mutability": "mutable",
+                        "name": "permittedBy",
+                        "nameLocation": "2318:11:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72197,
+                        "src": "2310:19:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                        },
+                        "typeName": {
+                            "id": 72191,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2310:7:137",
+                            "stateMutability": "nonpayable",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                            }
+                        },
+                        "visibility": "internal"
+                    },
+                    {
+                        "constant": false,
+                        "id": 72194,
+                        "mutability": "mutable",
+                        "name": "quota",
+                        "nameLocation": "2343:5:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72197,
+                        "src": "2335:13:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                        },
+                        "typeName": {
+                            "id": 72193,
+                            "name": "uint256",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2335:7:137",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                            }
+                        },
+                        "visibility": "internal"
+                    },
+                    {
+                        "constant": false,
+                        "id": 72196,
+                        "mutability": "mutable",
+                        "name": "rewardAllowance",
+                        "nameLocation": "2362:15:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72197,
+                        "src": "2354:23:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                        },
+                        "typeName": {
+                            "id": 72195,
+                            "name": "uint256",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2354:7:137",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                            }
+                        },
+                        "visibility": "internal"
+                    }
+                ],
+                "name": "Controller",
+                "nameLocation": "2246:10:137",
+                "scope": 72204,
+                "visibility": "public"
+            },
+            {
+                "id": 72203,
+                "nodeType": "StructDefinition",
+                "src": "2666:75:137",
+                "nodes": [],
+                "canonicalName": "ControllerLimits",
+                "documentation": {
+                    "id": 72198,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "2382:283:137",
+                    "text": " @custom:struct ControllerLimits\n @param quota the max amount of users the controller can reward\n @param rewardAllowance the max amount of reward tokens the controller can reward to users\n @dev this struct is used to keeep track of the default controller limits"
+                },
+                "members": [
+                    {
+                        "constant": false,
+                        "id": 72200,
+                        "mutability": "mutable",
+                        "name": "quota",
+                        "nameLocation": "2704:5:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72203,
+                        "src": "2696:13:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                        },
+                        "typeName": {
+                            "id": 72199,
+                            "name": "uint256",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2696:7:137",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                            }
+                        },
+                        "visibility": "internal"
+                    },
+                    {
+                        "constant": false,
+                        "id": 72202,
+                        "mutability": "mutable",
+                        "name": "rewardAllowance",
+                        "nameLocation": "2723:15:137",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 72203,
+                        "src": "2715:23:137",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                        },
+                        "typeName": {
+                            "id": 72201,
+                            "name": "uint256",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2715:7:137",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                            }
+                        },
+                        "visibility": "internal"
+                    }
+                ],
+                "name": "ControllerLimits",
+                "nameLocation": "2673:16:137",
+                "scope": 72204,
+                "visibility": "public"
+            }
+        ],
+        "license": "BUSL-1.1"
+    },
+    "id": 137
+}

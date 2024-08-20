@@ -1,0 +1,614 @@
+{
+    "abi": [
+        {
+            "type": "function",
+            "name": "grantPermit",
+            "inputs": [{ "name": "controller", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "isController",
+            "inputs": [{ "name": "controller", "type": "address", "internalType": "address" }],
+            "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "revokePermit",
+            "inputs": [{ "name": "controller", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "event",
+            "name": "ControllerPermissionGranted",
+            "inputs": [
+                {
+                    "name": "permissionGiver",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "controller",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "ControllerPermissionRevoked",
+            "inputs": [
+                {
+                    "name": "permissionGiver",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "controller",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                }
+            ],
+            "anonymous": false
+        }
+    ],
+    "bytecode": { "object": "0x", "sourceMap": "", "linkReferences": {} },
+    "deployedBytecode": { "object": "0x", "sourceMap": "", "linkReferences": {} },
+    "methodIdentifiers": {
+        "grantPermit(address)": "85771172",
+        "isController(address)": "b429afeb",
+        "revokePermit(address)": "d258877d"
+    },
+    "rawMetadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"permissionGiver\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"ControllerPermissionGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"permissionGiver\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"ControllerPermissionRevoked\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"grantPermit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"isController\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"revokePermit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Metaxona\",\"custom:description\":\"A Permit Controller Interface\",\"custom:github\":\"https://github.com/Metaxonam/Metaxona\",\"custom:version\":\"0.0.1\",\"details\":\"This interface is used as a guide for granting and revoking controller permits which would allow the contract to enable the controller access to controller enabled functions without allowing any third party direct wallet to contract interactionThis interface is not for the controller but for contracts that is to be controlled by the controller for this to work, the contract must use a role based access for a more fine grained access control restriction which would enable the contract developer to only expose selected access restricted functions from being accessed by the controller this interface also has a pair of grant and revoke functions where the users will provide the role being granted to them allowing them to grant multiple roles to a single controller\",\"kind\":\"dev\",\"methods\":{\"grantPermit(address)\":{\"custom:function-name\":\"grantPermit\",\"details\":\"used to grant permision for selected (onlyRole Restricted) functions to the controller\",\"params\":{\"controller\":\"the controller contract\"}},\"isController(address)\":{\"custom:function-name\":\"isController\",\"details\":\"used to check if an address is a controller or has a controller access\",\"params\":{\"controller\":\"the controller address\"}},\"revokePermit(address)\":{\"custom:function-name\":\"revokePermit\",\"details\":\"used to grant permision for selected (onlyRole Restricted) functions to the controller\",\"params\":{\"controller\":\"the controller contract\"}}},\"title\":\"IControllerPermit\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/interfaces/controller/IControllerPermit.sol\":\"IControllerPermit\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@common/=src/common/\",\":@contracts/=src/contracts/\",\":@helpers/=helpers/\",\":@interfaces/=src/interfaces/\",\":@openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/\",\":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/\",\":@test-utils/=test/common/\",\":@types/=src/types/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/\",\":sizeChecker/=lib/Solidity_Contract_Size_Checker/\",\":solidity-stringutils/=lib/openzeppelin-foundry-upgrades/lib/solidity-stringutils/\"]},\"sources\":{\"src/interfaces/controller/IControllerPermit.sol\":{\"keccak256\":\"0xba42e582c149da0fda5a82bf623782e4f4a03fa2082145b1aef3ad354a7c0a80\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://6ac15a50e688ad74c586130ec6025e864b84d22b2ab9d996680fca8d52ba2ea5\",\"dweb:/ipfs/QmZzrpAjJzBLdv4TuJNjN5R9xatzhjqyKvjN45S2ih5iT8\"]}},\"version\":1}",
+    "metadata": {
+        "compiler": { "version": "0.8.20+commit.a1b79de6" },
+        "language": "Solidity",
+        "output": {
+            "abi": [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "permissionGiver",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "controller",
+                            "type": "address",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "ControllerPermissionGranted",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "permissionGiver",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "controller",
+                            "type": "address",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "ControllerPermissionRevoked",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "controller", "type": "address" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "grantPermit"
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "controller", "type": "address" }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "isController",
+                    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "controller", "type": "address" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "revokePermit"
+                }
+            ],
+            "devdoc": {
+                "kind": "dev",
+                "methods": {
+                    "grantPermit(address)": {
+                        "custom:function-name": "grantPermit",
+                        "details": "used to grant permision for selected (onlyRole Restricted) functions to the controller",
+                        "params": { "controller": "the controller contract" }
+                    },
+                    "isController(address)": {
+                        "custom:function-name": "isController",
+                        "details": "used to check if an address is a controller or has a controller access",
+                        "params": { "controller": "the controller address" }
+                    },
+                    "revokePermit(address)": {
+                        "custom:function-name": "revokePermit",
+                        "details": "used to grant permision for selected (onlyRole Restricted) functions to the controller",
+                        "params": { "controller": "the controller contract" }
+                    }
+                },
+                "version": 1
+            },
+            "userdoc": { "kind": "user", "methods": {}, "version": 1 }
+        },
+        "settings": {
+            "remappings": [
+                "@common/=src/common/",
+                "@contracts/=src/contracts/",
+                "@helpers/=helpers/",
+                "@interfaces/=src/interfaces/",
+                "@openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/",
+                "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+                "@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/",
+                "@test-utils/=test/common/",
+                "@types/=src/types/",
+                "ds-test/=lib/forge-std/lib/ds-test/src/",
+                "erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/",
+                "forge-std/=lib/forge-std/src/",
+                "openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/",
+                "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+                "openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/",
+                "sizeChecker/=lib/Solidity_Contract_Size_Checker/",
+                "solidity-stringutils/=lib/openzeppelin-foundry-upgrades/lib/solidity-stringutils/"
+            ],
+            "optimizer": { "enabled": true, "runs": 200 },
+            "metadata": { "bytecodeHash": "ipfs" },
+            "compilationTarget": {
+                "src/interfaces/controller/IControllerPermit.sol": "IControllerPermit"
+            },
+            "evmVersion": "paris",
+            "libraries": {}
+        },
+        "sources": {
+            "src/interfaces/controller/IControllerPermit.sol": {
+                "keccak256": "0xba42e582c149da0fda5a82bf623782e4f4a03fa2082145b1aef3ad354a7c0a80",
+                "urls": [
+                    "bzz-raw://6ac15a50e688ad74c586130ec6025e864b84d22b2ab9d996680fca8d52ba2ea5",
+                    "dweb:/ipfs/QmZzrpAjJzBLdv4TuJNjN5R9xatzhjqyKvjN45S2ih5iT8"
+                ],
+                "license": "BUSL-1.1"
+            }
+        },
+        "version": 1
+    },
+    "storageLayout": { "storage": [], "types": {} },
+    "ast": {
+        "absolutePath": "src/interfaces/controller/IControllerPermit.sol",
+        "id": 71494,
+        "exportedSymbols": { "IControllerPermit": [71493] },
+        "nodeType": "SourceUnit",
+        "src": "37:2083:128",
+        "nodes": [
+            {
+                "id": 71459,
+                "nodeType": "PragmaDirective",
+                "src": "37:23:128",
+                "nodes": [],
+                "literals": ["solidity", "0.8", ".20"]
+            },
+            {
+                "id": 71493,
+                "nodeType": "ContractDefinition",
+                "src": "1076:1043:128",
+                "nodes": [
+                    {
+                        "id": 71466,
+                        "nodeType": "EventDefinition",
+                        "src": "1110:95:128",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "7b9c8b9efe397fb771c7c860a9f9f8722bc3797e38e4641d3e2f6c0bf55acbd5",
+                        "name": "ControllerPermissionGranted",
+                        "nameLocation": "1116:27:128",
+                        "parameters": {
+                            "id": 71465,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71462,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "permissionGiver",
+                                    "nameLocation": "1160:15:128",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71466,
+                                    "src": "1144:31:128",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71461,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1144:7:128",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71464,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "controller",
+                                    "nameLocation": "1193:10:128",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71466,
+                                    "src": "1177:26:128",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71463,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1177:7:128",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1143:61:128"
+                        }
+                    },
+                    {
+                        "id": 71472,
+                        "nodeType": "EventDefinition",
+                        "src": "1211:95:128",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "a9fcffc2fbd770d6f8195447d01e38a19ed4022313ab51b5e899060a8d7bfca3",
+                        "name": "ControllerPermissionRevoked",
+                        "nameLocation": "1217:27:128",
+                        "parameters": {
+                            "id": 71471,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71468,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "permissionGiver",
+                                    "nameLocation": "1261:15:128",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71472,
+                                    "src": "1245:31:128",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71467,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1245:7:128",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71470,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "controller",
+                                    "nameLocation": "1294:10:128",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71472,
+                                    "src": "1278:26:128",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71469,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1278:7:128",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1244:61:128"
+                        }
+                    },
+                    {
+                        "id": 71478,
+                        "nodeType": "FunctionDefinition",
+                        "src": "1524:50:128",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71473,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1312:207:128",
+                            "text": " @custom:function-name grantPermit\n @param controller the controller contract\n @dev used to grant permision for selected (onlyRole Restricted) functions to the controller"
+                        },
+                        "functionSelector": "85771172",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "grantPermit",
+                        "nameLocation": "1533:11:128",
+                        "parameters": {
+                            "id": 71476,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71475,
+                                    "mutability": "mutable",
+                                    "name": "controller",
+                                    "nameLocation": "1553:10:128",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71478,
+                                    "src": "1545:18:128",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71474,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1545:7:128",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1544:20:128"
+                        },
+                        "returnParameters": {
+                            "id": 71477,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "1573:0:128"
+                        },
+                        "scope": 71493,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71484,
+                        "nodeType": "FunctionDefinition",
+                        "src": "1793:51:128",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71479,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1580:208:128",
+                            "text": " @custom:function-name revokePermit\n @param controller the controller contract\n @dev used to grant permision for selected (onlyRole Restricted) functions to the controller"
+                        },
+                        "functionSelector": "d258877d",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "revokePermit",
+                        "nameLocation": "1802:12:128",
+                        "parameters": {
+                            "id": 71482,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71481,
+                                    "mutability": "mutable",
+                                    "name": "controller",
+                                    "nameLocation": "1823:10:128",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71484,
+                                    "src": "1815:18:128",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71480,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1815:7:128",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1814:20:128"
+                        },
+                        "returnParameters": {
+                            "id": 71483,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "1843:0:128"
+                        },
+                        "scope": 71493,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71492,
+                        "nodeType": "FunctionDefinition",
+                        "src": "2046:71:128",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71485,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1850:191:128",
+                            "text": " @custom:function-name isController\n @param controller the controller address\n @dev used to check if an address is a controller or has a controller access"
+                        },
+                        "functionSelector": "b429afeb",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "isController",
+                        "nameLocation": "2055:12:128",
+                        "parameters": {
+                            "id": 71488,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71487,
+                                    "mutability": "mutable",
+                                    "name": "controller",
+                                    "nameLocation": "2076:10:128",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71492,
+                                    "src": "2068:18:128",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71486,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2068:7:128",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2067:20:128"
+                        },
+                        "returnParameters": {
+                            "id": 71491,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71490,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71492,
+                                    "src": "2111:4:128",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bool",
+                                        "typeString": "bool"
+                                    },
+                                    "typeName": {
+                                        "id": 71489,
+                                        "name": "bool",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2111:4:128",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bool",
+                                            "typeString": "bool"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2110:6:128"
+                        },
+                        "scope": 71493,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "abstract": false,
+                "baseContracts": [],
+                "canonicalName": "IControllerPermit",
+                "contractDependencies": [],
+                "contractKind": "interface",
+                "documentation": {
+                    "id": 71460,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "62:1013:128",
+                    "text": " @title IControllerPermit\n @author Metaxona\n @custom:github https://github.com/Metaxonam/Metaxona\n @custom:version 0.0.1\n @custom:description A Permit Controller Interface\n @dev This interface is used as a guide for granting and revoking controller permits\n which would allow the contract to enable the controller access to controller enabled\n functions without allowing any third party direct wallet to contract interaction\n @dev This interface is not for the controller but for contracts that is to be controlled\n by the controller\n for this to work, the contract must use a role based access for a more fine grained access\n control restriction which would enable the contract developer to only expose selected\n access restricted functions from being accessed by the controller\n this interface also has a pair of grant and revoke functions where the users will provide the role\n being granted to them allowing them to grant multiple roles to a single controller"
+                },
+                "fullyImplemented": false,
+                "linearizedBaseContracts": [71493],
+                "name": "IControllerPermit",
+                "nameLocation": "1086:17:128",
+                "scope": 71494,
+                "usedErrors": [],
+                "usedEvents": [71466, 71472]
+            }
+        ],
+        "license": "BUSL-1.1"
+    },
+    "id": 128
+}

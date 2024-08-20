@@ -1,0 +1,1034 @@
+{
+    "abi": [
+        {
+            "type": "function",
+            "name": "changeRaffleFactoryOwner",
+            "inputs": [{ "name": "newOwner", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "createRaffle",
+            "inputs": [],
+            "outputs": [{ "name": "raffle", "type": "address", "internalType": "address" }],
+            "stateMutability": "payable"
+        },
+        {
+            "type": "function",
+            "name": "createtionFee",
+            "inputs": [],
+            "outputs": [],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "feeReceiver",
+            "inputs": [],
+            "outputs": [],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "getImplementationDetails",
+            "inputs": [],
+            "outputs": [
+                { "name": "implementationAddress", "type": "address", "internalType": "address" },
+                { "name": "contractType", "type": "string", "internalType": "string" },
+                { "name": "version", "type": "string", "internalType": "string" }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "getRaffleInfo",
+            "inputs": [],
+            "outputs": [],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "grantPermit",
+            "inputs": [{ "name": "controller", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "isController",
+            "inputs": [{ "name": "controller", "type": "address", "internalType": "address" }],
+            "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "revokePermit",
+            "inputs": [{ "name": "controller", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "setFeeReceiver",
+            "inputs": [{ "name": "newReceiver", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "totalRaffles",
+            "inputs": [],
+            "outputs": [],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "updateCreationFee",
+            "inputs": [{ "name": "newCreationFee", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "updateImplementation",
+            "inputs": [
+                { "name": "newImplementation", "type": "address", "internalType": "address" }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "updateRaffleInfo",
+            "inputs": [{ "name": "raffle", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "event",
+            "name": "ControllerPermissionGranted",
+            "inputs": [
+                {
+                    "name": "permissionGiver",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "controller",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "ControllerPermissionRevoked",
+            "inputs": [
+                {
+                    "name": "permissionGiver",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "controller",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                }
+            ],
+            "anonymous": false
+        }
+    ],
+    "bytecode": { "object": "0x", "sourceMap": "", "linkReferences": {} },
+    "deployedBytecode": { "object": "0x", "sourceMap": "", "linkReferences": {} },
+    "methodIdentifiers": {
+        "changeRaffleFactoryOwner(address)": "44a35278",
+        "createRaffle()": "485ac2a7",
+        "createtionFee()": "35a9e4af",
+        "feeReceiver()": "b3f00674",
+        "getImplementationDetails()": "d4b583a0",
+        "getRaffleInfo()": "8166f6b2",
+        "grantPermit(address)": "85771172",
+        "isController(address)": "b429afeb",
+        "revokePermit(address)": "d258877d",
+        "setFeeReceiver(address)": "efdcd974",
+        "totalRaffles()": "3748312f",
+        "updateCreationFee(address)": "69391256",
+        "updateImplementation(address)": "025b22bc",
+        "updateRaffleInfo(address)": "bf8c1f76"
+    },
+    "rawMetadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"permissionGiver\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"ControllerPermissionGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"permissionGiver\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"ControllerPermissionRevoked\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"changeRaffleFactoryOwner\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"createRaffle\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"raffle\",\"type\":\"address\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"createtionFee\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"feeReceiver\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getImplementationDetails\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"implementationAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"contractType\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"version\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRaffleInfo\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"grantPermit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"isController\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"revokePermit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newReceiver\",\"type\":\"address\"}],\"name\":\"setFeeReceiver\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalRaffles\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newCreationFee\",\"type\":\"address\"}],\"name\":\"updateCreationFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"updateImplementation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"raffle\",\"type\":\"address\"}],\"name\":\"updateRaffleInfo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"grantPermit(address)\":{\"custom:function-name\":\"grantPermit\",\"details\":\"used to grant permision for selected (onlyRole Restricted) functions to the controller\",\"params\":{\"controller\":\"the controller contract\"}},\"isController(address)\":{\"custom:function-name\":\"isController\",\"details\":\"used to check if an address is a controller or has a controller access\",\"params\":{\"controller\":\"the controller address\"}},\"revokePermit(address)\":{\"custom:function-name\":\"revokePermit\",\"details\":\"used to grant permision for selected (onlyRole Restricted) functions to the controller\",\"params\":{\"controller\":\"the controller contract\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/interfaces/raffle/IRaffleFactory.sol\":\"IRaffleFactory\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@common/=src/common/\",\":@contracts/=src/contracts/\",\":@helpers/=helpers/\",\":@interfaces/=src/interfaces/\",\":@openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/\",\":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/\",\":@test-utils/=test/common/\",\":@types/=src/types/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/\",\":sizeChecker/=lib/Solidity_Contract_Size_Checker/\",\":solidity-stringutils/=lib/openzeppelin-foundry-upgrades/lib/solidity-stringutils/\"]},\"sources\":{\"src/interfaces/controller/IControllerPermit.sol\":{\"keccak256\":\"0xba42e582c149da0fda5a82bf623782e4f4a03fa2082145b1aef3ad354a7c0a80\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://6ac15a50e688ad74c586130ec6025e864b84d22b2ab9d996680fca8d52ba2ea5\",\"dweb:/ipfs/QmZzrpAjJzBLdv4TuJNjN5R9xatzhjqyKvjN45S2ih5iT8\"]},\"src/interfaces/raffle/IRaffleFactory.sol\":{\"keccak256\":\"0x0c5b50c733719d888a5b71f68997874cd4f18ffd78ee72aa633935487503e901\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://105fda7c915e6a8d3539b0e643d7ca6b03ede0ab5575c11a28ae4453e3606560\",\"dweb:/ipfs/QmUypQv7W8b7TZxFv3j4GeXfna1Jv7tzRJod7sXSwXDoep\"]}},\"version\":1}",
+    "metadata": {
+        "compiler": { "version": "0.8.20+commit.a1b79de6" },
+        "language": "Solidity",
+        "output": {
+            "abi": [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "permissionGiver",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "controller",
+                            "type": "address",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "ControllerPermissionGranted",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "permissionGiver",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "controller",
+                            "type": "address",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "ControllerPermissionRevoked",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "newOwner", "type": "address" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "changeRaffleFactoryOwner"
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "payable",
+                    "type": "function",
+                    "name": "createRaffle",
+                    "outputs": [{ "internalType": "address", "name": "raffle", "type": "address" }]
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "createtionFee"
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "feeReceiver"
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "getImplementationDetails",
+                    "outputs": [
+                        {
+                            "internalType": "address",
+                            "name": "implementationAddress",
+                            "type": "address"
+                        },
+                        { "internalType": "string", "name": "contractType", "type": "string" },
+                        { "internalType": "string", "name": "version", "type": "string" }
+                    ]
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "getRaffleInfo"
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "controller", "type": "address" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "grantPermit"
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "controller", "type": "address" }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "isController",
+                    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "controller", "type": "address" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "revokePermit"
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "newReceiver", "type": "address" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "setFeeReceiver"
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "totalRaffles"
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "newCreationFee", "type": "address" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "updateCreationFee"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "newImplementation",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "updateImplementation"
+                },
+                {
+                    "inputs": [{ "internalType": "address", "name": "raffle", "type": "address" }],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "updateRaffleInfo"
+                }
+            ],
+            "devdoc": {
+                "kind": "dev",
+                "methods": {
+                    "grantPermit(address)": {
+                        "custom:function-name": "grantPermit",
+                        "details": "used to grant permision for selected (onlyRole Restricted) functions to the controller",
+                        "params": { "controller": "the controller contract" }
+                    },
+                    "isController(address)": {
+                        "custom:function-name": "isController",
+                        "details": "used to check if an address is a controller or has a controller access",
+                        "params": { "controller": "the controller address" }
+                    },
+                    "revokePermit(address)": {
+                        "custom:function-name": "revokePermit",
+                        "details": "used to grant permision for selected (onlyRole Restricted) functions to the controller",
+                        "params": { "controller": "the controller contract" }
+                    }
+                },
+                "version": 1
+            },
+            "userdoc": { "kind": "user", "methods": {}, "version": 1 }
+        },
+        "settings": {
+            "remappings": [
+                "@common/=src/common/",
+                "@contracts/=src/contracts/",
+                "@helpers/=helpers/",
+                "@interfaces/=src/interfaces/",
+                "@openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/",
+                "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+                "@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/",
+                "@test-utils/=test/common/",
+                "@types/=src/types/",
+                "ds-test/=lib/forge-std/lib/ds-test/src/",
+                "erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/",
+                "forge-std/=lib/forge-std/src/",
+                "openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/",
+                "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+                "openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/",
+                "sizeChecker/=lib/Solidity_Contract_Size_Checker/",
+                "solidity-stringutils/=lib/openzeppelin-foundry-upgrades/lib/solidity-stringutils/"
+            ],
+            "optimizer": { "enabled": true, "runs": 200 },
+            "metadata": { "bytecodeHash": "ipfs" },
+            "compilationTarget": { "src/interfaces/raffle/IRaffleFactory.sol": "IRaffleFactory" },
+            "evmVersion": "paris",
+            "libraries": {}
+        },
+        "sources": {
+            "src/interfaces/controller/IControllerPermit.sol": {
+                "keccak256": "0xba42e582c149da0fda5a82bf623782e4f4a03fa2082145b1aef3ad354a7c0a80",
+                "urls": [
+                    "bzz-raw://6ac15a50e688ad74c586130ec6025e864b84d22b2ab9d996680fca8d52ba2ea5",
+                    "dweb:/ipfs/QmZzrpAjJzBLdv4TuJNjN5R9xatzhjqyKvjN45S2ih5iT8"
+                ],
+                "license": "BUSL-1.1"
+            },
+            "src/interfaces/raffle/IRaffleFactory.sol": {
+                "keccak256": "0x0c5b50c733719d888a5b71f68997874cd4f18ffd78ee72aa633935487503e901",
+                "urls": [
+                    "bzz-raw://105fda7c915e6a8d3539b0e643d7ca6b03ede0ab5575c11a28ae4453e3606560",
+                    "dweb:/ipfs/QmUypQv7W8b7TZxFv3j4GeXfna1Jv7tzRJod7sXSwXDoep"
+                ],
+                "license": "BUSL-1.1"
+            }
+        },
+        "version": 1
+    },
+    "storageLayout": { "storage": [], "types": {} },
+    "ast": {
+        "absolutePath": "src/interfaces/raffle/IRaffleFactory.sol",
+        "id": 71775,
+        "exportedSymbols": { "IControllerPermit": [71493], "IRaffleFactory": [71774] },
+        "nodeType": "SourceUnit",
+        "src": "37:897:132",
+        "nodes": [
+            {
+                "id": 71718,
+                "nodeType": "PragmaDirective",
+                "src": "37:23:132",
+                "nodes": [],
+                "literals": ["solidity", "0.8", ".20"]
+            },
+            {
+                "id": 71720,
+                "nodeType": "ImportDirective",
+                "src": "62:79:132",
+                "nodes": [],
+                "absolutePath": "src/interfaces/controller/IControllerPermit.sol",
+                "file": "@interfaces/controller/IControllerPermit.sol",
+                "nameLocation": "-1:-1:-1",
+                "scope": 71775,
+                "sourceUnit": 71494,
+                "symbolAliases": [
+                    {
+                        "foreign": {
+                            "id": 71719,
+                            "name": "IControllerPermit",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 71493,
+                            "src": "70:17:132",
+                            "typeDescriptions": {}
+                        },
+                        "nameLocation": "-1:-1:-1"
+                    }
+                ],
+                "unitAlias": ""
+            },
+            {
+                "id": 71774,
+                "nodeType": "ContractDefinition",
+                "src": "143:790:132",
+                "nodes": [
+                    {
+                        "id": 71727,
+                        "nodeType": "FunctionDefinition",
+                        "src": "195:66:132",
+                        "nodes": [],
+                        "functionSelector": "485ac2a7",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "createRaffle",
+                        "nameLocation": "204:12:132",
+                        "parameters": {
+                            "id": 71723,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "216:2:132"
+                        },
+                        "returnParameters": {
+                            "id": 71726,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71725,
+                                    "mutability": "mutable",
+                                    "name": "raffle",
+                                    "nameLocation": "253:6:132",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71727,
+                                    "src": "245:14:132",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71724,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "245:7:132",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "244:16:132"
+                        },
+                        "scope": 71774,
+                        "stateMutability": "payable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71730,
+                        "nodeType": "FunctionDefinition",
+                        "src": "267:39:132",
+                        "nodes": [],
+                        "functionSelector": "8166f6b2",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getRaffleInfo",
+                        "nameLocation": "276:13:132",
+                        "parameters": {
+                            "id": 71728,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "289:2:132"
+                        },
+                        "returnParameters": {
+                            "id": 71729,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "305:0:132"
+                        },
+                        "scope": 71774,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71733,
+                        "nodeType": "FunctionDefinition",
+                        "src": "312:38:132",
+                        "nodes": [],
+                        "functionSelector": "3748312f",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "totalRaffles",
+                        "nameLocation": "321:12:132",
+                        "parameters": {
+                            "id": 71731,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "333:2:132"
+                        },
+                        "returnParameters": {
+                            "id": 71732,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "349:0:132"
+                        },
+                        "scope": 71774,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71736,
+                        "nodeType": "FunctionDefinition",
+                        "src": "356:39:132",
+                        "nodes": [],
+                        "functionSelector": "35a9e4af",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "createtionFee",
+                        "nameLocation": "365:13:132",
+                        "parameters": {
+                            "id": 71734,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "378:2:132"
+                        },
+                        "returnParameters": {
+                            "id": 71735,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "394:0:132"
+                        },
+                        "scope": 71774,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71739,
+                        "nodeType": "FunctionDefinition",
+                        "src": "401:37:132",
+                        "nodes": [],
+                        "functionSelector": "b3f00674",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "feeReceiver",
+                        "nameLocation": "410:11:132",
+                        "parameters": {
+                            "id": 71737,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "421:2:132"
+                        },
+                        "returnParameters": {
+                            "id": 71738,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "437:0:132"
+                        },
+                        "scope": 71774,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71748,
+                        "nodeType": "FunctionDefinition",
+                        "src": "444:165:132",
+                        "nodes": [],
+                        "functionSelector": "d4b583a0",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getImplementationDetails",
+                        "nameLocation": "453:24:132",
+                        "parameters": {
+                            "id": 71740,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "477:2:132"
+                        },
+                        "returnParameters": {
+                            "id": 71747,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71742,
+                                    "mutability": "mutable",
+                                    "name": "implementationAddress",
+                                    "nameLocation": "535:21:132",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71748,
+                                    "src": "527:29:132",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71741,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "527:7:132",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71744,
+                                    "mutability": "mutable",
+                                    "name": "contractType",
+                                    "nameLocation": "572:12:132",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71748,
+                                    "src": "558:26:132",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_memory_ptr",
+                                        "typeString": "string"
+                                    },
+                                    "typeName": {
+                                        "id": 71743,
+                                        "name": "string",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "558:6:132",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_string_storage_ptr",
+                                            "typeString": "string"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71746,
+                                    "mutability": "mutable",
+                                    "name": "version",
+                                    "nameLocation": "600:7:132",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71748,
+                                    "src": "586:21:132",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_memory_ptr",
+                                        "typeString": "string"
+                                    },
+                                    "typeName": {
+                                        "id": 71745,
+                                        "name": "string",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "586:6:132",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_string_storage_ptr",
+                                            "typeString": "string"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "526:82:132"
+                        },
+                        "scope": 71774,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71753,
+                        "nodeType": "FunctionDefinition",
+                        "src": "615:60:132",
+                        "nodes": [],
+                        "functionSelector": "69391256",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "updateCreationFee",
+                        "nameLocation": "624:17:132",
+                        "parameters": {
+                            "id": 71751,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71750,
+                                    "mutability": "mutable",
+                                    "name": "newCreationFee",
+                                    "nameLocation": "650:14:132",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71753,
+                                    "src": "642:22:132",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71749,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "642:7:132",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "641:24:132"
+                        },
+                        "returnParameters": {
+                            "id": 71752,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "674:0:132"
+                        },
+                        "scope": 71774,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71758,
+                        "nodeType": "FunctionDefinition",
+                        "src": "681:51:132",
+                        "nodes": [],
+                        "functionSelector": "bf8c1f76",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "updateRaffleInfo",
+                        "nameLocation": "690:16:132",
+                        "parameters": {
+                            "id": 71756,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71755,
+                                    "mutability": "mutable",
+                                    "name": "raffle",
+                                    "nameLocation": "715:6:132",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71758,
+                                    "src": "707:14:132",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71754,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "707:7:132",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "706:16:132"
+                        },
+                        "returnParameters": {
+                            "id": 71757,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "731:0:132"
+                        },
+                        "scope": 71774,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71763,
+                        "nodeType": "FunctionDefinition",
+                        "src": "738:66:132",
+                        "nodes": [],
+                        "functionSelector": "025b22bc",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "updateImplementation",
+                        "nameLocation": "747:20:132",
+                        "parameters": {
+                            "id": 71761,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71760,
+                                    "mutability": "mutable",
+                                    "name": "newImplementation",
+                                    "nameLocation": "776:17:132",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71763,
+                                    "src": "768:25:132",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71759,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "768:7:132",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "767:27:132"
+                        },
+                        "returnParameters": {
+                            "id": 71762,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "803:0:132"
+                        },
+                        "scope": 71774,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71768,
+                        "nodeType": "FunctionDefinition",
+                        "src": "810:61:132",
+                        "nodes": [],
+                        "functionSelector": "44a35278",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "changeRaffleFactoryOwner",
+                        "nameLocation": "819:24:132",
+                        "parameters": {
+                            "id": 71766,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71765,
+                                    "mutability": "mutable",
+                                    "name": "newOwner",
+                                    "nameLocation": "852:8:132",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71768,
+                                    "src": "844:16:132",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71764,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "844:7:132",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "843:18:132"
+                        },
+                        "returnParameters": {
+                            "id": 71767,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "870:0:132"
+                        },
+                        "scope": 71774,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71773,
+                        "nodeType": "FunctionDefinition",
+                        "src": "877:54:132",
+                        "nodes": [],
+                        "functionSelector": "efdcd974",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "setFeeReceiver",
+                        "nameLocation": "886:14:132",
+                        "parameters": {
+                            "id": 71771,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71770,
+                                    "mutability": "mutable",
+                                    "name": "newReceiver",
+                                    "nameLocation": "909:11:132",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71773,
+                                    "src": "901:19:132",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71769,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "901:7:132",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "900:21:132"
+                        },
+                        "returnParameters": {
+                            "id": 71772,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "930:0:132"
+                        },
+                        "scope": 71774,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "abstract": false,
+                "baseContracts": [
+                    {
+                        "baseName": {
+                            "id": 71721,
+                            "name": "IControllerPermit",
+                            "nameLocations": ["171:17:132"],
+                            "nodeType": "IdentifierPath",
+                            "referencedDeclaration": 71493,
+                            "src": "171:17:132"
+                        },
+                        "id": 71722,
+                        "nodeType": "InheritanceSpecifier",
+                        "src": "171:17:132"
+                    }
+                ],
+                "canonicalName": "IRaffleFactory",
+                "contractDependencies": [],
+                "contractKind": "interface",
+                "fullyImplemented": false,
+                "linearizedBaseContracts": [71774, 71493],
+                "name": "IRaffleFactory",
+                "nameLocation": "153:14:132",
+                "scope": 71775,
+                "usedErrors": [],
+                "usedEvents": [71466, 71472]
+            }
+        ],
+        "license": "BUSL-1.1"
+    },
+    "id": 132
+}

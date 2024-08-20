@@ -1,0 +1,8 @@
+node_modules
+.env
+tsconfig.tsbuildinfo
+lib
+dist
+docs
+
+test/reports/

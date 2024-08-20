@@ -1,0 +1,61 @@
+{
+    "abi": [],
+    "bytecode": { "object": "0x", "linkReferences": {} },
+    "deployedBytecode": { "object": "0x", "linkReferences": {} },
+    "ast": {
+        "absolutePath": "src/types/controller/Types.sol",
+        "id": 72168,
+        "exportedSymbols": { "ControllerRole": [72167] },
+        "nodeType": "SourceUnit",
+        "src": "37:488:136",
+        "nodes": [
+            {
+                "id": 72162,
+                "nodeType": "PragmaDirective",
+                "src": "37:23:136",
+                "nodes": [],
+                "literals": ["solidity", "0.8", ".20"]
+            },
+            {
+                "id": 72167,
+                "nodeType": "EnumDefinition",
+                "src": "472:52:136",
+                "nodes": [],
+                "canonicalName": "ControllerRole",
+                "documentation": {
+                    "id": 72163,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "62:409:136",
+                    "text": " @custom:enum ControllerRole\n @custom:enum-param {BOT} 0th Index corresponds the the bytes32 role for the bot\n @custom:enum-param {CALLER} 1st Index corresponds the the bytes32 role for the caller\n @custom:enum-param {ERC} 2nd Index corresponds the the bytes32 role for the erc20 transfer\n @dev this enum is used in assigning roles much easier than\n grantRole for controller contract"
+                },
+                "members": [
+                    {
+                        "id": 72164,
+                        "name": "BOT",
+                        "nameLocation": "498:3:136",
+                        "nodeType": "EnumValue",
+                        "src": "498:3:136"
+                    },
+                    {
+                        "id": 72165,
+                        "name": "CALLER",
+                        "nameLocation": "507:6:136",
+                        "nodeType": "EnumValue",
+                        "src": "507:6:136"
+                    },
+                    {
+                        "id": 72166,
+                        "name": "ERC",
+                        "nameLocation": "519:3:136",
+                        "nodeType": "EnumValue",
+                        "src": "519:3:136"
+                    }
+                ],
+                "name": "ControllerRole",
+                "nameLocation": "477:14:136"
+            }
+        ],
+        "license": "BUSL-1.1"
+    },
+    "id": 136
+}

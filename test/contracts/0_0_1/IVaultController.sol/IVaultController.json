@@ -1,0 +1,1435 @@
+{
+    "abi": [
+        {
+            "type": "function",
+            "name": "createVault",
+            "inputs": [
+                { "name": "targetVaultFactory", "type": "address", "internalType": "address" },
+                { "name": "projectOwner", "type": "address", "internalType": "address" },
+                { "name": "rewardToken", "type": "address", "internalType": "address" },
+                { "name": "projectName", "type": "string", "internalType": "string" }
+            ],
+            "outputs": [{ "name": "vault", "type": "address", "internalType": "address" }],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "vaultReward",
+            "inputs": [
+                { "name": "targetVault", "type": "address", "internalType": "address" },
+                { "name": "to", "type": "address", "internalType": "address" },
+                { "name": "amount", "type": "uint256", "internalType": "uint256" }
+            ],
+            "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "vaultRewardBatch",
+            "inputs": [
+                { "name": "targetVault", "type": "address", "internalType": "address" },
+                {
+                    "name": "receivers",
+                    "type": "tuple[]",
+                    "internalType": "struct Receiver[]",
+                    "components": [
+                        { "name": "receiver", "type": "address", "internalType": "address" },
+                        { "name": "amount", "type": "uint256", "internalType": "uint256" }
+                    ]
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "returnData",
+                    "type": "tuple[]",
+                    "internalType": "struct Result[]",
+                    "components": [
+                        { "name": "success", "type": "bool", "internalType": "bool" },
+                        { "name": "returnData", "type": "bytes", "internalType": "bytes" }
+                    ]
+                }
+            ],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "event",
+            "name": "Rewarded",
+            "inputs": [
+                { "name": "caller", "type": "address", "indexed": true, "internalType": "address" },
+                {
+                    "name": "targetVault",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "receiver",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                { "name": "amount", "type": "uint256", "indexed": false, "internalType": "uint256" }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "RewardedBatch",
+            "inputs": [
+                { "name": "caller", "type": "address", "indexed": true, "internalType": "address" },
+                {
+                    "name": "targetVault",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "receiverAmount",
+                    "type": "uint256",
+                    "indexed": true,
+                    "internalType": "uint256"
+                },
+                {
+                    "name": "receivers",
+                    "type": "tuple[]",
+                    "indexed": false,
+                    "internalType": "struct Receiver[]",
+                    "components": [
+                        { "name": "receiver", "type": "address", "internalType": "address" },
+                        { "name": "amount", "type": "uint256", "internalType": "uint256" }
+                    ]
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "VaultCreated",
+            "inputs": [
+                { "name": "caller", "type": "address", "indexed": true, "internalType": "address" },
+                { "name": "vault", "type": "address", "indexed": true, "internalType": "address" },
+                {
+                    "name": "factory",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "projectOwner",
+                    "type": "address",
+                    "indexed": false,
+                    "internalType": "address"
+                },
+                {
+                    "name": "projectName",
+                    "type": "string",
+                    "indexed": false,
+                    "internalType": "string"
+                },
+                {
+                    "name": "rewardToken",
+                    "type": "address",
+                    "indexed": false,
+                    "internalType": "address"
+                }
+            ],
+            "anonymous": false
+        }
+    ],
+    "bytecode": { "object": "0x", "sourceMap": "", "linkReferences": {} },
+    "deployedBytecode": { "object": "0x", "sourceMap": "", "linkReferences": {} },
+    "methodIdentifiers": {
+        "createVault(address,address,address,string)": "9828a443",
+        "vaultReward(address,address,uint256)": "00c6bd73",
+        "vaultRewardBatch(address,(address,uint256)[])": "61d24f15"
+    },
+    "rawMetadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"targetVault\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Rewarded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"targetVault\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"receiverAmount\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"indexed\":false,\"internalType\":\"struct Receiver[]\",\"name\":\"receivers\",\"type\":\"tuple[]\"}],\"name\":\"RewardedBatch\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"vault\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"factory\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"projectOwner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"projectName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"rewardToken\",\"type\":\"address\"}],\"name\":\"VaultCreated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"targetVaultFactory\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"projectOwner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rewardToken\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"projectName\",\"type\":\"string\"}],\"name\":\"createVault\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"vault\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"targetVault\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"vaultReward\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"targetVault\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct Receiver[]\",\"name\":\"receivers\",\"type\":\"tuple[]\"}],\"name\":\"vaultRewardBatch\",\"outputs\":[{\"components\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"},{\"internalType\":\"bytes\",\"name\":\"returnData\",\"type\":\"bytes\"}],\"internalType\":\"struct Result[]\",\"name\":\"returnData\",\"type\":\"tuple[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Metaxona\",\"custom:github\":\"https://github.com/Metaxona\",\"custom:version\":\"0.0.1\",\"details\":\"an interface used to enforce which functions must be implemented in a controller contract to interact with the vault and vault factory contract\",\"kind\":\"dev\",\"methods\":{\"createVault(address,address,address,string)\":{\"custom:function-name\":\"createVault\",\"details\":\"this function is used by the controller to create vaults on behalf of the users\",\"params\":{\"projectName\":\"the project name of the vault\",\"projectOwner\":\"the owner the the vault\",\"rewardToken\":\"the erc20 token address to reward users with\",\"targetVaultFactory\":\"the address of the vault factory used to create the vault\"},\"returns\":{\"vault\":\"the address of the created vault\"}},\"vaultReward(address,address,uint256)\":{\"custom:function-name\":\"vaultReward\",\"details\":\"this function is used to interact with a target vault's single target reward function\",\"params\":{\"amount\":\"the amount of reward to send\",\"targetVault\":\"the target vault contract\",\"to\":\"the reward's receiver\"}},\"vaultRewardBatch(address,(address,uint256)[])\":{\"custom:function-name\":\"vaultRewardBatch\",\"custom:sub-param\":\"`receiver` - receiver's address`amount` - amount of reward\",\"details\":\"this function is used to interact with a target vault's batch target reward function\",\"params\":{\"receivers\":\"the reward receiver's info\",\"targetVault\":\"the target vault contract\"}}},\"title\":\"IVaultController\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/interfaces/controller/IVaultController.sol\":\"IVaultController\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@common/=src/common/\",\":@contracts/=src/contracts/\",\":@helpers/=helpers/\",\":@interfaces/=src/interfaces/\",\":@openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/\",\":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/\",\":@test-utils/=test/common/\",\":@types/=src/types/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/\",\":sizeChecker/=lib/Solidity_Contract_Size_Checker/\",\":solidity-stringutils/=lib/openzeppelin-foundry-upgrades/lib/solidity-stringutils/\"]},\"sources\":{\"src/interfaces/controller/IVaultController.sol\":{\"keccak256\":\"0x3e4aeb369f6d03e06d63a7f985c83f6ca079d3f146a3fd75c748cd66335e5c11\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://73d81677acfde3910468a167be97a9e4a3cab2a7ee866927f268da8022479f84\",\"dweb:/ipfs/Qmcx675vk4Q7wJg5Pe9P7tFgPSoi6wpcaxsFKJHfpqzJrq\"]},\"src/types/common/Types.sol\":{\"keccak256\":\"0xc95ddebf538851a33248049ff61ee4304ee5dd9ec14def92a1bbe6a7c5f4962d\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://29f85f536db7829e95fd85aa642ee76c1a78471daa459727b128a3384817a6e4\",\"dweb:/ipfs/QmZWj9DjBXuGf2BeZMeTzRsevhMhY3SxM2hSZKk6NcLZdL\"]}},\"version\":1}",
+    "metadata": {
+        "compiler": { "version": "0.8.20+commit.a1b79de6" },
+        "language": "Solidity",
+        "output": {
+            "abi": [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "caller",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "targetVault",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "receiver",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "amount",
+                            "type": "uint256",
+                            "indexed": false
+                        }
+                    ],
+                    "type": "event",
+                    "name": "Rewarded",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "caller",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "targetVault",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "receiverAmount",
+                            "type": "uint256",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "struct Receiver[]",
+                            "name": "receivers",
+                            "type": "tuple[]",
+                            "components": [
+                                {
+                                    "internalType": "address",
+                                    "name": "receiver",
+                                    "type": "address"
+                                },
+                                { "internalType": "uint256", "name": "amount", "type": "uint256" }
+                            ],
+                            "indexed": false
+                        }
+                    ],
+                    "type": "event",
+                    "name": "RewardedBatch",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "caller",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "vault",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "factory",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "projectOwner",
+                            "type": "address",
+                            "indexed": false
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "projectName",
+                            "type": "string",
+                            "indexed": false
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "rewardToken",
+                            "type": "address",
+                            "indexed": false
+                        }
+                    ],
+                    "type": "event",
+                    "name": "VaultCreated",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "targetVaultFactory",
+                            "type": "address"
+                        },
+                        { "internalType": "address", "name": "projectOwner", "type": "address" },
+                        { "internalType": "address", "name": "rewardToken", "type": "address" },
+                        { "internalType": "string", "name": "projectName", "type": "string" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "createVault",
+                    "outputs": [{ "internalType": "address", "name": "vault", "type": "address" }]
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "targetVault", "type": "address" },
+                        { "internalType": "address", "name": "to", "type": "address" },
+                        { "internalType": "uint256", "name": "amount", "type": "uint256" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "vaultReward",
+                    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "targetVault", "type": "address" },
+                        {
+                            "internalType": "struct Receiver[]",
+                            "name": "receivers",
+                            "type": "tuple[]",
+                            "components": [
+                                {
+                                    "internalType": "address",
+                                    "name": "receiver",
+                                    "type": "address"
+                                },
+                                { "internalType": "uint256", "name": "amount", "type": "uint256" }
+                            ]
+                        }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "vaultRewardBatch",
+                    "outputs": [
+                        {
+                            "internalType": "struct Result[]",
+                            "name": "returnData",
+                            "type": "tuple[]",
+                            "components": [
+                                { "internalType": "bool", "name": "success", "type": "bool" },
+                                { "internalType": "bytes", "name": "returnData", "type": "bytes" }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "devdoc": {
+                "kind": "dev",
+                "methods": {
+                    "createVault(address,address,address,string)": {
+                        "custom:function-name": "createVault",
+                        "details": "this function is used by the controller to create vaults on behalf of the users",
+                        "params": {
+                            "projectName": "the project name of the vault",
+                            "projectOwner": "the owner the the vault",
+                            "rewardToken": "the erc20 token address to reward users with",
+                            "targetVaultFactory": "the address of the vault factory used to create the vault"
+                        },
+                        "returns": { "vault": "the address of the created vault" }
+                    },
+                    "vaultReward(address,address,uint256)": {
+                        "custom:function-name": "vaultReward",
+                        "details": "this function is used to interact with a target vault's single target reward function",
+                        "params": {
+                            "amount": "the amount of reward to send",
+                            "targetVault": "the target vault contract",
+                            "to": "the reward's receiver"
+                        }
+                    },
+                    "vaultRewardBatch(address,(address,uint256)[])": {
+                        "custom:function-name": "vaultRewardBatch",
+                        "custom:sub-param": "`receiver` - receiver's address`amount` - amount of reward",
+                        "details": "this function is used to interact with a target vault's batch target reward function",
+                        "params": {
+                            "receivers": "the reward receiver's info",
+                            "targetVault": "the target vault contract"
+                        }
+                    }
+                },
+                "version": 1
+            },
+            "userdoc": { "kind": "user", "methods": {}, "version": 1 }
+        },
+        "settings": {
+            "remappings": [
+                "@common/=src/common/",
+                "@contracts/=src/contracts/",
+                "@helpers/=helpers/",
+                "@interfaces/=src/interfaces/",
+                "@openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/",
+                "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+                "@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/",
+                "@test-utils/=test/common/",
+                "@types/=src/types/",
+                "ds-test/=lib/forge-std/lib/ds-test/src/",
+                "erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/",
+                "forge-std/=lib/forge-std/src/",
+                "openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/",
+                "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+                "openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/",
+                "sizeChecker/=lib/Solidity_Contract_Size_Checker/",
+                "solidity-stringutils/=lib/openzeppelin-foundry-upgrades/lib/solidity-stringutils/"
+            ],
+            "optimizer": { "enabled": true, "runs": 200 },
+            "metadata": { "bytecodeHash": "ipfs" },
+            "compilationTarget": {
+                "src/interfaces/controller/IVaultController.sol": "IVaultController"
+            },
+            "evmVersion": "paris",
+            "libraries": {}
+        },
+        "sources": {
+            "src/interfaces/controller/IVaultController.sol": {
+                "keccak256": "0x3e4aeb369f6d03e06d63a7f985c83f6ca079d3f146a3fd75c748cd66335e5c11",
+                "urls": [
+                    "bzz-raw://73d81677acfde3910468a167be97a9e4a3cab2a7ee866927f268da8022479f84",
+                    "dweb:/ipfs/Qmcx675vk4Q7wJg5Pe9P7tFgPSoi6wpcaxsFKJHfpqzJrq"
+                ],
+                "license": "BUSL-1.1"
+            },
+            "src/types/common/Types.sol": {
+                "keccak256": "0xc95ddebf538851a33248049ff61ee4304ee5dd9ec14def92a1bbe6a7c5f4962d",
+                "urls": [
+                    "bzz-raw://29f85f536db7829e95fd85aa642ee76c1a78471daa459727b128a3384817a6e4",
+                    "dweb:/ipfs/QmZWj9DjBXuGf2BeZMeTzRsevhMhY3SxM2hSZKk6NcLZdL"
+                ],
+                "license": "BUSL-1.1"
+            }
+        },
+        "version": 1
+    },
+    "storageLayout": { "storage": [], "types": {} },
+    "ast": {
+        "absolutePath": "src/interfaces/controller/IVaultController.sol",
+        "id": 71632,
+        "exportedSymbols": { "IVaultController": [71631], "Receiver": [72154], "Result": [72160] },
+        "nodeType": "SourceUnit",
+        "src": "37:2531:130",
+        "nodes": [
+            {
+                "id": 71550,
+                "nodeType": "PragmaDirective",
+                "src": "37:23:130",
+                "nodes": [],
+                "literals": ["solidity", "0.8", ".20"]
+            },
+            {
+                "id": 71553,
+                "nodeType": "ImportDirective",
+                "src": "62:57:130",
+                "nodes": [],
+                "absolutePath": "src/types/common/Types.sol",
+                "file": "@types/common/Types.sol",
+                "nameLocation": "-1:-1:-1",
+                "scope": 71632,
+                "sourceUnit": 72161,
+                "symbolAliases": [
+                    {
+                        "foreign": {
+                            "id": 71551,
+                            "name": "Receiver",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 72154,
+                            "src": "70:8:130",
+                            "typeDescriptions": {}
+                        },
+                        "nameLocation": "-1:-1:-1"
+                    },
+                    {
+                        "foreign": {
+                            "id": 71552,
+                            "name": "Result",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 72160,
+                            "src": "80:6:130",
+                            "typeDescriptions": {}
+                        },
+                        "nameLocation": "-1:-1:-1"
+                    }
+                ],
+                "unitAlias": ""
+            },
+            {
+                "id": 71631,
+                "nodeType": "ContractDefinition",
+                "src": "402:2165:130",
+                "nodes": [
+                    {
+                        "id": 71564,
+                        "nodeType": "EventDefinition",
+                        "src": "435:110:130",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "a209447764afbca4d7c43c9962941f114f3465f7fde32167c76661eb75b3ef77",
+                        "name": "Rewarded",
+                        "nameLocation": "441:8:130",
+                        "parameters": {
+                            "id": 71563,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71556,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "caller",
+                                    "nameLocation": "466:6:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71564,
+                                    "src": "450:22:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71555,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "450:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71558,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "targetVault",
+                                    "nameLocation": "490:11:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71564,
+                                    "src": "474:27:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71557,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "474:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71560,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "receiver",
+                                    "nameLocation": "519:8:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71564,
+                                    "src": "503:24:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71559,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "503:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71562,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "amount",
+                                    "nameLocation": "537:6:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71564,
+                                    "src": "529:14:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71561,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "529:7:130",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "449:95:130"
+                        }
+                    },
+                    {
+                        "id": 71576,
+                        "nodeType": "EventDefinition",
+                        "src": "551:141:130",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "214f875e8c01fad6f3fc1514d8444a1bbc3920b93a723c614620c28a608c96e7",
+                        "name": "RewardedBatch",
+                        "nameLocation": "557:13:130",
+                        "parameters": {
+                            "id": 71575,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71566,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "caller",
+                                    "nameLocation": "596:6:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71576,
+                                    "src": "580:22:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71565,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "580:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71568,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "targetVault",
+                                    "nameLocation": "620:11:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71576,
+                                    "src": "604:27:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71567,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "604:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71570,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "receiverAmount",
+                                    "nameLocation": "649:14:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71576,
+                                    "src": "633:30:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71569,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "633:7:130",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71574,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "receivers",
+                                    "nameLocation": "676:9:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71576,
+                                    "src": "665:20:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_Receiver_$72154_memory_ptr_$dyn_memory_ptr",
+                                        "typeString": "struct Receiver[]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 71572,
+                                            "nodeType": "UserDefinedTypeName",
+                                            "pathNode": {
+                                                "id": 71571,
+                                                "name": "Receiver",
+                                                "nameLocations": ["665:8:130"],
+                                                "nodeType": "IdentifierPath",
+                                                "referencedDeclaration": 72154,
+                                                "src": "665:8:130"
+                                            },
+                                            "referencedDeclaration": 72154,
+                                            "src": "665:8:130",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_struct$_Receiver_$72154_storage_ptr",
+                                                "typeString": "struct Receiver"
+                                            }
+                                        },
+                                        "id": 71573,
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "665:10:130",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_struct$_Receiver_$72154_storage_$dyn_storage_ptr",
+                                            "typeString": "struct Receiver[]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "570:121:130"
+                        }
+                    },
+                    {
+                        "id": 71590,
+                        "nodeType": "EventDefinition",
+                        "src": "698:208:130",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "49a49fae4394926b3cce410dea6b7b566ed710e53806947d896556c4cc3f67ef",
+                        "name": "VaultCreated",
+                        "nameLocation": "704:12:130",
+                        "parameters": {
+                            "id": 71589,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71578,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "caller",
+                                    "nameLocation": "742:6:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71590,
+                                    "src": "726:22:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71577,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "726:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71580,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "vault",
+                                    "nameLocation": "774:5:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71590,
+                                    "src": "758:21:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71579,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "758:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71582,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "factory",
+                                    "nameLocation": "805:7:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71590,
+                                    "src": "789:23:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71581,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "789:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71584,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "projectOwner",
+                                    "nameLocation": "830:12:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71590,
+                                    "src": "822:20:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71583,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "822:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71586,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "projectName",
+                                    "nameLocation": "859:11:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71590,
+                                    "src": "852:18:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_memory_ptr",
+                                        "typeString": "string"
+                                    },
+                                    "typeName": {
+                                        "id": 71585,
+                                        "name": "string",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "852:6:130",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_string_storage_ptr",
+                                            "typeString": "string"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71588,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "rewardToken",
+                                    "nameLocation": "888:11:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71590,
+                                    "src": "880:19:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71587,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "880:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "716:189:130"
+                        }
+                    },
+                    {
+                        "id": 71602,
+                        "nodeType": "FunctionDefinition",
+                        "src": "1222:94:130",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71591,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "912:305:130",
+                            "text": " @custom:function-name vaultReward\n @param targetVault the target vault contract\n @param to the reward's receiver\n @param amount the amount of reward to send\n @dev this function is used to interact with a target vault's single target reward function"
+                        },
+                        "functionSelector": "00c6bd73",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "vaultReward",
+                        "nameLocation": "1231:11:130",
+                        "parameters": {
+                            "id": 71598,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71593,
+                                    "mutability": "mutable",
+                                    "name": "targetVault",
+                                    "nameLocation": "1251:11:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71602,
+                                    "src": "1243:19:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71592,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1243:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71595,
+                                    "mutability": "mutable",
+                                    "name": "to",
+                                    "nameLocation": "1272:2:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71602,
+                                    "src": "1264:10:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71594,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1264:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71597,
+                                    "mutability": "mutable",
+                                    "name": "amount",
+                                    "nameLocation": "1284:6:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71602,
+                                    "src": "1276:14:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71596,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1276:7:130",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1242:49:130"
+                        },
+                        "returnParameters": {
+                            "id": 71601,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71600,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71602,
+                                    "src": "1310:4:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bool",
+                                        "typeString": "bool"
+                                    },
+                                    "typeName": {
+                                        "id": 71599,
+                                        "name": "bool",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1310:4:130",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bool",
+                                            "typeString": "bool"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1309:6:130"
+                        },
+                        "scope": 71631,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71616,
+                        "nodeType": "FunctionDefinition",
+                        "src": "1708:140:130",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71603,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1322:381:130",
+                            "text": " @custom:function-name vaultRewardBatch\n @param targetVault the target vault contract\n @param receivers the reward receiver's info\n @custom:sub-param `receiver` - receiver's address\n @custom:sub-param `amount` - amount of reward\n @dev this function is used to interact with a target vault's batch target reward function"
+                        },
+                        "functionSelector": "61d24f15",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "vaultRewardBatch",
+                        "nameLocation": "1717:16:130",
+                        "parameters": {
+                            "id": 71610,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71605,
+                                    "mutability": "mutable",
+                                    "name": "targetVault",
+                                    "nameLocation": "1742:11:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71616,
+                                    "src": "1734:19:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71604,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1734:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71609,
+                                    "mutability": "mutable",
+                                    "name": "receivers",
+                                    "nameLocation": "1775:9:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71616,
+                                    "src": "1755:29:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "calldata",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_Receiver_$72154_calldata_ptr_$dyn_calldata_ptr",
+                                        "typeString": "struct Receiver[]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 71607,
+                                            "nodeType": "UserDefinedTypeName",
+                                            "pathNode": {
+                                                "id": 71606,
+                                                "name": "Receiver",
+                                                "nameLocations": ["1755:8:130"],
+                                                "nodeType": "IdentifierPath",
+                                                "referencedDeclaration": 72154,
+                                                "src": "1755:8:130"
+                                            },
+                                            "referencedDeclaration": 72154,
+                                            "src": "1755:8:130",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_struct$_Receiver_$72154_storage_ptr",
+                                                "typeString": "struct Receiver"
+                                            }
+                                        },
+                                        "id": 71608,
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "1755:10:130",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_struct$_Receiver_$72154_storage_$dyn_storage_ptr",
+                                            "typeString": "struct Receiver[]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1733:52:130"
+                        },
+                        "returnParameters": {
+                            "id": 71615,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71614,
+                                    "mutability": "mutable",
+                                    "name": "returnData",
+                                    "nameLocation": "1836:10:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71616,
+                                    "src": "1820:26:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_Result_$72160_memory_ptr_$dyn_memory_ptr",
+                                        "typeString": "struct Result[]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 71612,
+                                            "nodeType": "UserDefinedTypeName",
+                                            "pathNode": {
+                                                "id": 71611,
+                                                "name": "Result",
+                                                "nameLocations": ["1820:6:130"],
+                                                "nodeType": "IdentifierPath",
+                                                "referencedDeclaration": 72160,
+                                                "src": "1820:6:130"
+                                            },
+                                            "referencedDeclaration": 72160,
+                                            "src": "1820:6:130",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_struct$_Result_$72160_storage_ptr",
+                                                "typeString": "struct Result"
+                                            }
+                                        },
+                                        "id": 71613,
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "1820:8:130",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_struct$_Result_$72160_storage_$dyn_storage_ptr",
+                                            "typeString": "struct Result[]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1819:28:130"
+                        },
+                        "scope": 71631,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71630,
+                        "nodeType": "FunctionDefinition",
+                        "src": "2375:190:130",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71617,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1882:488:130",
+                            "text": " @custom:function-name createVault\n @param targetVaultFactory the address of the vault factory used to create the vault\n @param projectOwner the owner the the vault\n @param rewardToken the erc20 token address to reward users with\n @param projectName the project name of the vault\n @return vault the address of the created vault\n @dev this function is used by the controller to create vaults on behalf of the users"
+                        },
+                        "functionSelector": "9828a443",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "createVault",
+                        "nameLocation": "2384:11:130",
+                        "parameters": {
+                            "id": 71626,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71619,
+                                    "mutability": "mutable",
+                                    "name": "targetVaultFactory",
+                                    "nameLocation": "2413:18:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71630,
+                                    "src": "2405:26:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71618,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2405:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71621,
+                                    "mutability": "mutable",
+                                    "name": "projectOwner",
+                                    "nameLocation": "2449:12:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71630,
+                                    "src": "2441:20:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71620,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2441:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71623,
+                                    "mutability": "mutable",
+                                    "name": "rewardToken",
+                                    "nameLocation": "2479:11:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71630,
+                                    "src": "2471:19:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71622,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2471:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71625,
+                                    "mutability": "mutable",
+                                    "name": "projectName",
+                                    "nameLocation": "2514:11:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71630,
+                                    "src": "2500:25:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_memory_ptr",
+                                        "typeString": "string"
+                                    },
+                                    "typeName": {
+                                        "id": 71624,
+                                        "name": "string",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2500:6:130",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_string_storage_ptr",
+                                            "typeString": "string"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2395:136:130"
+                        },
+                        "returnParameters": {
+                            "id": 71629,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71628,
+                                    "mutability": "mutable",
+                                    "name": "vault",
+                                    "nameLocation": "2558:5:130",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71630,
+                                    "src": "2550:13:130",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71627,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2550:7:130",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2549:15:130"
+                        },
+                        "scope": 71631,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "abstract": false,
+                "baseContracts": [],
+                "canonicalName": "IVaultController",
+                "contractDependencies": [],
+                "contractKind": "interface",
+                "documentation": {
+                    "id": 71554,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "121:280:130",
+                    "text": " @title IVaultController\n @author Metaxona\n @custom:github https://github.com/Metaxona\n @custom:version 0.0.1\n @dev an interface used to enforce which functions must be implemented\n in a controller contract to interact with the vault and vault factory contract"
+                },
+                "fullyImplemented": false,
+                "linearizedBaseContracts": [71631],
+                "name": "IVaultController",
+                "nameLocation": "412:16:130",
+                "scope": 71632,
+                "usedErrors": [],
+                "usedEvents": [71564, 71576, 71590]
+            }
+        ],
+        "license": "BUSL-1.1"
+    },
+    "id": 130
+}

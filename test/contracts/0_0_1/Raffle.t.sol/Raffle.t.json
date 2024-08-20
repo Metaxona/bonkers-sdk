@@ -1,0 +1,23 @@
+{
+    "abi": [],
+    "bytecode": { "object": "0x", "linkReferences": {} },
+    "deployedBytecode": { "object": "0x", "linkReferences": {} },
+    "ast": {
+        "absolutePath": "test/contracts/raffle/Raffle.t.sol",
+        "id": 77742,
+        "exportedSymbols": {},
+        "nodeType": "SourceUnit",
+        "src": "51:24:148",
+        "nodes": [
+            {
+                "id": 77741,
+                "nodeType": "PragmaDirective",
+                "src": "51:23:148",
+                "nodes": [],
+                "literals": ["solidity", "0.8", ".20"]
+            }
+        ],
+        "license": "SEE LICENSE IN LICENSE"
+    },
+    "id": 148
+}

@@ -1,0 +1,3189 @@
+{
+    "abi": [
+        {
+            "type": "function",
+            "name": "changeVaultOwner",
+            "inputs": [{ "name": "newOwner", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "contractType",
+            "inputs": [],
+            "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "controllerLimits",
+            "inputs": [{ "name": "controller", "type": "address", "internalType": "address" }],
+            "outputs": [
+                { "name": "quota", "type": "uint256", "internalType": "uint256" },
+                { "name": "allowance", "type": "uint256", "internalType": "uint256" }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "controllerLimitsEnabled",
+            "inputs": [],
+            "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "defaultControllerLimits",
+            "inputs": [],
+            "outputs": [
+                { "name": "quota", "type": "uint256", "internalType": "uint256" },
+                { "name": "allowance", "type": "uint256", "internalType": "uint256" }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "getVaultInfo",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "tuple",
+                    "internalType": "struct VaultInfo",
+                    "components": [
+                        { "name": "id", "type": "uint256", "internalType": "uint256" },
+                        { "name": "version", "type": "string", "internalType": "string" },
+                        { "name": "projectOwner", "type": "address", "internalType": "address" },
+                        { "name": "projectName", "type": "string", "internalType": "string" },
+                        { "name": "rewardToken", "type": "address", "internalType": "address" },
+                        { "name": "createdAt", "type": "uint256", "internalType": "uint256" },
+                        { "name": "deployer", "type": "address", "internalType": "address" }
+                    ]
+                }
+            ],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "grantPermit",
+            "inputs": [{ "name": "controller", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "isController",
+            "inputs": [{ "name": "controller", "type": "address", "internalType": "address" }],
+            "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "revokePermit",
+            "inputs": [{ "name": "controller", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "reward",
+            "inputs": [
+                { "name": "to", "type": "address", "internalType": "address" },
+                { "name": "amount", "type": "uint256", "internalType": "uint256" }
+            ],
+            "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "rewardBatch",
+            "inputs": [
+                {
+                    "name": "receivers",
+                    "type": "tuple[]",
+                    "internalType": "struct Receiver[]",
+                    "components": [
+                        { "name": "receiver", "type": "address", "internalType": "address" },
+                        { "name": "amount", "type": "uint256", "internalType": "uint256" }
+                    ]
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "tuple[]",
+                    "internalType": "struct Result[]",
+                    "components": [
+                        { "name": "success", "type": "bool", "internalType": "bool" },
+                        { "name": "returnData", "type": "bytes", "internalType": "bytes" }
+                    ]
+                }
+            ],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "rewardPool",
+            "inputs": [],
+            "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "setControllerLimits",
+            "inputs": [
+                { "name": "controller", "type": "address", "internalType": "address" },
+                { "name": "quota", "type": "uint256", "internalType": "uint256" },
+                { "name": "allowance", "type": "uint256", "internalType": "uint256" }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "setDefaultControllerLimits",
+            "inputs": [
+                { "name": "quota", "type": "uint256", "internalType": "uint256" },
+                { "name": "allowance", "type": "uint256", "internalType": "uint256" }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "toggleControllerLimits",
+            "inputs": [],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "updateRewardToken",
+            "inputs": [{ "name": "newRewardToken", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "version",
+            "inputs": [],
+            "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
+            "stateMutability": "view"
+        },
+        {
+            "type": "function",
+            "name": "withdrawToken",
+            "inputs": [
+                { "name": "tokenAddress", "type": "address", "internalType": "address" },
+                { "name": "amount", "type": "uint256", "internalType": "uint256" }
+            ],
+            "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "event",
+            "name": "ControllerLimitsToggled",
+            "inputs": [
+                { "name": "caller", "type": "address", "indexed": true, "internalType": "address" },
+                { "name": "enabled", "type": "bool", "indexed": true, "internalType": "bool" }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "ControllerLimitsUpdated",
+            "inputs": [
+                {
+                    "name": "caller",
+                    "type": "address",
+                    "indexed": false,
+                    "internalType": "address"
+                },
+                {
+                    "name": "controller",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                { "name": "quota", "type": "uint256", "indexed": true, "internalType": "uint256" },
+                {
+                    "name": "maxRewardAmount",
+                    "type": "uint256",
+                    "indexed": true,
+                    "internalType": "uint256"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "ControllerPermissionGranted",
+            "inputs": [
+                {
+                    "name": "permissionGiver",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "controller",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "ControllerPermissionRevoked",
+            "inputs": [
+                {
+                    "name": "permissionGiver",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "controller",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "DefaultControllerLimitsUpdated",
+            "inputs": [
+                { "name": "caller", "type": "address", "indexed": true, "internalType": "address" },
+                { "name": "quota", "type": "uint256", "indexed": true, "internalType": "uint256" },
+                {
+                    "name": "maxRewardAmount",
+                    "type": "uint256",
+                    "indexed": true,
+                    "internalType": "uint256"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "RewardTokenUpdated",
+            "inputs": [
+                { "name": "caller", "type": "address", "indexed": true, "internalType": "address" },
+                {
+                    "name": "newRewardToken",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "Rewarded",
+            "inputs": [
+                { "name": "caller", "type": "address", "indexed": true, "internalType": "address" },
+                { "name": "to", "type": "address", "indexed": true, "internalType": "address" },
+                { "name": "amount", "type": "uint256", "indexed": true, "internalType": "uint256" }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "RewardedBatch",
+            "inputs": [
+                { "name": "caller", "type": "address", "indexed": true, "internalType": "address" },
+                {
+                    "name": "tokenAddress",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "result",
+                    "type": "tuple[]",
+                    "indexed": true,
+                    "internalType": "struct Result[]",
+                    "components": [
+                        { "name": "success", "type": "bool", "internalType": "bool" },
+                        { "name": "returnData", "type": "bytes", "internalType": "bytes" }
+                    ]
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "TokenWithdrawn",
+            "inputs": [
+                { "name": "caller", "type": "address", "indexed": true, "internalType": "address" },
+                {
+                    "name": "tokenAddress",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                { "name": "amount", "type": "uint256", "indexed": true, "internalType": "uint256" }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "VaultOwnerUpdated",
+            "inputs": [
+                {
+                    "name": "previousOwner",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "newOwner",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                }
+            ],
+            "anonymous": false
+        }
+    ],
+    "bytecode": { "object": "0x", "sourceMap": "", "linkReferences": {} },
+    "deployedBytecode": { "object": "0x", "sourceMap": "", "linkReferences": {} },
+    "methodIdentifiers": {
+        "changeVaultOwner(address)": "daa92f31",
+        "contractType()": "cb2ef6f7",
+        "controllerLimits(address)": "c110bd35",
+        "controllerLimitsEnabled()": "404421e9",
+        "defaultControllerLimits()": "3d62f579",
+        "getVaultInfo()": "7f98aa71",
+        "grantPermit(address)": "85771172",
+        "isController(address)": "b429afeb",
+        "revokePermit(address)": "d258877d",
+        "reward(address,uint256)": "21670f22",
+        "rewardBatch((address,uint256)[])": "32020eb1",
+        "rewardPool()": "66666aa9",
+        "setControllerLimits(address,uint256,uint256)": "fde6ce55",
+        "setDefaultControllerLimits(uint256,uint256)": "ba54e8d1",
+        "toggleControllerLimits()": "e6999474",
+        "updateRewardToken(address)": "f8cf31cb",
+        "version()": "54fd4d50",
+        "withdrawToken(address,uint256)": "9e281a98"
+    },
+    "rawMetadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"bool\",\"name\":\"enabled\",\"type\":\"bool\"}],\"name\":\"ControllerLimitsToggled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"quota\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"maxRewardAmount\",\"type\":\"uint256\"}],\"name\":\"ControllerLimitsUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"permissionGiver\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"ControllerPermissionGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"permissionGiver\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"ControllerPermissionRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"quota\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"maxRewardAmount\",\"type\":\"uint256\"}],\"name\":\"DefaultControllerLimitsUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newRewardToken\",\"type\":\"address\"}],\"name\":\"RewardTokenUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Rewarded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"},{\"internalType\":\"bytes\",\"name\":\"returnData\",\"type\":\"bytes\"}],\"indexed\":true,\"internalType\":\"struct Result[]\",\"name\":\"result\",\"type\":\"tuple[]\"}],\"name\":\"RewardedBatch\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokenWithdrawn\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"VaultOwnerUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"changeVaultOwner\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractType\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"controllerLimits\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"quota\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"allowance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"controllerLimitsEnabled\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"defaultControllerLimits\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"quota\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"allowance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getVaultInfo\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"version\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"projectOwner\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"projectName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"rewardToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"createdAt\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"deployer\",\"type\":\"address\"}],\"internalType\":\"struct VaultInfo\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"grantPermit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"isController\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"}],\"name\":\"revokePermit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"reward\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct Receiver[]\",\"name\":\"receivers\",\"type\":\"tuple[]\"}],\"name\":\"rewardBatch\",\"outputs\":[{\"components\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"},{\"internalType\":\"bytes\",\"name\":\"returnData\",\"type\":\"bytes\"}],\"internalType\":\"struct Result[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"rewardPool\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"controller\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"quota\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"allowance\",\"type\":\"uint256\"}],\"name\":\"setControllerLimits\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"quota\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"allowance\",\"type\":\"uint256\"}],\"name\":\"setDefaultControllerLimits\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"toggleControllerLimits\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newRewardToken\",\"type\":\"address\"}],\"name\":\"updateRewardToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"version\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdrawToken\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Metaxona\",\"custom:github\":\"https://github.com/Metaxonam/Metaxona\",\"custom:version\":\"0.0.1\",\"details\":\"an interface used to enforce which functions must be implemented in a vault contract\",\"kind\":\"dev\",\"methods\":{\"changeVaultOwner(address)\":{\"custom:function-name\":\"changeVaultOwner\",\"details\":\"this function is used to tranfer ownership and all roles from one account to another while also removing all permissions on the previous account\",\"params\":{\"newOwner\":\"the new contract owner\"}},\"contractType()\":{\"custom:function-name\":\"contractType\",\"details\":\"this function shows the type of the contract\",\"returns\":{\"_0\":\"contractType the contract type in string\"}},\"controllerLimits(address)\":{\"custom:function-name\":\"controllerLimits\",\"details\":\"this function is used to check the remaining limits of a given controller\",\"params\":{\"controller\":\"the controller address\"},\"returns\":{\"allowance\":\"the max amount of reward tokens left\",\"quota\":\"the max amount of users left\"}},\"controllerLimitsEnabled()\":{\"custom:function-name\":\"controllerLimitsEnabled\",\"details\":\"this function is used to check if the limits on the controllers is in effect or not\",\"returns\":{\"_0\":\"enabled is controller limits enabled or not\"}},\"defaultControllerLimits()\":{\"custom:function-name\":\"defaultControllerLimits\",\"details\":\"this function is used to check the default controller limits the contract is currently using\",\"returns\":{\"allowance\":\"the max amount of reward tokens\",\"quota\":\"the max amount of users\"}},\"getVaultInfo()\":{\"custom:function-name\":\"getVaultInfo\",\"details\":\"this function is used to fetch the vault info of the vault\",\"returns\":{\"_0\":\"info the vault info of the contract\"}},\"grantPermit(address)\":{\"custom:function-name\":\"grantPermit\",\"details\":\"used to grant permision for selected (onlyRole Restricted) functions to the controller\",\"params\":{\"controller\":\"the controller contract\"}},\"isController(address)\":{\"custom:function-name\":\"isController\",\"details\":\"used to check if an address is a controller or has a controller access\",\"params\":{\"controller\":\"the controller address\"}},\"revokePermit(address)\":{\"custom:function-name\":\"revokePermit\",\"details\":\"used to grant permision for selected (onlyRole Restricted) functions to the controller\",\"params\":{\"controller\":\"the controller contract\"}},\"reward(address,uint256)\":{\"custom:function-name\":\"reward\",\"details\":\"this function is used to reward a single user of a specified amount of reward token\",\"params\":{\"amount\":\"the amount of tokens to reward\",\"to\":\"the receiver of the reward\"},\"returns\":{\"_0\":\"success if the transaction succeeded or not\"}},\"rewardBatch((address,uint256)[])\":{\"custom:function-name\":\"rewardBatch\",\"custom:sub-param\":\"`receiver` - address of the user to reward`amount` - amount of token to reward the user\",\"details\":\"this function is used to reward users in batches\",\"params\":{\"receivers\":\"an array of receivers to send rewards to\"},\"returns\":{\"_0\":\"returnData the result of the batch reward transaction\"}},\"rewardPool()\":{\"custom:function-name\":\"rewardPool\",\"details\":\"this function is used to view the remaining balance of the contract for the * currently set reward token\",\"returns\":{\"_0\":\"pool the amount of reward tokens left for rewards\"}},\"setControllerLimits(address,uint256,uint256)\":{\"custom:function-name\":\"setControllerLimits\",\"details\":\"this function is used to set the limits on specifc controllers\",\"params\":{\"allowance\":\"the max amount of reward token the controller is allowed to distribute\",\"controller\":\"the controller address\",\"quota\":\"the max amount of users the controller is allowed to reward\"}},\"setDefaultControllerLimits(uint256,uint256)\":{\"custom:function-name\":\"setDefaultControllerLimits\",\"details\":\"this function is used to set the default limits that will be used when granting controller permit\",\"params\":{\"allowance\":\"the max amount of reward token the controller is allowed to distribute\",\"quota\":\"the max amount of users the controller is allowed to reward\"}},\"toggleControllerLimits()\":{\"custom:function-name\":\"toggleControllerLimits\",\"details\":\"this function is used to toggle whether to limit the controllers or not\"},\"updateRewardToken(address)\":{\"custom:function-name\":\"updateRewardToken\",\"details\":\"this function is used to change the reward token used in rewarding users\",\"params\":{\"newRewardToken\":\"the new reward token\"}},\"version()\":{\"custom:function-name\":\"version\",\"details\":\"this function shows the current version of the contract\",\"returns\":{\"_0\":\"version the contract version in semver format x.x.x\"}},\"withdrawToken(address,uint256)\":{\"custom:function-name\":\"withdrawToken\",\"details\":\"this function is used to withdraw tokens from the contract for various reasons like; - incorrect token deposit - unused reward token and more\",\"params\":{\"amount\":\"the amount of token to withdraw\",\"tokenAddress\":\"the token address the admin wants to withdraw\"},\"returns\":{\"_0\":\"success if the transaction succeeded\"}}},\"title\":\"IVault\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/interfaces/vault/IVault.sol\":\"IVault\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@common/=src/common/\",\":@contracts/=src/contracts/\",\":@helpers/=helpers/\",\":@interfaces/=src/interfaces/\",\":@openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/\",\":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/\",\":@test-utils/=test/common/\",\":@types/=src/types/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/\",\":sizeChecker/=lib/Solidity_Contract_Size_Checker/\",\":solidity-stringutils/=lib/openzeppelin-foundry-upgrades/lib/solidity-stringutils/\"]},\"sources\":{\"src/interfaces/controller/IControllerPermit.sol\":{\"keccak256\":\"0xba42e582c149da0fda5a82bf623782e4f4a03fa2082145b1aef3ad354a7c0a80\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://6ac15a50e688ad74c586130ec6025e864b84d22b2ab9d996680fca8d52ba2ea5\",\"dweb:/ipfs/QmZzrpAjJzBLdv4TuJNjN5R9xatzhjqyKvjN45S2ih5iT8\"]},\"src/interfaces/vault/IVault.sol\":{\"keccak256\":\"0x23ac9e3dcdc259f67cc48eac05c749bb24adb10039ff11272f2a7181d5742c72\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://84d07fe08ea22224bb6cc2ea4ef7cd88f33e2888d2bc5af3daf4bcf83edfac41\",\"dweb:/ipfs/QmWb9SLWAdGqi2azqnhpmAGmuCWkCGEuFUdLZ8mEhebFsy\"]},\"src/types/common/Types.sol\":{\"keccak256\":\"0xc95ddebf538851a33248049ff61ee4304ee5dd9ec14def92a1bbe6a7c5f4962d\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://29f85f536db7829e95fd85aa642ee76c1a78471daa459727b128a3384817a6e4\",\"dweb:/ipfs/QmZWj9DjBXuGf2BeZMeTzRsevhMhY3SxM2hSZKk6NcLZdL\"]},\"src/types/vault/Types.sol\":{\"keccak256\":\"0xec2abd1cee63bc3c4f2bb43e5cacb56f81dce3d839fbe0610e2599752017b716\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://9915c4306310e1912f032444cd3d2ce19c4c095cc4a84aab23a680f13cc0a4c5\",\"dweb:/ipfs/QmYEU2A4bMt8e8CJNMncentoJssEsZBRHftnyuZQffPEtb\"]}},\"version\":1}",
+    "metadata": {
+        "compiler": { "version": "0.8.20+commit.a1b79de6" },
+        "language": "Solidity",
+        "output": {
+            "abi": [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "caller",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "bool",
+                            "name": "enabled",
+                            "type": "bool",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "ControllerLimitsToggled",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "caller",
+                            "type": "address",
+                            "indexed": false
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "controller",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "quota",
+                            "type": "uint256",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "maxRewardAmount",
+                            "type": "uint256",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "ControllerLimitsUpdated",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "permissionGiver",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "controller",
+                            "type": "address",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "ControllerPermissionGranted",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "permissionGiver",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "controller",
+                            "type": "address",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "ControllerPermissionRevoked",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "caller",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "quota",
+                            "type": "uint256",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "maxRewardAmount",
+                            "type": "uint256",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "DefaultControllerLimitsUpdated",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "caller",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "newRewardToken",
+                            "type": "address",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "RewardTokenUpdated",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "caller",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "to",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "amount",
+                            "type": "uint256",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "Rewarded",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "caller",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "tokenAddress",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "struct Result[]",
+                            "name": "result",
+                            "type": "tuple[]",
+                            "components": [
+                                { "internalType": "bool", "name": "success", "type": "bool" },
+                                { "internalType": "bytes", "name": "returnData", "type": "bytes" }
+                            ],
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "RewardedBatch",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "caller",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "tokenAddress",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "amount",
+                            "type": "uint256",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "TokenWithdrawn",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "previousOwner",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "newOwner",
+                            "type": "address",
+                            "indexed": true
+                        }
+                    ],
+                    "type": "event",
+                    "name": "VaultOwnerUpdated",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "newOwner", "type": "address" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "changeVaultOwner"
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "contractType",
+                    "outputs": [{ "internalType": "string", "name": "", "type": "string" }]
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "controller", "type": "address" }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "controllerLimits",
+                    "outputs": [
+                        { "internalType": "uint256", "name": "quota", "type": "uint256" },
+                        { "internalType": "uint256", "name": "allowance", "type": "uint256" }
+                    ]
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "controllerLimitsEnabled",
+                    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "defaultControllerLimits",
+                    "outputs": [
+                        { "internalType": "uint256", "name": "quota", "type": "uint256" },
+                        { "internalType": "uint256", "name": "allowance", "type": "uint256" }
+                    ]
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "getVaultInfo",
+                    "outputs": [
+                        {
+                            "internalType": "struct VaultInfo",
+                            "name": "",
+                            "type": "tuple",
+                            "components": [
+                                { "internalType": "uint256", "name": "id", "type": "uint256" },
+                                { "internalType": "string", "name": "version", "type": "string" },
+                                {
+                                    "internalType": "address",
+                                    "name": "projectOwner",
+                                    "type": "address"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "projectName",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "address",
+                                    "name": "rewardToken",
+                                    "type": "address"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "createdAt",
+                                    "type": "uint256"
+                                },
+                                { "internalType": "address", "name": "deployer", "type": "address" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "controller", "type": "address" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "grantPermit"
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "controller", "type": "address" }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "isController",
+                    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "controller", "type": "address" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "revokePermit"
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "to", "type": "address" },
+                        { "internalType": "uint256", "name": "amount", "type": "uint256" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "reward",
+                    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "struct Receiver[]",
+                            "name": "receivers",
+                            "type": "tuple[]",
+                            "components": [
+                                {
+                                    "internalType": "address",
+                                    "name": "receiver",
+                                    "type": "address"
+                                },
+                                { "internalType": "uint256", "name": "amount", "type": "uint256" }
+                            ]
+                        }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "rewardBatch",
+                    "outputs": [
+                        {
+                            "internalType": "struct Result[]",
+                            "name": "",
+                            "type": "tuple[]",
+                            "components": [
+                                { "internalType": "bool", "name": "success", "type": "bool" },
+                                { "internalType": "bytes", "name": "returnData", "type": "bytes" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "rewardPool",
+                    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "controller", "type": "address" },
+                        { "internalType": "uint256", "name": "quota", "type": "uint256" },
+                        { "internalType": "uint256", "name": "allowance", "type": "uint256" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "setControllerLimits"
+                },
+                {
+                    "inputs": [
+                        { "internalType": "uint256", "name": "quota", "type": "uint256" },
+                        { "internalType": "uint256", "name": "allowance", "type": "uint256" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "setDefaultControllerLimits"
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "toggleControllerLimits"
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "newRewardToken", "type": "address" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "updateRewardToken"
+                },
+                {
+                    "inputs": [],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "name": "version",
+                    "outputs": [{ "internalType": "string", "name": "", "type": "string" }]
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "tokenAddress", "type": "address" },
+                        { "internalType": "uint256", "name": "amount", "type": "uint256" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "withdrawToken",
+                    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+                }
+            ],
+            "devdoc": {
+                "kind": "dev",
+                "methods": {
+                    "changeVaultOwner(address)": {
+                        "custom:function-name": "changeVaultOwner",
+                        "details": "this function is used to tranfer ownership and all roles from one account to another while also removing all permissions on the previous account",
+                        "params": { "newOwner": "the new contract owner" }
+                    },
+                    "contractType()": {
+                        "custom:function-name": "contractType",
+                        "details": "this function shows the type of the contract",
+                        "returns": { "_0": "contractType the contract type in string" }
+                    },
+                    "controllerLimits(address)": {
+                        "custom:function-name": "controllerLimits",
+                        "details": "this function is used to check the remaining limits of a given controller",
+                        "params": { "controller": "the controller address" },
+                        "returns": {
+                            "allowance": "the max amount of reward tokens left",
+                            "quota": "the max amount of users left"
+                        }
+                    },
+                    "controllerLimitsEnabled()": {
+                        "custom:function-name": "controllerLimitsEnabled",
+                        "details": "this function is used to check if the limits on the controllers is in effect or not",
+                        "returns": { "_0": "enabled is controller limits enabled or not" }
+                    },
+                    "defaultControllerLimits()": {
+                        "custom:function-name": "defaultControllerLimits",
+                        "details": "this function is used to check the default controller limits the contract is currently using",
+                        "returns": {
+                            "allowance": "the max amount of reward tokens",
+                            "quota": "the max amount of users"
+                        }
+                    },
+                    "getVaultInfo()": {
+                        "custom:function-name": "getVaultInfo",
+                        "details": "this function is used to fetch the vault info of the vault",
+                        "returns": { "_0": "info the vault info of the contract" }
+                    },
+                    "grantPermit(address)": {
+                        "custom:function-name": "grantPermit",
+                        "details": "used to grant permision for selected (onlyRole Restricted) functions to the controller",
+                        "params": { "controller": "the controller contract" }
+                    },
+                    "isController(address)": {
+                        "custom:function-name": "isController",
+                        "details": "used to check if an address is a controller or has a controller access",
+                        "params": { "controller": "the controller address" }
+                    },
+                    "revokePermit(address)": {
+                        "custom:function-name": "revokePermit",
+                        "details": "used to grant permision for selected (onlyRole Restricted) functions to the controller",
+                        "params": { "controller": "the controller contract" }
+                    },
+                    "reward(address,uint256)": {
+                        "custom:function-name": "reward",
+                        "details": "this function is used to reward a single user of a specified amount of reward token",
+                        "params": {
+                            "amount": "the amount of tokens to reward",
+                            "to": "the receiver of the reward"
+                        },
+                        "returns": { "_0": "success if the transaction succeeded or not" }
+                    },
+                    "rewardBatch((address,uint256)[])": {
+                        "custom:function-name": "rewardBatch",
+                        "custom:sub-param": "`receiver` - address of the user to reward`amount` - amount of token to reward the user",
+                        "details": "this function is used to reward users in batches",
+                        "params": { "receivers": "an array of receivers to send rewards to" },
+                        "returns": { "_0": "returnData the result of the batch reward transaction" }
+                    },
+                    "rewardPool()": {
+                        "custom:function-name": "rewardPool",
+                        "details": "this function is used to view the remaining balance of the contract for the * currently set reward token",
+                        "returns": { "_0": "pool the amount of reward tokens left for rewards" }
+                    },
+                    "setControllerLimits(address,uint256,uint256)": {
+                        "custom:function-name": "setControllerLimits",
+                        "details": "this function is used to set the limits on specifc controllers",
+                        "params": {
+                            "allowance": "the max amount of reward token the controller is allowed to distribute",
+                            "controller": "the controller address",
+                            "quota": "the max amount of users the controller is allowed to reward"
+                        }
+                    },
+                    "setDefaultControllerLimits(uint256,uint256)": {
+                        "custom:function-name": "setDefaultControllerLimits",
+                        "details": "this function is used to set the default limits that will be used when granting controller permit",
+                        "params": {
+                            "allowance": "the max amount of reward token the controller is allowed to distribute",
+                            "quota": "the max amount of users the controller is allowed to reward"
+                        }
+                    },
+                    "toggleControllerLimits()": {
+                        "custom:function-name": "toggleControllerLimits",
+                        "details": "this function is used to toggle whether to limit the controllers or not"
+                    },
+                    "updateRewardToken(address)": {
+                        "custom:function-name": "updateRewardToken",
+                        "details": "this function is used to change the reward token used in rewarding users",
+                        "params": { "newRewardToken": "the new reward token" }
+                    },
+                    "version()": {
+                        "custom:function-name": "version",
+                        "details": "this function shows the current version of the contract",
+                        "returns": { "_0": "version the contract version in semver format x.x.x" }
+                    },
+                    "withdrawToken(address,uint256)": {
+                        "custom:function-name": "withdrawToken",
+                        "details": "this function is used to withdraw tokens from the contract for various reasons like; - incorrect token deposit - unused reward token and more",
+                        "params": {
+                            "amount": "the amount of token to withdraw",
+                            "tokenAddress": "the token address the admin wants to withdraw"
+                        },
+                        "returns": { "_0": "success if the transaction succeeded" }
+                    }
+                },
+                "version": 1
+            },
+            "userdoc": { "kind": "user", "methods": {}, "version": 1 }
+        },
+        "settings": {
+            "remappings": [
+                "@common/=src/common/",
+                "@contracts/=src/contracts/",
+                "@helpers/=helpers/",
+                "@interfaces/=src/interfaces/",
+                "@openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/",
+                "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+                "@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/",
+                "@test-utils/=test/common/",
+                "@types/=src/types/",
+                "ds-test/=lib/forge-std/lib/ds-test/src/",
+                "erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/",
+                "forge-std/=lib/forge-std/src/",
+                "openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/",
+                "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+                "openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/",
+                "sizeChecker/=lib/Solidity_Contract_Size_Checker/",
+                "solidity-stringutils/=lib/openzeppelin-foundry-upgrades/lib/solidity-stringutils/"
+            ],
+            "optimizer": { "enabled": true, "runs": 200 },
+            "metadata": { "bytecodeHash": "ipfs" },
+            "compilationTarget": { "src/interfaces/vault/IVault.sol": "IVault" },
+            "evmVersion": "paris",
+            "libraries": {}
+        },
+        "sources": {
+            "src/interfaces/controller/IControllerPermit.sol": {
+                "keccak256": "0xba42e582c149da0fda5a82bf623782e4f4a03fa2082145b1aef3ad354a7c0a80",
+                "urls": [
+                    "bzz-raw://6ac15a50e688ad74c586130ec6025e864b84d22b2ab9d996680fca8d52ba2ea5",
+                    "dweb:/ipfs/QmZzrpAjJzBLdv4TuJNjN5R9xatzhjqyKvjN45S2ih5iT8"
+                ],
+                "license": "BUSL-1.1"
+            },
+            "src/interfaces/vault/IVault.sol": {
+                "keccak256": "0x23ac9e3dcdc259f67cc48eac05c749bb24adb10039ff11272f2a7181d5742c72",
+                "urls": [
+                    "bzz-raw://84d07fe08ea22224bb6cc2ea4ef7cd88f33e2888d2bc5af3daf4bcf83edfac41",
+                    "dweb:/ipfs/QmWb9SLWAdGqi2azqnhpmAGmuCWkCGEuFUdLZ8mEhebFsy"
+                ],
+                "license": "BUSL-1.1"
+            },
+            "src/types/common/Types.sol": {
+                "keccak256": "0xc95ddebf538851a33248049ff61ee4304ee5dd9ec14def92a1bbe6a7c5f4962d",
+                "urls": [
+                    "bzz-raw://29f85f536db7829e95fd85aa642ee76c1a78471daa459727b128a3384817a6e4",
+                    "dweb:/ipfs/QmZWj9DjBXuGf2BeZMeTzRsevhMhY3SxM2hSZKk6NcLZdL"
+                ],
+                "license": "BUSL-1.1"
+            },
+            "src/types/vault/Types.sol": {
+                "keccak256": "0xec2abd1cee63bc3c4f2bb43e5cacb56f81dce3d839fbe0610e2599752017b716",
+                "urls": [
+                    "bzz-raw://9915c4306310e1912f032444cd3d2ce19c4c095cc4a84aab23a680f13cc0a4c5",
+                    "dweb:/ipfs/QmYEU2A4bMt8e8CJNMncentoJssEsZBRHftnyuZQffPEtb"
+                ],
+                "license": "BUSL-1.1"
+            }
+        },
+        "version": 1
+    },
+    "storageLayout": { "storage": [], "types": {} },
+    "ast": {
+        "absolutePath": "src/interfaces/vault/IVault.sol",
+        "id": 71965,
+        "exportedSymbols": {
+            "IControllerPermit": [71493],
+            "IVault": [71964],
+            "Receiver": [72154],
+            "Result": [72160],
+            "VaultInfo": [72185]
+        },
+        "nodeType": "SourceUnit",
+        "src": "37:7988:133",
+        "nodes": [
+            {
+                "id": 71776,
+                "nodeType": "PragmaDirective",
+                "src": "37:23:133",
+                "nodes": [],
+                "literals": ["solidity", "0.8", ".20"]
+            },
+            {
+                "id": 71779,
+                "nodeType": "ImportDirective",
+                "src": "62:57:133",
+                "nodes": [],
+                "absolutePath": "src/types/common/Types.sol",
+                "file": "@types/common/Types.sol",
+                "nameLocation": "-1:-1:-1",
+                "scope": 71965,
+                "sourceUnit": 72161,
+                "symbolAliases": [
+                    {
+                        "foreign": {
+                            "id": 71777,
+                            "name": "Receiver",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 72154,
+                            "src": "70:8:133",
+                            "typeDescriptions": {}
+                        },
+                        "nameLocation": "-1:-1:-1"
+                    },
+                    {
+                        "foreign": {
+                            "id": 71778,
+                            "name": "Result",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 72160,
+                            "src": "80:6:133",
+                            "typeDescriptions": {}
+                        },
+                        "nameLocation": "-1:-1:-1"
+                    }
+                ],
+                "unitAlias": ""
+            },
+            {
+                "id": 71781,
+                "nodeType": "ImportDirective",
+                "src": "120:49:133",
+                "nodes": [],
+                "absolutePath": "src/types/vault/Types.sol",
+                "file": "@types/vault/Types.sol",
+                "nameLocation": "-1:-1:-1",
+                "scope": 71965,
+                "sourceUnit": 72204,
+                "symbolAliases": [
+                    {
+                        "foreign": {
+                            "id": 71780,
+                            "name": "VaultInfo",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 72185,
+                            "src": "128:9:133",
+                            "typeDescriptions": {}
+                        },
+                        "nameLocation": "-1:-1:-1"
+                    }
+                ],
+                "unitAlias": ""
+            },
+            {
+                "id": 71783,
+                "nodeType": "ImportDirective",
+                "src": "170:79:133",
+                "nodes": [],
+                "absolutePath": "src/interfaces/controller/IControllerPermit.sol",
+                "file": "@interfaces/controller/IControllerPermit.sol",
+                "nameLocation": "-1:-1:-1",
+                "scope": 71965,
+                "sourceUnit": 71494,
+                "symbolAliases": [
+                    {
+                        "foreign": {
+                            "id": 71782,
+                            "name": "IControllerPermit",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 71493,
+                            "src": "178:17:133",
+                            "typeDescriptions": {}
+                        },
+                        "nameLocation": "-1:-1:-1"
+                    }
+                ],
+                "unitAlias": ""
+            },
+            {
+                "id": 71964,
+                "nodeType": "ContractDefinition",
+                "src": "470:7554:133",
+                "nodes": [
+                    {
+                        "id": 71794,
+                        "nodeType": "EventDefinition",
+                        "src": "824:83:133",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "6876a213a761d9b4f8d7ba3609528ef85da671684271f75fdacb41be8db29f45",
+                        "name": "Rewarded",
+                        "nameLocation": "830:8:133",
+                        "parameters": {
+                            "id": 71793,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71788,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "caller",
+                                    "nameLocation": "855:6:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71794,
+                                    "src": "839:22:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71787,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "839:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71790,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "to",
+                                    "nameLocation": "879:2:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71794,
+                                    "src": "863:18:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71789,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "863:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71792,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "amount",
+                                    "nameLocation": "899:6:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71794,
+                                    "src": "883:22:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71791,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "883:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "838:68:133"
+                        }
+                    },
+                    {
+                        "id": 71804,
+                        "nodeType": "EventDefinition",
+                        "src": "913:99:133",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "de7ea29066b143a05c35b1f74ad4bd6cdb890bd64c295cc24e7dbdb007b59eff",
+                        "name": "RewardedBatch",
+                        "nameLocation": "919:13:133",
+                        "parameters": {
+                            "id": 71803,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71796,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "caller",
+                                    "nameLocation": "949:6:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71804,
+                                    "src": "933:22:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71795,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "933:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71798,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "tokenAddress",
+                                    "nameLocation": "973:12:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71804,
+                                    "src": "957:28:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71797,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "957:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71802,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "result",
+                                    "nameLocation": "1004:6:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71804,
+                                    "src": "987:23:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_Result_$72160_memory_ptr_$dyn_memory_ptr",
+                                        "typeString": "struct Result[]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 71800,
+                                            "nodeType": "UserDefinedTypeName",
+                                            "pathNode": {
+                                                "id": 71799,
+                                                "name": "Result",
+                                                "nameLocations": ["987:6:133"],
+                                                "nodeType": "IdentifierPath",
+                                                "referencedDeclaration": 72160,
+                                                "src": "987:6:133"
+                                            },
+                                            "referencedDeclaration": 72160,
+                                            "src": "987:6:133",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_struct$_Result_$72160_storage_ptr",
+                                                "typeString": "struct Result"
+                                            }
+                                        },
+                                        "id": 71801,
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "987:8:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_struct$_Result_$72160_storage_$dyn_storage_ptr",
+                                            "typeString": "struct Result[]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "932:79:133"
+                        }
+                    },
+                    {
+                        "id": 71810,
+                        "nodeType": "EventDefinition",
+                        "src": "1018:81:133",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "906ff2422a6ffa134f2d7ccaffd446bc0c583a5cb6615749b4b2836942a5fea8",
+                        "name": "RewardTokenUpdated",
+                        "nameLocation": "1024:18:133",
+                        "parameters": {
+                            "id": 71809,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71806,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "caller",
+                                    "nameLocation": "1059:6:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71810,
+                                    "src": "1043:22:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71805,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1043:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71808,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "newRewardToken",
+                                    "nameLocation": "1083:14:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71810,
+                                    "src": "1067:30:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71807,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1067:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1042:56:133"
+                        }
+                    },
+                    {
+                        "id": 71818,
+                        "nodeType": "EventDefinition",
+                        "src": "1105:99:133",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "8210728e7c071f615b840ee026032693858fbcd5e5359e67e438c890f59e5620",
+                        "name": "TokenWithdrawn",
+                        "nameLocation": "1111:14:133",
+                        "parameters": {
+                            "id": 71817,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71812,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "caller",
+                                    "nameLocation": "1142:6:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71818,
+                                    "src": "1126:22:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71811,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1126:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71814,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "tokenAddress",
+                                    "nameLocation": "1166:12:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71818,
+                                    "src": "1150:28:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71813,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1150:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71816,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "amount",
+                                    "nameLocation": "1196:6:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71818,
+                                    "src": "1180:22:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71815,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1180:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1125:78:133"
+                        }
+                    },
+                    {
+                        "id": 71826,
+                        "nodeType": "EventDefinition",
+                        "src": "1210:131:133",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "6ffc444c2de3b25a7216a5f375ee8f532bd9425d1856b9bda232525e6af9308d",
+                        "name": "DefaultControllerLimitsUpdated",
+                        "nameLocation": "1216:30:133",
+                        "parameters": {
+                            "id": 71825,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71820,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "caller",
+                                    "nameLocation": "1272:6:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71826,
+                                    "src": "1256:22:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71819,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1256:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71822,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "quota",
+                                    "nameLocation": "1296:5:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71826,
+                                    "src": "1280:21:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71821,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1280:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71824,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "maxRewardAmount",
+                                    "nameLocation": "1319:15:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71826,
+                                    "src": "1303:31:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71823,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1303:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1246:94:133"
+                        }
+                    },
+                    {
+                        "id": 71836,
+                        "nodeType": "EventDefinition",
+                        "src": "1347:144:133",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "2750747be327f6d4212971bae40c06e282fa5a55c0f75e4c66b1d25dab588acf",
+                        "name": "ControllerLimitsUpdated",
+                        "nameLocation": "1353:23:133",
+                        "parameters": {
+                            "id": 71835,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71828,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "caller",
+                                    "nameLocation": "1394:6:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71836,
+                                    "src": "1386:14:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71827,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1386:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71830,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "controller",
+                                    "nameLocation": "1418:10:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71836,
+                                    "src": "1402:26:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71829,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1402:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71832,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "quota",
+                                    "nameLocation": "1446:5:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71836,
+                                    "src": "1430:21:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71831,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1430:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71834,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "maxRewardAmount",
+                                    "nameLocation": "1469:15:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71836,
+                                    "src": "1453:31:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71833,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1453:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1376:114:133"
+                        }
+                    },
+                    {
+                        "id": 71842,
+                        "nodeType": "EventDefinition",
+                        "src": "1497:76:133",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "9adb3e582c35fa3920f3cfc7a50eed21b8d04f413f5065911fcc901a70bbe09a",
+                        "name": "ControllerLimitsToggled",
+                        "nameLocation": "1503:23:133",
+                        "parameters": {
+                            "id": 71841,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71838,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "caller",
+                                    "nameLocation": "1543:6:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71842,
+                                    "src": "1527:22:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71837,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1527:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71840,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "enabled",
+                                    "nameLocation": "1564:7:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71842,
+                                    "src": "1551:20:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bool",
+                                        "typeString": "bool"
+                                    },
+                                    "typeName": {
+                                        "id": 71839,
+                                        "name": "bool",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1551:4:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bool",
+                                            "typeString": "bool"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1526:46:133"
+                        }
+                    },
+                    {
+                        "id": 71848,
+                        "nodeType": "EventDefinition",
+                        "src": "1579:81:133",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "9d665019b6175404f3979bfbc732a0bd8119560477528a32dac6d960aee0717b",
+                        "name": "VaultOwnerUpdated",
+                        "nameLocation": "1585:17:133",
+                        "parameters": {
+                            "id": 71847,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71844,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "previousOwner",
+                                    "nameLocation": "1619:13:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71848,
+                                    "src": "1603:29:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71843,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1603:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71846,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "newOwner",
+                                    "nameLocation": "1650:8:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71848,
+                                    "src": "1634:24:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71845,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1634:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1602:57:133"
+                        }
+                    },
+                    {
+                        "id": 71854,
+                        "nodeType": "FunctionDefinition",
+                        "src": "2161:62:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71849,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1976:180:133",
+                            "text": " @custom:function-name contractType\n @return contractType the contract type in string\n @dev this function shows the type of the contract"
+                        },
+                        "functionSelector": "cb2ef6f7",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "contractType",
+                        "nameLocation": "2170:12:133",
+                        "parameters": {
+                            "id": 71850,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "2182:2:133"
+                        },
+                        "returnParameters": {
+                            "id": 71853,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71852,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71854,
+                                    "src": "2208:13:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_memory_ptr",
+                                        "typeString": "string"
+                                    },
+                                    "typeName": {
+                                        "id": 71851,
+                                        "name": "string",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2208:6:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_string_storage_ptr",
+                                            "typeString": "string"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2207:15:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71860,
+                        "nodeType": "FunctionDefinition",
+                        "src": "2431:57:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71855,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2229:197:133",
+                            "text": " @custom:function-name version\n @return version the contract version in semver format x.x.x\n @dev this function shows the current version of the contract"
+                        },
+                        "functionSelector": "54fd4d50",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "version",
+                        "nameLocation": "2440:7:133",
+                        "parameters": {
+                            "id": 71856,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "2447:2:133"
+                        },
+                        "returnParameters": {
+                            "id": 71859,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71858,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71860,
+                                    "src": "2473:13:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_memory_ptr",
+                                        "typeString": "string"
+                                    },
+                                    "typeName": {
+                                        "id": 71857,
+                                        "name": "string",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2473:6:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_string_storage_ptr",
+                                            "typeString": "string"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2472:15:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71867,
+                        "nodeType": "FunctionDefinition",
+                        "src": "2688:65:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71861,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2494:189:133",
+                            "text": " @custom:function-name getVaultInfo\n @return info the vault info of the contract\n @dev this function is used to fetch the vault info of the vault"
+                        },
+                        "functionSelector": "7f98aa71",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getVaultInfo",
+                        "nameLocation": "2697:12:133",
+                        "parameters": {
+                            "id": 71862,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "2709:2:133"
+                        },
+                        "returnParameters": {
+                            "id": 71866,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71865,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71867,
+                                    "src": "2735:16:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_VaultInfo_$72185_memory_ptr",
+                                        "typeString": "struct VaultInfo"
+                                    },
+                                    "typeName": {
+                                        "id": 71864,
+                                        "nodeType": "UserDefinedTypeName",
+                                        "pathNode": {
+                                            "id": 71863,
+                                            "name": "VaultInfo",
+                                            "nameLocations": ["2735:9:133"],
+                                            "nodeType": "IdentifierPath",
+                                            "referencedDeclaration": 72185,
+                                            "src": "2735:9:133"
+                                        },
+                                        "referencedDeclaration": 72185,
+                                        "src": "2735:9:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_struct$_VaultInfo_$72185_storage_ptr",
+                                            "typeString": "struct VaultInfo"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2734:18:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71873,
+                        "nodeType": "FunctionDefinition",
+                        "src": "3018:54:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71868,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2759:254:133",
+                            "text": " @custom:function-name rewardPool\n @return pool the amount of reward tokens left for rewards\n @dev this function is used to view the remaining balance of the contract for\n the * currently set reward token"
+                        },
+                        "functionSelector": "66666aa9",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "rewardPool",
+                        "nameLocation": "3027:10:133",
+                        "parameters": {
+                            "id": 71869,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "3037:2:133"
+                        },
+                        "returnParameters": {
+                            "id": 71872,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71871,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71873,
+                                    "src": "3063:7:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71870,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3063:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "3062:9:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71881,
+                        "nodeType": "FunctionDefinition",
+                        "src": "3368:92:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71874,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "3078:285:133",
+                            "text": " @custom:function-name defaultControllerLimits\n @return quota the max amount of users\n @return allowance the max amount of reward tokens\n @dev this function is used to check the default controller limits the contract is currently using"
+                        },
+                        "functionSelector": "3d62f579",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "defaultControllerLimits",
+                        "nameLocation": "3377:23:133",
+                        "parameters": {
+                            "id": 71875,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "3400:2:133"
+                        },
+                        "returnParameters": {
+                            "id": 71880,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71877,
+                                    "mutability": "mutable",
+                                    "name": "quota",
+                                    "nameLocation": "3434:5:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71881,
+                                    "src": "3426:13:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71876,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3426:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71879,
+                                    "mutability": "mutable",
+                                    "name": "allowance",
+                                    "nameLocation": "3449:9:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71881,
+                                    "src": "3441:17:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71878,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3441:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "3425:34:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71891,
+                        "nodeType": "FunctionDefinition",
+                        "src": "3795:103:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71882,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "3466:324:133",
+                            "text": " @custom:function-name controllerLimits\n @param controller the controller address\n @return quota the max amount of users left\n @return allowance the max amount of reward tokens left\n @dev this function is used to check the remaining limits of a given controller"
+                        },
+                        "functionSelector": "c110bd35",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "controllerLimits",
+                        "nameLocation": "3804:16:133",
+                        "parameters": {
+                            "id": 71885,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71884,
+                                    "mutability": "mutable",
+                                    "name": "controller",
+                                    "nameLocation": "3829:10:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71891,
+                                    "src": "3821:18:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71883,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3821:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "3820:20:133"
+                        },
+                        "returnParameters": {
+                            "id": 71890,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71887,
+                                    "mutability": "mutable",
+                                    "name": "quota",
+                                    "nameLocation": "3872:5:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71891,
+                                    "src": "3864:13:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71886,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3864:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71889,
+                                    "mutability": "mutable",
+                                    "name": "allowance",
+                                    "nameLocation": "3887:9:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71891,
+                                    "src": "3879:17:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71888,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3879:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "3863:34:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71897,
+                        "nodeType": "FunctionDefinition",
+                        "src": "4142:64:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71892,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "3904:233:133",
+                            "text": " @custom:function-name controllerLimitsEnabled\n @return enabled is controller limits enabled or not\n @dev this function is used to check if the limits on the controllers is in effect or not"
+                        },
+                        "functionSelector": "404421e9",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "controllerLimitsEnabled",
+                        "nameLocation": "4151:23:133",
+                        "parameters": {
+                            "id": 71893,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "4174:2:133"
+                        },
+                        "returnParameters": {
+                            "id": 71896,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71895,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71897,
+                                    "src": "4200:4:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bool",
+                                        "typeString": "bool"
+                                    },
+                                    "typeName": {
+                                        "id": 71894,
+                                        "name": "bool",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "4200:4:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bool",
+                                            "typeString": "bool"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "4199:6:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71901,
+                        "nodeType": "FunctionDefinition",
+                        "src": "4681:43:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71898,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "4522:154:133",
+                            "text": " @custom:function-name toggleControllerLimits\n @dev this function is used to toggle whether to limit the controllers or not"
+                        },
+                        "functionSelector": "e6999474",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "toggleControllerLimits",
+                        "nameLocation": "4690:22:133",
+                        "parameters": {
+                            "id": 71899,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "4712:2:133"
+                        },
+                        "returnParameters": {
+                            "id": 71900,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "4723:0:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71909,
+                        "nodeType": "FunctionDefinition",
+                        "src": "5101:79:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71902,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "4730:366:133",
+                            "text": " @custom:function-name setDefaultControllerLimits\n @param quota the max amount of users the controller is allowed to reward\n @param allowance the max amount of reward token the controller is allowed to distribute\n @dev this function is used to set the default limits that will be used when granting controller permit"
+                        },
+                        "functionSelector": "ba54e8d1",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "setDefaultControllerLimits",
+                        "nameLocation": "5110:26:133",
+                        "parameters": {
+                            "id": 71907,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71904,
+                                    "mutability": "mutable",
+                                    "name": "quota",
+                                    "nameLocation": "5145:5:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71909,
+                                    "src": "5137:13:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71903,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "5137:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71906,
+                                    "mutability": "mutable",
+                                    "name": "allowance",
+                                    "nameLocation": "5160:9:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71909,
+                                    "src": "5152:17:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71905,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "5152:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "5136:34:133"
+                        },
+                        "returnParameters": {
+                            "id": 71908,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "5179:0:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71919,
+                        "nodeType": "FunctionDefinition",
+                        "src": "5563:92:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71910,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "5186:372:133",
+                            "text": " @custom:function-name setControllerLimits\n @param controller the controller address\n @param quota the max amount of users the controller is allowed to reward\n @param allowance the max amount of reward token the controller is allowed to distribute\n @dev this function is used to set the limits on specifc controllers"
+                        },
+                        "functionSelector": "fde6ce55",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "setControllerLimits",
+                        "nameLocation": "5572:19:133",
+                        "parameters": {
+                            "id": 71917,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71912,
+                                    "mutability": "mutable",
+                                    "name": "controller",
+                                    "nameLocation": "5600:10:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71919,
+                                    "src": "5592:18:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71911,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "5592:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71914,
+                                    "mutability": "mutable",
+                                    "name": "quota",
+                                    "nameLocation": "5620:5:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71919,
+                                    "src": "5612:13:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71913,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "5612:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71916,
+                                    "mutability": "mutable",
+                                    "name": "allowance",
+                                    "nameLocation": "5635:9:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71919,
+                                    "src": "5627:17:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71915,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "5627:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "5591:54:133"
+                        },
+                        "returnParameters": {
+                            "id": 71918,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "5654:0:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71925,
+                        "nodeType": "FunctionDefinition",
+                        "src": "5873:60:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71920,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "5661:207:133",
+                            "text": " @custom:function-name updateRewardToken\n @param newRewardToken the new reward token\n @dev this function is used to change the reward token used in rewarding users"
+                        },
+                        "functionSelector": "f8cf31cb",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "updateRewardToken",
+                        "nameLocation": "5882:17:133",
+                        "parameters": {
+                            "id": 71923,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71922,
+                                    "mutability": "mutable",
+                                    "name": "newRewardToken",
+                                    "nameLocation": "5908:14:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71925,
+                                    "src": "5900:22:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71921,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "5900:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "5899:24:133"
+                        },
+                        "returnParameters": {
+                            "id": 71924,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "5932:0:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71935,
+                        "nodeType": "FunctionDefinition",
+                        "src": "6379:85:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71926,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "5939:435:133",
+                            "text": " @custom:function-name withdrawToken\n @param tokenAddress the token address the admin wants to withdraw\n @param amount the amount of token to withdraw\n @return success if the transaction succeeded\n @dev this function is used to withdraw tokens from the contract\n for various reasons like;\n - incorrect token deposit\n - unused reward token\n and more"
+                        },
+                        "functionSelector": "9e281a98",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "withdrawToken",
+                        "nameLocation": "6388:13:133",
+                        "parameters": {
+                            "id": 71931,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71928,
+                                    "mutability": "mutable",
+                                    "name": "tokenAddress",
+                                    "nameLocation": "6410:12:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71935,
+                                    "src": "6402:20:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71927,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "6402:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71930,
+                                    "mutability": "mutable",
+                                    "name": "amount",
+                                    "nameLocation": "6432:6:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71935,
+                                    "src": "6424:14:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71929,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "6424:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "6401:38:133"
+                        },
+                        "returnParameters": {
+                            "id": 71934,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71933,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71935,
+                                    "src": "6458:4:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bool",
+                                        "typeString": "bool"
+                                    },
+                                    "typeName": {
+                                        "id": 71932,
+                                        "name": "bool",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "6458:4:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bool",
+                                            "typeString": "bool"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "6457:6:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71941,
+                        "nodeType": "FunctionDefinition",
+                        "src": "6756:53:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71936,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "6470:281:133",
+                            "text": " @custom:function-name changeVaultOwner\n @param newOwner the new contract owner\n @dev this function is used to tranfer ownership and all roles from one account to another while also\n removing all permissions on the previous account"
+                        },
+                        "functionSelector": "daa92f31",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "changeVaultOwner",
+                        "nameLocation": "6765:16:133",
+                        "parameters": {
+                            "id": 71939,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71938,
+                                    "mutability": "mutable",
+                                    "name": "newOwner",
+                                    "nameLocation": "6790:8:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71941,
+                                    "src": "6782:16:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71937,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "6782:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "6781:18:133"
+                        },
+                        "returnParameters": {
+                            "id": 71940,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "6808:0:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71951,
+                        "nodeType": "FunctionDefinition",
+                        "src": "7449:68:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71942,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "7125:319:133",
+                            "text": " @custom:function-name reward\n @param to the receiver of the reward\n @param amount the amount of tokens to reward\n @return success if the transaction succeeded or not\n @dev this function is used to reward a single user of a specified amount of reward token"
+                        },
+                        "functionSelector": "21670f22",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "reward",
+                        "nameLocation": "7458:6:133",
+                        "parameters": {
+                            "id": 71947,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71944,
+                                    "mutability": "mutable",
+                                    "name": "to",
+                                    "nameLocation": "7473:2:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71951,
+                                    "src": "7465:10:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71943,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "7465:7:133",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71946,
+                                    "mutability": "mutable",
+                                    "name": "amount",
+                                    "nameLocation": "7485:6:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71951,
+                                    "src": "7477:14:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71945,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "7477:7:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "7464:28:133"
+                        },
+                        "returnParameters": {
+                            "id": 71950,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71949,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71951,
+                                    "src": "7511:4:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bool",
+                                        "typeString": "bool"
+                                    },
+                                    "typeName": {
+                                        "id": 71948,
+                                        "name": "bool",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "7511:4:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bool",
+                                            "typeString": "bool"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "7510:6:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71963,
+                        "nodeType": "FunctionDefinition",
+                        "src": "7935:87:133",
+                        "nodes": [],
+                        "documentation": {
+                            "id": 71952,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "7523:407:133",
+                            "text": " @custom:function-name rewardBatch\n @param receivers an array of receivers to send rewards to\n @custom:sub-param `receiver` - address of the user to reward\n @custom:sub-param `amount` - amount of token to reward the user\n @return returnData the result of the batch reward transaction\n @dev this function is used to reward users in batches"
+                        },
+                        "functionSelector": "32020eb1",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "rewardBatch",
+                        "nameLocation": "7944:11:133",
+                        "parameters": {
+                            "id": 71957,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71956,
+                                    "mutability": "mutable",
+                                    "name": "receivers",
+                                    "nameLocation": "7976:9:133",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71963,
+                                    "src": "7956:29:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "calldata",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_Receiver_$72154_calldata_ptr_$dyn_calldata_ptr",
+                                        "typeString": "struct Receiver[]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 71954,
+                                            "nodeType": "UserDefinedTypeName",
+                                            "pathNode": {
+                                                "id": 71953,
+                                                "name": "Receiver",
+                                                "nameLocations": ["7956:8:133"],
+                                                "nodeType": "IdentifierPath",
+                                                "referencedDeclaration": 72154,
+                                                "src": "7956:8:133"
+                                            },
+                                            "referencedDeclaration": 72154,
+                                            "src": "7956:8:133",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_struct$_Receiver_$72154_storage_ptr",
+                                                "typeString": "struct Receiver"
+                                            }
+                                        },
+                                        "id": 71955,
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "7956:10:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_struct$_Receiver_$72154_storage_$dyn_storage_ptr",
+                                            "typeString": "struct Receiver[]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "7955:31:133"
+                        },
+                        "returnParameters": {
+                            "id": 71962,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71961,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71963,
+                                    "src": "8005:15:133",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_Result_$72160_memory_ptr_$dyn_memory_ptr",
+                                        "typeString": "struct Result[]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 71959,
+                                            "nodeType": "UserDefinedTypeName",
+                                            "pathNode": {
+                                                "id": 71958,
+                                                "name": "Result",
+                                                "nameLocations": ["8005:6:133"],
+                                                "nodeType": "IdentifierPath",
+                                                "referencedDeclaration": 72160,
+                                                "src": "8005:6:133"
+                                            },
+                                            "referencedDeclaration": 72160,
+                                            "src": "8005:6:133",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_struct$_Result_$72160_storage_ptr",
+                                                "typeString": "struct Result"
+                                            }
+                                        },
+                                        "id": 71960,
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "8005:8:133",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_struct$_Result_$72160_storage_$dyn_storage_ptr",
+                                            "typeString": "struct Result[]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "8004:17:133"
+                        },
+                        "scope": 71964,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "abstract": false,
+                "baseContracts": [
+                    {
+                        "baseName": {
+                            "id": 71785,
+                            "name": "IControllerPermit",
+                            "nameLocations": ["490:17:133"],
+                            "nodeType": "IdentifierPath",
+                            "referencedDeclaration": 71493,
+                            "src": "490:17:133"
+                        },
+                        "id": 71786,
+                        "nodeType": "InheritanceSpecifier",
+                        "src": "490:17:133"
+                    }
+                ],
+                "canonicalName": "IVault",
+                "contractDependencies": [],
+                "contractKind": "interface",
+                "documentation": {
+                    "id": 71784,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "251:218:133",
+                    "text": " @title IVault\n @author Metaxona\n @custom:github https://github.com/Metaxonam/Metaxona\n @custom:version 0.0.1\n @dev an interface used to enforce which functions must be implemented in a vault contract"
+                },
+                "fullyImplemented": false,
+                "linearizedBaseContracts": [71964, 71493],
+                "name": "IVault",
+                "nameLocation": "480:6:133",
+                "scope": 71965,
+                "usedErrors": [],
+                "usedEvents": [71466, 71472, 71794, 71804, 71810, 71818, 71826, 71836, 71842, 71848]
+            }
+        ],
+        "license": "BUSL-1.1"
+    },
+    "id": 133
+}

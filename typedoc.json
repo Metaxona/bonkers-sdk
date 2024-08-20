@@ -1,0 +1,20 @@
+{
+    "$schema": ["https://typedoc.org/schema.json"],
+    "entryPoints": ["src/index.ts"],
+    "out": "docs",
+    "commentStyle": "jsdoc",
+    "theme": "default",
+    "includeVersion": true,
+    "name": "Bonkers SDK",
+    "navigation":true,
+    "excludeInternal": true,
+    "excludeExternals": true,
+    "projectDocuments": [
+        "./documents/*.md",
+        "./CHANGELOG.md",
+        "./LICENSE.md"
+    ],
+    "readme": "./README.md",
+    "githubPages": true,
+    "cleanOutputDir": true
+}

@@ -1,0 +1,958 @@
+{
+    "abi": [
+        {
+            "type": "function",
+            "name": "createRaffle",
+            "inputs": [
+                { "name": "targetRaffleFactory", "type": "address", "internalType": "address" },
+                { "name": "projectOwner", "type": "address", "internalType": "address" },
+                { "name": "rewardToken", "type": "address", "internalType": "address" },
+                { "name": "projectName", "type": "string", "internalType": "string" }
+            ],
+            "outputs": [{ "name": "raffle", "type": "address", "internalType": "address" }],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "raffleDraw",
+            "inputs": [{ "name": "targetRaffle", "type": "address", "internalType": "address" }],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "function",
+            "name": "startRaffle",
+            "inputs": [
+                { "name": "startDate", "type": "address", "internalType": "address" },
+                { "name": "endDate", "type": "uint256", "internalType": "uint256" }
+            ],
+            "outputs": [],
+            "stateMutability": "nonpayable"
+        },
+        {
+            "type": "event",
+            "name": "RaffleCreated",
+            "inputs": [
+                { "name": "caller", "type": "address", "indexed": true, "internalType": "address" },
+                { "name": "raffle", "type": "address", "indexed": true, "internalType": "address" },
+                {
+                    "name": "factory",
+                    "type": "address",
+                    "indexed": true,
+                    "internalType": "address"
+                },
+                {
+                    "name": "projectOwner",
+                    "type": "address",
+                    "indexed": false,
+                    "internalType": "address"
+                },
+                {
+                    "name": "projectName",
+                    "type": "string",
+                    "indexed": false,
+                    "internalType": "string"
+                },
+                {
+                    "name": "rewardToken",
+                    "type": "address",
+                    "indexed": false,
+                    "internalType": "address"
+                }
+            ],
+            "anonymous": false
+        },
+        {
+            "type": "event",
+            "name": "RaffleDrawn",
+            "inputs": [
+                { "name": "caller", "type": "address", "indexed": true, "internalType": "address" },
+                { "name": "raffle", "type": "address", "indexed": true, "internalType": "address" },
+                { "name": "winner", "type": "address", "indexed": true, "internalType": "address" },
+                {
+                    "name": "rewardToken",
+                    "type": "address",
+                    "indexed": false,
+                    "internalType": "address"
+                },
+                { "name": "amount", "type": "uint256", "indexed": false, "internalType": "uint256" }
+            ],
+            "anonymous": false
+        }
+    ],
+    "bytecode": { "object": "0x", "sourceMap": "", "linkReferences": {} },
+    "deployedBytecode": { "object": "0x", "sourceMap": "", "linkReferences": {} },
+    "methodIdentifiers": {
+        "createRaffle(address,address,address,string)": "2a6f2a31",
+        "raffleDraw(address)": "ab3e1adb",
+        "startRaffle(address,uint256)": "03854651"
+    },
+    "rawMetadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"raffle\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"factory\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"projectOwner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"projectName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"rewardToken\",\"type\":\"address\"}],\"name\":\"RaffleCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"raffle\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"winner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"rewardToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"RaffleDrawn\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"targetRaffleFactory\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"projectOwner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rewardToken\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"projectName\",\"type\":\"string\"}],\"name\":\"createRaffle\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"raffle\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"targetRaffle\",\"type\":\"address\"}],\"name\":\"raffleDraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"startDate\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"endDate\",\"type\":\"uint256\"}],\"name\":\"startRaffle\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Metaxona\",\"custom:github\":\"https://github.com/Metaxona\",\"custom:version\":\"0.0.1\",\"details\":\"an interface used to enforce which functions must be implemented in a controller contract to interact with the raffle and raffle factory contract\",\"kind\":\"dev\",\"methods\":{},\"title\":\"IRaffleController\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/interfaces/controller/IRaffleController.sol\":\"IRaffleController\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@common/=src/common/\",\":@contracts/=src/contracts/\",\":@helpers/=helpers/\",\":@interfaces/=src/interfaces/\",\":@openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/\",\":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/\",\":@test-utils/=test/common/\",\":@types/=src/types/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/\",\":sizeChecker/=lib/Solidity_Contract_Size_Checker/\",\":solidity-stringutils/=lib/openzeppelin-foundry-upgrades/lib/solidity-stringutils/\"]},\"sources\":{\"src/interfaces/controller/IRaffleController.sol\":{\"keccak256\":\"0xd75270c62e9615154fab7ece0e6813b63fddac6f85128608dac780a36b60df73\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://7ed72ffe1da4c4653ebf16409316032bf5009a6390b059199e72b4c0da696018\",\"dweb:/ipfs/QmVxRexUiLWE9RBzFacYBHetMTeagPrEC2hu3Z5yHpfFyV\"]}},\"version\":1}",
+    "metadata": {
+        "compiler": { "version": "0.8.20+commit.a1b79de6" },
+        "language": "Solidity",
+        "output": {
+            "abi": [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "caller",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "raffle",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "factory",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "projectOwner",
+                            "type": "address",
+                            "indexed": false
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "projectName",
+                            "type": "string",
+                            "indexed": false
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "rewardToken",
+                            "type": "address",
+                            "indexed": false
+                        }
+                    ],
+                    "type": "event",
+                    "name": "RaffleCreated",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "caller",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "raffle",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "winner",
+                            "type": "address",
+                            "indexed": true
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "rewardToken",
+                            "type": "address",
+                            "indexed": false
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "amount",
+                            "type": "uint256",
+                            "indexed": false
+                        }
+                    ],
+                    "type": "event",
+                    "name": "RaffleDrawn",
+                    "anonymous": false
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "targetRaffleFactory",
+                            "type": "address"
+                        },
+                        { "internalType": "address", "name": "projectOwner", "type": "address" },
+                        { "internalType": "address", "name": "rewardToken", "type": "address" },
+                        { "internalType": "string", "name": "projectName", "type": "string" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "createRaffle",
+                    "outputs": [{ "internalType": "address", "name": "raffle", "type": "address" }]
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "targetRaffle", "type": "address" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "raffleDraw"
+                },
+                {
+                    "inputs": [
+                        { "internalType": "address", "name": "startDate", "type": "address" },
+                        { "internalType": "uint256", "name": "endDate", "type": "uint256" }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "name": "startRaffle"
+                }
+            ],
+            "devdoc": { "kind": "dev", "methods": {}, "version": 1 },
+            "userdoc": { "kind": "user", "methods": {}, "version": 1 }
+        },
+        "settings": {
+            "remappings": [
+                "@common/=src/common/",
+                "@contracts/=src/contracts/",
+                "@helpers/=helpers/",
+                "@interfaces/=src/interfaces/",
+                "@openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/",
+                "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+                "@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/",
+                "@test-utils/=test/common/",
+                "@types/=src/types/",
+                "ds-test/=lib/forge-std/lib/ds-test/src/",
+                "erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/",
+                "forge-std/=lib/forge-std/src/",
+                "openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/",
+                "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+                "openzeppelin-foundry-upgrades/=lib/openzeppelin-foundry-upgrades/src/",
+                "sizeChecker/=lib/Solidity_Contract_Size_Checker/",
+                "solidity-stringutils/=lib/openzeppelin-foundry-upgrades/lib/solidity-stringutils/"
+            ],
+            "optimizer": { "enabled": true, "runs": 200 },
+            "metadata": { "bytecodeHash": "ipfs" },
+            "compilationTarget": {
+                "src/interfaces/controller/IRaffleController.sol": "IRaffleController"
+            },
+            "evmVersion": "paris",
+            "libraries": {}
+        },
+        "sources": {
+            "src/interfaces/controller/IRaffleController.sol": {
+                "keccak256": "0xd75270c62e9615154fab7ece0e6813b63fddac6f85128608dac780a36b60df73",
+                "urls": [
+                    "bzz-raw://7ed72ffe1da4c4653ebf16409316032bf5009a6390b059199e72b4c0da696018",
+                    "dweb:/ipfs/QmVxRexUiLWE9RBzFacYBHetMTeagPrEC2hu3Z5yHpfFyV"
+                ],
+                "license": "BUSL-1.1"
+            }
+        },
+        "version": 1
+    },
+    "storageLayout": { "storage": [], "types": {} },
+    "ast": {
+        "absolutePath": "src/interfaces/controller/IRaffleController.sol",
+        "id": 71549,
+        "exportedSymbols": { "IRaffleController": [71548] },
+        "nodeType": "SourceUnit",
+        "src": "37:1033:129",
+        "nodes": [
+            {
+                "id": 71495,
+                "nodeType": "PragmaDirective",
+                "src": "37:23:129",
+                "nodes": [],
+                "literals": ["solidity", "0.8", ".20"]
+            },
+            {
+                "id": 71548,
+                "nodeType": "ContractDefinition",
+                "src": "346:723:129",
+                "nodes": [
+                    {
+                        "id": 71510,
+                        "nodeType": "EventDefinition",
+                        "src": "380:210:129",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "11ddc0bf8063536531e6127a369d12a9f5857e1183a15b83a6fa4ed90e1a777b",
+                        "name": "RaffleCreated",
+                        "nameLocation": "386:13:129",
+                        "parameters": {
+                            "id": 71509,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71498,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "caller",
+                                    "nameLocation": "425:6:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71510,
+                                    "src": "409:22:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71497,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "409:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71500,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "raffle",
+                                    "nameLocation": "457:6:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71510,
+                                    "src": "441:22:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71499,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "441:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71502,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "factory",
+                                    "nameLocation": "489:7:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71510,
+                                    "src": "473:23:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71501,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "473:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71504,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "projectOwner",
+                                    "nameLocation": "514:12:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71510,
+                                    "src": "506:20:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71503,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "506:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71506,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "projectName",
+                                    "nameLocation": "543:11:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71510,
+                                    "src": "536:18:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_memory_ptr",
+                                        "typeString": "string"
+                                    },
+                                    "typeName": {
+                                        "id": 71505,
+                                        "name": "string",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "536:6:129",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_string_storage_ptr",
+                                            "typeString": "string"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71508,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "rewardToken",
+                                    "nameLocation": "572:11:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71510,
+                                    "src": "564:19:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71507,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "564:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "399:190:129"
+                        }
+                    },
+                    {
+                        "id": 71522,
+                        "nodeType": "EventDefinition",
+                        "src": "596:141:129",
+                        "nodes": [],
+                        "anonymous": false,
+                        "eventSelector": "4d59b965c5e76b9a756569252e5c4d64f949e9f09a654407dc035e1f4ab5c8bb",
+                        "name": "RaffleDrawn",
+                        "nameLocation": "602:11:129",
+                        "parameters": {
+                            "id": 71521,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71512,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "caller",
+                                    "nameLocation": "639:6:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71522,
+                                    "src": "623:22:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71511,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "623:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71514,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "raffle",
+                                    "nameLocation": "663:6:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71522,
+                                    "src": "647:22:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71513,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "647:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71516,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "winner",
+                                    "nameLocation": "687:6:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71522,
+                                    "src": "671:22:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71515,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "671:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71518,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "rewardToken",
+                                    "nameLocation": "703:11:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71522,
+                                    "src": "695:19:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71517,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "695:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71520,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "amount",
+                                    "nameLocation": "724:6:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71522,
+                                    "src": "716:14:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71519,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "716:7:129",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "613:123:129"
+                        }
+                    },
+                    {
+                        "id": 71527,
+                        "nodeType": "FunctionDefinition",
+                        "src": "743:51:129",
+                        "nodes": [],
+                        "functionSelector": "ab3e1adb",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "raffleDraw",
+                        "nameLocation": "752:10:129",
+                        "parameters": {
+                            "id": 71525,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71524,
+                                    "mutability": "mutable",
+                                    "name": "targetRaffle",
+                                    "nameLocation": "771:12:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71527,
+                                    "src": "763:20:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71523,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "763:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "762:22:129"
+                        },
+                        "returnParameters": {
+                            "id": 71526,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "793:0:129"
+                        },
+                        "scope": 71548,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71534,
+                        "nodeType": "FunctionDefinition",
+                        "src": "800:66:129",
+                        "nodes": [],
+                        "functionSelector": "03854651",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "startRaffle",
+                        "nameLocation": "809:11:129",
+                        "parameters": {
+                            "id": 71532,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71529,
+                                    "mutability": "mutable",
+                                    "name": "startDate",
+                                    "nameLocation": "829:9:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71534,
+                                    "src": "821:17:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71528,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "821:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71531,
+                                    "mutability": "mutable",
+                                    "name": "endDate",
+                                    "nameLocation": "848:7:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71534,
+                                    "src": "840:15:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 71530,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "840:7:129",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "820:36:129"
+                        },
+                        "returnParameters": {
+                            "id": 71533,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "865:0:129"
+                        },
+                        "scope": 71548,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "id": 71547,
+                        "nodeType": "FunctionDefinition",
+                        "src": "872:195:129",
+                        "nodes": [],
+                        "functionSelector": "2a6f2a31",
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "createRaffle",
+                        "nameLocation": "881:12:129",
+                        "parameters": {
+                            "id": 71543,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71536,
+                                    "mutability": "mutable",
+                                    "name": "targetRaffleFactory",
+                                    "nameLocation": "911:19:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71547,
+                                    "src": "903:27:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71535,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "903:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71538,
+                                    "mutability": "mutable",
+                                    "name": "projectOwner",
+                                    "nameLocation": "948:12:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71547,
+                                    "src": "940:20:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71537,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "940:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71540,
+                                    "mutability": "mutable",
+                                    "name": "rewardToken",
+                                    "nameLocation": "978:11:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71547,
+                                    "src": "970:19:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71539,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "970:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 71542,
+                                    "mutability": "mutable",
+                                    "name": "projectName",
+                                    "nameLocation": "1015:11:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71547,
+                                    "src": "999:27:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "calldata",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_string_calldata_ptr",
+                                        "typeString": "string"
+                                    },
+                                    "typeName": {
+                                        "id": 71541,
+                                        "name": "string",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "999:6:129",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_string_storage_ptr",
+                                            "typeString": "string"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "893:139:129"
+                        },
+                        "returnParameters": {
+                            "id": 71546,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 71545,
+                                    "mutability": "mutable",
+                                    "name": "raffle",
+                                    "nameLocation": "1059:6:129",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 71547,
+                                    "src": "1051:14:129",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 71544,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1051:7:129",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1050:16:129"
+                        },
+                        "scope": 71548,
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "abstract": false,
+                "baseContracts": [],
+                "canonicalName": "IRaffleController",
+                "contractDependencies": [],
+                "contractKind": "interface",
+                "documentation": {
+                    "id": 71496,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "62:283:129",
+                    "text": " @title IRaffleController\n @author Metaxona\n @custom:github https://github.com/Metaxona\n @custom:version 0.0.1\n @dev an interface used to enforce which functions must be implemented\n in a controller contract to interact with the raffle and raffle factory contract"
+                },
+                "fullyImplemented": false,
+                "linearizedBaseContracts": [71548],
+                "name": "IRaffleController",
+                "nameLocation": "356:17:129",
+                "scope": 71549,
+                "usedErrors": [],
+                "usedEvents": [71510, 71522]
+            }
+        ],
+        "license": "BUSL-1.1"
+    },
+    "id": 129
+}
