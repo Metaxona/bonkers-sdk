@@ -4,7 +4,7 @@
 	"description": "A Library For Interacting With Bonkers EVM Contracts: Controller, Vault Factory, Vault, and More",
 	"type": "module",
 	"main": "./dist/index.js",
-	"module": "./dist/index.mjs",
+	"module": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
 		"dist/**/*"
@@ -12,14 +12,14 @@
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js",
-			"default": "./dist/index.cjs"
+			"import": "./dist/index.js"
 		}
 	},
 	"scripts": {
 		"format": "biome format --write .",
 		"check": "biome check",
-		"build": "rm -rf dist && tsup",
+		"build": "npm run build:tsc",
+		"build:tsup": "rm -rf dist && tsup",
 		"build:tsc": "rm -rf dist && tsc --project tsconfig.json",
 		"build:tsc:watch": "rm -rf dist && tsc --project tsconfig.json --watch",
 		"build:docs": "typedoc",
@@ -78,11 +78,9 @@
 		"@changesets/cli": "^2.27.7",
 		"@vitest/coverage-v8": "^2.0.5",
 		"@vitest/ui": "^2.0.4",
-		"@wagmi/core": "^2.12.2",
 		"tsup": "^8.2.3",
 		"typedoc": "^0.26.5",
 		"typescript": "^5.5.4",
-		"viem": "^2.17.5",
 		"vitest": "^2.0.4"
 	}
 }
