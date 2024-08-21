@@ -126,7 +126,7 @@ export class Clients implements IClients {
                 return { chainId: Number(chain.id) as ChainId, name: chain.name as string }
             }
 
-            if (clientType === 'wagmi' && this.clientsExist('viem')) {
+            if (clientType === 'wagmi' && this.clientsExist('wagmi')) {
                 const chain = this.wagmi.getClient().chain as Chain
                 return { chainId: Number(chain.id) as ChainId, name: chain.name as string }
             }

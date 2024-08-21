@@ -52,6 +52,7 @@
 	"authors": [
 		"Metaxona"
 	],
+	"homepage": "https://metaxona.com/bonkers-sdk",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
