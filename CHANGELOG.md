@@ -1,5 +1,11 @@
 # bonkers-sdk
 
+## 0.0.6
+
+### Patch Changes
+
+- Fixed mode aware chain bug on clients
+
 ## 0.0.5
 
 ### Patch Changes
