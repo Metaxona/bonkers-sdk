@@ -1,5 +1,13 @@
 # bonkers-sdk
 
+## 0.0.5
+
+### Patch Changes
+
+- Migrated Build from TSUP to TSC
+
+  Reason being, tsc does not bundle external dependencies causing exports to not be included resulting in missing imports specially the viem chains exports which allows sdk users to import chains from viem without needing to install it separately from the sdk
+
 ## 0.0.4
 
 ### Patch Changes
