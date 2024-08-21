@@ -35,8 +35,8 @@
 		"changeset:empty": "npx changeset --empty",
 		"anvil:start": "anvil &",
 		"anvil:stop": "lsof -t -i tcp:8545 | xargs kill",
-		"test": "npm run anvil:start && vitest",
-		"test:watch": "npm run anvil:start && vitest --watch",
+		"test": "npm run anvil:start && echo \"waiting\" && sleep 10 && vitest",
+		"test:watch": "npm run anvil:start && echo \"waiting\" && sleep 10 && vitest --watch",
 		"preview:report": "npx vite preview --host --outDir test/reports/html",
 		"preview:docs": "npx vite preview --host --outDir docs",
 		"release": "npm run build && npm run changeset:publish"

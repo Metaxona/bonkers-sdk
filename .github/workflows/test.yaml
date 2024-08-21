@@ -42,5 +42,5 @@ jobs:
 
       - name: Stop Anvil
         run: |
-          lsof -t -i tcp:8545 | xargs kill
+          npm run anvil:stop
         id: anvilstop
