@@ -4,8 +4,9 @@ import { anvil, sepolia } from 'viem/chains'
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import { Clients } from '../../src/sdk/clients'
 import { ClientNotFound, InvalidClientType } from '../../src/utils'
-import { WagmiConfigParameters } from '../../src/wagmi_viem'
+import { WagmiConfigParameters, Connector } from '../../src/wagmi_viem'
 import {
+    CALLER_WALLET,
     clientAndContractSetup,
     clientConfig,
     DEPLOYER_PRIVATE_KEY,
@@ -113,8 +114,44 @@ describe('Clients Test', () => {
         )
     })
 
+    it('Re-Connect', async () => {
+        const connector1 = client.connectors()[0]!
+        const connectorNoReconnect = client.connectors()[5]!
+
+        expect(async () => await client.connect(client.connectors()[2])).rejects.toThrow()
+
+        await client.connect(connector1)
+
+        expect(client.connection()).to.eq('connected')
+
+        await client.disconnect()
+
+        expect(client.connection()).to.eq('disconnected')
+
+        await client.connect(connectorNoReconnect)
+
+        expect(client.connection()).to.eq('connected')
+
+        await client.disconnect()
+
+        expect(client.connection()).to.eq('disconnected')
+
+        await client.connect(connector1)
+        await client.connect(connectorNoReconnect)
+
+        expect(
+            async () => await clientNoClients.reconnect(client.connectors() as Connector[])
+        ).rejects.toThrowError(new ClientNotFound('Wagmi Client Not Found'))
+
+        const res = await client.reconnect(client.connectors() as Connector[])
+
+        expect(res.length).to.eq(1)
+
+        expect(client.connection()).to.eq('connected')
+    })
+
     it('Connectors', async () => {
-        expect(client.connectors().length).to.be.eq(5)
+        expect(client.connectors().length).to.be.eq(6)
         client.connectors().forEach((item) => {
             expect(item.name).to.be.eq('Mock Connector')
         })
@@ -163,20 +200,24 @@ describe('Clients Test', () => {
     })
 
     it('Switch Chain', async () => {
-        const { chainId, name } = client.chain('wagmi')
+        const { id, chainId, name, symbol } = client.chain('wagmi')
 
         expect(chainId).eq(anvil.id)
+        expect(id).eq(anvil.id)
         expect(name).eq('Anvil')
+        expect(symbol).eq(anvil.nativeCurrency.symbol)
 
         const switchR = await client.switchChain(sepolia.id)
 
         expect(switchR.id).to.be.eq(sepolia.id)
         expect(switchR.name).to.be.eq(sepolia.name)
 
-        const { chainId: chainId2, name: name2 } = client.chain('wagmi')
+        const { id: id2, chainId: chainId2, name: name2, symbol: symbol2 } = client.chain('wagmi')
 
         expect(chainId2).eq(sepolia.id)
+        expect(id2).eq(sepolia.id)
         expect(name2).eq('Sepolia')
+        expect(symbol2).eq(sepolia.nativeCurrency.symbol)
 
         await client.switchChain(anvil.id, (curr, prev, unwatch) => {
             expect(curr).to.be.not.eq(prev)
@@ -211,13 +252,17 @@ describe('Clients Test', () => {
     })
 
     it('Chain', async () => {
-        const { chainId, name } = client.chain('wagmi')
+        const { id, chainId, name, symbol } = client.chain('wagmi')
         expect(chainId).to.eq(anvil.id)
+        expect(id).to.eq(anvil.id)
         expect(name).to.eq(anvil.name)
+        expect(symbol).to.eq(anvil.nativeCurrency.symbol)
 
-        const { chainId: chainId2, name: name2 } = client.chain('viem')
+        const { id: id2, chainId: chainId2, name: name2, symbol: symbol2 } = client.chain('viem')
         expect(chainId2).to.eq(anvil.id)
+        expect(id2).to.eq(anvil.id)
         expect(name2).to.eq(anvil.name)
+        expect(symbol2).to.eq(anvil.nativeCurrency.symbol)
 
         // @ts-ignore
         expect(() => client.chain('random')).toThrowError(new InvalidClientType())
@@ -307,5 +352,33 @@ describe('Clients Test', () => {
         expect(() => clientNoClients.useAccount(DEPLOYER_PRIVATE_KEY)).toThrowError(
             new ClientNotFound('Viem Public and Wallet Client Not Found')
         )
+    })
+
+    it('Balance Of', async () => {
+        client.setClients(serverConfig)
+        client.setClients(clientConfig)
+
+        expect(await client.balanceOf('viem', CALLER_WALLET)).to.be.eq(10000000000000000000000n)
+
+        const connector1 = client.connectors()[0]!
+
+        await client.connect(connector1)
+
+        expect(await client.balanceOf('wagmi', CALLER_WALLET)).to.be.eq(10000000000000000000000n)
+
+        await client.disconnect()
+
+        // @ts-ignore
+        expect(async () => await client.balanceOf('random', CALLER_WALLET)).rejects.toThrowError(
+            new InvalidClientType()
+        )
+
+        expect(
+            async () => await clientNoClients.balanceOf('wagmi', CALLER_WALLET)
+        ).rejects.toThrowError(new ClientNotFound('Wagmi Client Not Found'))
+
+        expect(
+            async () => await clientNoClients.balanceOf('viem', CALLER_WALLET)
+        ).rejects.toThrowError(new ClientNotFound('Viem Public and Wallet Client Not Found'))
     })
 })

@@ -16,5 +16,9 @@
     ],
     "readme": "./README.md",
     "githubPages": true,
-    "cleanOutputDir": true
+    "cleanOutputDir": true,
+    "navigationLinks": {
+        "Github": "https://github.com/Metaxona/bonkers-sdk",
+        "Npm": "https://www.npmjs.com/package/bonkers-sdk",
+    }
 }

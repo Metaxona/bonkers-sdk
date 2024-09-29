@@ -15,12 +15,14 @@ import { controllerAbi_0_0_1 } from '../../src/abi'
 import Controller from '../../src/sdk/controller'
 import { Call3, Call3Value, ControllerRole, Receiver, Result } from '../../src/types'
 import {
+    InvalidContract,
     InvalidContractType,
     InvalidContractVersion,
     InvalidSDKMode,
     MissingRequiredParams
 } from '../../src/utils'
 import {
+    CALLER_WALLET,
     clientAndContractSetup,
     CONTROLLER_ADMIN,
     CONTROLLER_FEE_RECEIVER,
@@ -76,7 +78,7 @@ describe('Controller Client Test', () => {
     })
 
     it('Connectors', async () => {
-        expect(vars.clientControllerInstance.connectors().length).to.be.eq(5)
+        expect(vars.clientControllerInstance.connectors().length).to.be.eq(6)
         vars.clientControllerInstance.connectors().forEach((item) => {
             expect(item.name).to.be.eq('Mock Connector')
         })
@@ -115,6 +117,31 @@ describe('Controller Client Test', () => {
         await resetClientConnection(vars.clientControllerInstance)
     })
 
+    it('Connect', async () => {
+        expect(
+            async () =>
+                await vars.clientControllerInstance.connect(
+                    vars.clientControllerInstance.connectors().at(2)!
+                )
+        ).rejects.toThrow()
+
+        await vars.clientControllerInstance.connect(
+            vars.clientControllerInstance.connectors().at(0)!
+        )
+
+        await vars.clientControllerInstance.connect(
+            vars.clientControllerInstance.connectors().at(5)!
+        )
+
+        const res = await vars.clientControllerInstance.reconnect()
+
+        expect(res.length).to.eq(1)
+
+        expect(vars.clientBonkersSDKInstance.connection()).to.eq('connected')
+
+        await resetClientConnection(vars.clientControllerInstance)
+    })
+
     it('Disconnect', async () => {
         await vars.clientControllerInstance.connect(
             vars.clientControllerInstance.connectors().at(0)!
@@ -130,44 +157,95 @@ describe('Controller Client Test', () => {
     })
 
     it('Switch Chain', async () => {
-        const { chainId, name } = vars.clientControllerInstance.chain()
-        const { chainId: chainId2, name: name2 } = vars.clientVaultInstance.chain()
-        const { chainId: chainId3, name: name3 } = vars.clientVaultFactoryInstance.chain()
-        const { chainId: chainId4, name: name4 } = vars.clientBonkersSDKInstance.chain()
+        const { id, chainId, name, symbol } = vars.clientControllerInstance.chain()
+        const {
+            id: id2,
+            chainId: chainId2,
+            name: name2,
+            symbol: symbol2
+        } = vars.clientVaultInstance.chain()
+        const {
+            id: id3,
+            chainId: chainId3,
+            name: name3,
+            symbol: symbol3
+        } = vars.clientVaultFactoryInstance.chain()
+        const {
+            id: id4,
+            chainId: chainId4,
+            name: name4,
+            symbol: symbol4
+        } = vars.clientBonkersSDKInstance.chain()
 
         expect(chainId).eq(anvil.id)
         expect(name).eq('Anvil')
+        expect(id).eq(anvil.id)
+        expect(symbol).eq(anvil.nativeCurrency.symbol)
 
         expect(chainId2).eq(anvil.id)
         expect(name2).eq('Anvil')
+        expect(id2).eq(anvil.id)
+        expect(symbol2).eq(anvil.nativeCurrency.symbol)
 
         expect(chainId3).eq(anvil.id)
         expect(name3).eq('Anvil')
+        expect(id3).eq(anvil.id)
+        expect(symbol3).eq(anvil.nativeCurrency.symbol)
 
         expect(chainId4).eq(anvil.id)
         expect(name4).eq('Anvil')
+        expect(id4).eq(anvil.id)
+        expect(symbol4).eq(anvil.nativeCurrency.symbol)
 
         const switchR = await vars.clientControllerInstance.switchChain(sepolia.id)
 
         expect(switchR.id).to.be.eq(sepolia.id)
         expect(switchR.name).to.be.eq(sepolia.name)
 
-        const { chainId: chainId5, name: name5 } = vars.clientControllerInstance.chain()
-        const { chainId: chainId6, name: name6 } = vars.clientVaultInstance.chain()
-        const { chainId: chainId7, name: name7 } = vars.clientVaultFactoryInstance.chain()
-        const { chainId: chainId8, name: name8 } = vars.clientBonkersSDKInstance.chain()
+        const {
+            id: id5,
+            chainId: chainId5,
+            name: name5,
+            symbol: symbol5
+        } = vars.clientControllerInstance.chain()
+        const {
+            id: id6,
+            chainId: chainId6,
+            name: name6,
+            symbol: symbol6
+        } = vars.clientVaultInstance.chain()
+        const {
+            id: id7,
+            chainId: chainId7,
+            name: name7,
+            symbol: symbol7
+        } = vars.clientVaultFactoryInstance.chain()
+        const {
+            id: id8,
+            chainId: chainId8,
+            name: name8,
+            symbol: symbol8
+        } = vars.clientBonkersSDKInstance.chain()
 
         expect(chainId5).eq(sepolia.id)
         expect(name5).eq('Sepolia')
+        expect(id5).eq(sepolia.id)
+        expect(symbol5).eq(sepolia.nativeCurrency.symbol)
 
         expect(chainId6).eq(sepolia.id)
         expect(name6).eq('Sepolia')
+        expect(id6).eq(sepolia.id)
+        expect(symbol6).eq(sepolia.nativeCurrency.symbol)
 
         expect(chainId7).eq(sepolia.id)
         expect(name7).eq('Sepolia')
+        expect(id7).eq(sepolia.id)
+        expect(symbol7).eq(sepolia.nativeCurrency.symbol)
 
         expect(chainId8).eq(sepolia.id)
         expect(name8).eq('Sepolia')
+        expect(id8).eq(sepolia.id)
+        expect(symbol8).eq(sepolia.nativeCurrency.symbol)
 
         await resetClientChain(vars.clientControllerInstance)
     })
@@ -179,10 +257,18 @@ describe('Controller Client Test', () => {
     })
 
     it('Chain', () => {
-        const { chainId, name } = vars.clientControllerInstance.chain()
+        const { id, chainId, name, symbol } = vars.clientControllerInstance.chain()
 
         expect(chainId).eq(anvil.id)
         expect(name).eq('Anvil')
+        expect(id).eq(anvil.id)
+        expect(symbol).eq(anvil.nativeCurrency.symbol)
+    })
+
+    it('Chains', () => {
+        const chains = vars.clientControllerInstance.chains()
+
+        expect(chains.length).eq(3)
     })
 
     it('Reader Error', async () => {
@@ -265,10 +351,10 @@ describe('Controller Client Test', () => {
 
         expect(() =>
             vars.clientControllerInstance.useNewController(anvil.id, {
-                address: '0x0',
+                address: zeroAddress,
                 abi: controllerAbi_0_0_1
             })
-        ).toThrow()
+        ).toThrow(new InvalidContract('Can Not Be Zero Address'))
 
         vars.clientControllerInstance.useNewController(anvil.id, {
             address: vars.controller,
@@ -881,6 +967,42 @@ describe('Controller Client Test', () => {
         await vars.clientControllerInstance.changeControllerOwner(DEPLOYER_WALLET)
 
         expect(await vars.clientControllerInstance.owner()).to.be.eq(DEPLOYER_WALLET)
+
+        await resetClientConnection(vars.clientControllerInstance)
+    })
+
+    it('Balance', async () => {
+        expect(async () => await vars.clientControllerNoParams.balance()).rejects.toThrowError(
+            new MissingRequiredParams('Contract Abi')
+        )
+
+        expect(await vars.clientControllerInstance.balance()).to.be.eq(0n)
+
+        const connector1 = vars.clientControllerInstance.connectors()[0]!
+
+        await vars.clientControllerInstance.connect(connector1)
+
+        expect(await vars.clientControllerInstance.balance()).to.be.eq(0n)
+
+        await resetClientConnection(vars.clientControllerInstance)
+    })
+
+    it('Balance Of', async () => {
+        expect(await vars.clientControllerInstance.balanceOf(CALLER_WALLET)).to.be.eq(
+            10000000000000000000000n
+        )
+
+        const connector1 = vars.clientControllerInstance.connectors()[0]!
+
+        await vars.clientControllerInstance.connect(connector1)
+
+        expect(await vars.clientControllerInstance.balanceOf(CALLER_WALLET)).to.be.eq(
+            10000000000000000000000n
+        )
+
+        expect(
+            async () => await vars.clientControllerNoParams.balanceOf('0x')
+        ).rejects.toThrowError()
 
         await resetClientConnection(vars.clientControllerInstance)
     })

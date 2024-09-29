@@ -6,12 +6,14 @@ import Vault from '../../src/sdk/vault'
 import VaultFactory from '../../src/sdk/vaultFactory'
 import {
     InvalidChainId,
+    InvalidContract,
     InvalidContractType,
     InvalidContractVersion,
     InvalidSDKMode,
     MissingRequiredParams
 } from '../../src/utils'
 import {
+    CALLER_WALLET,
     clientAndContractSetup,
     DEPLOYER_PRIVATE_KEY,
     DEPLOYER_WALLET,
@@ -101,6 +103,12 @@ describe('Vault Factory Server Test', () => {
         )
     })
 
+    it('Re-Connect', async () => {
+        expect(async () => await vars.serverVaultFactoryInstance.reconnect()).rejects.toThrowError(
+            new InvalidSDKMode('This function is only available on Client Mode/Environment')
+        )
+    })
+
     it('Disconnect', async () => {
         expect(async () => await vars.serverVaultFactoryInstance.disconnect()).rejects.toThrowError(
             new InvalidSDKMode('This function is only available on Client Mode/Environment')
@@ -116,41 +124,92 @@ describe('Vault Factory Server Test', () => {
     })
 
     it('Use Chain', async () => {
-        const { chainId, name } = vars.serverVaultFactoryInstance.chain()
-        const { chainId: chainId2, name: name2 } = vars.serverVaultFactoryInstance.chain()
-        const { chainId: chainId3, name: name3 } = vars.serverVaultFactoryInstance.chain()
-        const { chainId: chainId4, name: name4 } = vars.serverBonkersSDKInstance.chain()
+        const { id, chainId, name, symbol } = vars.serverVaultFactoryInstance.chain()
+        const {
+            id: id2,
+            chainId: chainId2,
+            name: name2,
+            symbol: symbol2
+        } = vars.serverVaultFactoryInstance.chain()
+        const {
+            id: id3,
+            chainId: chainId3,
+            name: name3,
+            symbol: symbol3
+        } = vars.serverVaultFactoryInstance.chain()
+        const {
+            id: id4,
+            chainId: chainId4,
+            name: name4,
+            symbol: symbol4
+        } = vars.serverBonkersSDKInstance.chain()
 
         expect(chainId).eq(anvil.id)
         expect(name).eq('Anvil')
+        expect(id).eq(anvil.id)
+        expect(symbol).eq(anvil.nativeCurrency.symbol)
 
         expect(chainId2).eq(anvil.id)
         expect(name2).eq('Anvil')
+        expect(id2).eq(anvil.id)
+        expect(symbol2).eq(anvil.nativeCurrency.symbol)
 
         expect(chainId3).eq(anvil.id)
         expect(name3).eq('Anvil')
+        expect(id3).eq(anvil.id)
+        expect(symbol3).eq(anvil.nativeCurrency.symbol)
 
         expect(chainId4).eq(anvil.id)
         expect(name4).eq('Anvil')
+        expect(id4).eq(anvil.id)
+        expect(symbol4).eq(anvil.nativeCurrency.symbol)
 
         vars.serverVaultFactoryInstance.useChain(sepolia.id)
 
-        const { chainId: chainId5, name: name5 } = vars.serverVaultFactoryInstance.chain()
-        const { chainId: chainId6, name: name6 } = vars.serverVaultFactoryInstance.chain()
-        const { chainId: chainId7, name: name7 } = vars.serverVaultFactoryInstance.chain()
-        const { chainId: chainId8, name: name8 } = vars.serverBonkersSDKInstance.chain()
+        const {
+            id: id5,
+            chainId: chainId5,
+            name: name5,
+            symbol: symbol5
+        } = vars.serverVaultFactoryInstance.chain()
+        const {
+            id: id6,
+            chainId: chainId6,
+            name: name6,
+            symbol: symbol6
+        } = vars.serverVaultFactoryInstance.chain()
+        const {
+            id: id7,
+            chainId: chainId7,
+            name: name7,
+            symbol: symbol7
+        } = vars.serverVaultFactoryInstance.chain()
+        const {
+            id: id8,
+            chainId: chainId8,
+            name: name8,
+            symbol: symbol8
+        } = vars.serverBonkersSDKInstance.chain()
 
         expect(chainId5).eq(sepolia.id)
         expect(name5).eq('Sepolia')
+        expect(id5).eq(sepolia.id)
+        expect(symbol5).eq(sepolia.nativeCurrency.symbol)
 
         expect(chainId6).eq(sepolia.id)
         expect(name6).eq('Sepolia')
+        expect(id6).eq(sepolia.id)
+        expect(symbol6).eq(sepolia.nativeCurrency.symbol)
 
         expect(chainId7).eq(sepolia.id)
         expect(name7).eq('Sepolia')
+        expect(id7).eq(sepolia.id)
+        expect(symbol7).eq(sepolia.nativeCurrency.symbol)
 
         expect(chainId8).eq(sepolia.id)
         expect(name8).eq('Sepolia')
+        expect(id8).eq(sepolia.id)
+        expect(symbol8).eq(sepolia.nativeCurrency.symbol)
 
         resetServerChain(vars.serverVaultFactoryInstance)
     })
@@ -160,6 +219,12 @@ describe('Vault Factory Server Test', () => {
 
         expect(chainId).eq(anvil.id)
         expect(name).eq('Anvil')
+    })
+
+    it('Chains', () => {
+        const chains2 = vars.serverVaultFactoryInstance.chains()
+
+        expect(chains2.length).eq(3)
     })
 
     it('Reader Error', async () => {
@@ -244,10 +309,10 @@ describe('Vault Factory Server Test', () => {
 
         expect(() =>
             vars.serverVaultFactoryInstance.useNewVaultFactory(anvil.id, {
-                address: '0x0',
+                address: zeroAddress,
                 abi: vaultFactoryAbi_0_0_1
             })
-        ).toThrow()
+        ).toThrow(new InvalidContract('Can Not Be Zero Address'))
 
         vars.serverVaultFactoryInstance.useNewVaultFactory(anvil.id, {
             address: vars.vaultFactory,
@@ -528,9 +593,7 @@ describe('Vault Factory Server Test', () => {
         ).rejects.toThrow(new MissingRequiredParams('Contract Abi'))
 
         expect(
-            async () =>
-                // @ts-ignore
-                await vars.serverVaultFactoryInvalidAddress.updateVaultInfo('0x0')
+            async () => await vars.serverVaultFactoryInstance.updateVaultInfo(zeroAddress)
         ).rejects.toThrow('Failed To Execute Write on: updateVaultInfo')
     })
 
@@ -695,5 +758,27 @@ describe('Vault Factory Server Test', () => {
         await vars.serverVaultFactoryInstance.changeVaultFactoryOwner(DEPLOYER_WALLET)
 
         expect(await vars.serverVaultFactoryInstance.owner()).to.be.eq(DEPLOYER_WALLET)
+    })
+
+    it('Balance', async () => {
+        expect(async () => await vars.serverVaultFactoryNoParams.balance()).rejects.toThrowError(
+            new MissingRequiredParams('Contract Abi')
+        )
+
+        expect(await vars.serverVaultFactoryInstance.balance()).to.be.eq(0n)
+    })
+
+    it('Balance Of', async () => {
+        expect(await vars.serverVaultFactoryInstance.balanceOf(CALLER_WALLET)).to.be.eq(
+            10000000000000000000000n
+        )
+
+        expect(await vars.serverVaultFactoryInstance.balanceOf(CALLER_WALLET)).to.be.eq(
+            10000000000000000000000n
+        )
+
+        expect(
+            async () => await vars.serverVaultFactoryNoParams.balanceOf('0x')
+        ).rejects.toThrowError()
     })
 })

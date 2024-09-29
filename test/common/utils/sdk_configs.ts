@@ -9,6 +9,7 @@ import {
     mockConnectorCallerNonOwner,
     mockConnectorNoAccount,
     mockConnectorNoConnect,
+    mockConnectorNoReconnect,
     mockConnectorNoSwitch
 } from './common'
 
@@ -24,7 +25,8 @@ export const wagmiConfig: CreateConfigParameters = {
         mockConnectorAdminOnly,
         mockConnectorNoConnect,
         mockConnectorNoSwitch,
-        mockConnectorNoAccount
+        mockConnectorNoAccount,
+        mockConnectorNoReconnect
     ]
 }
 
@@ -158,6 +160,15 @@ export const serverConfig_NoChains: Config = {
     mode: 'server',
     options: {
         chains: [],
+        privateKey: OWNER_PRIVATE_KEY
+    },
+    logger: logger
+}
+
+export const serverConfig_undefinedChains: Config = {
+    mode: 'server',
+    // @ts-ignore
+    options: {
         privateKey: OWNER_PRIVATE_KEY
     },
     logger: logger

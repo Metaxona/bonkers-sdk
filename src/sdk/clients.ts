@@ -5,6 +5,8 @@ import {
     disconnect,
     getAccount,
     type GetAccountReturnType,
+    getBalance,
+    reconnect,
     switchAccount,
     switchChain,
     type Config as WagmiConfig,
@@ -123,12 +125,22 @@ export class Clients implements IClients {
         try {
             if (clientType === 'viem' && this.clientsExist('viem')) {
                 const chain = this.publicClient.chain as Chain
-                return { chainId: Number(chain.id) as ChainId, name: chain.name as string }
+                return {
+                    id: Number(chain.id),
+                    chainId: Number(chain.id) as ChainId,
+                    name: chain.name as string,
+                    symbol: chain?.nativeCurrency?.symbol
+                }
             }
 
             if (clientType === 'wagmi' && this.clientsExist('wagmi')) {
                 const chain = this.wagmi.getClient().chain as Chain
-                return { chainId: Number(chain.id) as ChainId, name: chain.name as string }
+                return {
+                    id: Number(chain.id),
+                    chainId: Number(chain.id) as ChainId,
+                    name: chain.name as string,
+                    symbol: chain?.nativeCurrency?.symbol
+                }
             }
 
             throw new InvalidClientType()
@@ -152,6 +164,20 @@ export class Clients implements IClients {
         }
 
         return this.wagmi.state.status
+    }
+
+    async reconnect(connectors: Connector[]) {
+        try {
+            if (!this.clientsExist('wagmi')) {
+                throw new ClientNotFound('Wagmi Client Not Found')
+            }
+
+            return await reconnect(this.wagmi, { connectors: connectors })
+        } catch (error: any) {
+            this.logger.error(`FROM: ${CLASS_NAME} Function: reconnect`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: reconnect`, error.stack)
+            throw error
+        }
     }
 
     async connect(connector: Connector, callback?: ConnectCallback) {
@@ -313,6 +339,30 @@ export class Clients implements IClients {
         } catch (error: any) {
             this.logger.error(`FROM: ${CLASS_NAME} Function: account`, error.name, error.message)
             this.logger.trace(`FROM: ${CLASS_NAME} Function: account`, error.stack)
+            throw error
+        }
+    }
+
+    async balanceOf(clientType: ClientType, account: Address) {
+        try {
+            if (clientType === 'viem') {
+                if (!this.clientsExist('viem')) {
+                    throw new ClientNotFound('Viem Public and Wallet Client Not Found')
+                }
+                return await this.publicClient.getBalance({ address: account })
+            }
+
+            if (clientType === 'wagmi') {
+                if (!this.clientsExist('wagmi')) {
+                    throw new ClientNotFound('Wagmi Client Not Found')
+                }
+                return (await getBalance(this.wagmi, { address: account })).value
+            }
+
+            throw new InvalidClientType()
+        } catch (error: any) {
+            this.logger.error(`FROM: ${CLASS_NAME} Function: balanceOf`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: balanceOf`, error.stack)
             throw error
         }
     }

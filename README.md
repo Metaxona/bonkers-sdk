@@ -1,9 +1,9 @@
 # Bonkers SDK
 
-![Statements](https://img.shields.io/badge/statements-99.17%25-brightgreen.svg?style=flat)
+![Statements](https://img.shields.io/badge/statements-99.28%25-brightgreen.svg?style=flat)
 ![Branches](https://img.shields.io/badge/branches-100%25-brightgreen.svg?style=flat)
-![Functions](https://img.shields.io/badge/functions-99.37%25-brightgreen.svg?style=flat)
-![Lines](https://img.shields.io/badge/lines-99.17%25-brightgreen.svg?style=flat)
+![Functions](https://img.shields.io/badge/functions-99.51%25-brightgreen.svg?style=flat)
+![Lines](https://img.shields.io/badge/lines-99.28%25-brightgreen.svg?style=flat)
 
 [![Test](https://github.com/Metaxona/bonkers-sdk/actions/workflows/test.yaml/badge.svg)](https://github.com/Metaxona/bonkers-sdk/actions/workflows/test.yaml)
 

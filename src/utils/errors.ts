@@ -1,4 +1,4 @@
-enum SDKErrorNames {
+export enum SDKErrorNames {
     UnknownError = 'UnknownError',
     ContractInteractionFailed = 'ContractInteractionFailed',
     ContractAbiNotFound = 'ContractAbiNotFound',
@@ -18,7 +18,8 @@ export type ErrorOptions = { verbose?: boolean; wevm?: string }
 
 /** @category Errors */
 export class BaseError extends Error {
-    wevm: string
+    /** Error thrown by wagmi or viem interactions */
+    wevm: any
 
     constructor(message?: string, name?: string, options?: ErrorOptions) {
         super(message)

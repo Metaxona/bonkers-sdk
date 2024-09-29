@@ -6,6 +6,7 @@ import type {
     GetConnectionsReturnType,
     ReadContractParameters,
     ReadContractReturnType,
+    ReconnectReturnType,
     SwitchAccountReturnType,
     SwitchChainReturnType,
     Config as WagmiConfig,
@@ -21,11 +22,13 @@ import type {
     Address,
     Chain,
     CustomTransport,
+    EIP1193RequestFn,
     FallbackTransport,
     Hex,
     HttpTransport,
     PublicClient,
     TransactionReceipt,
+    Transport,
     ReadContractParameters as ViemReadContractParameters,
     ReadContractReturnType as ViemReadContractReturnType,
     WriteContractParameters as ViemWriteContractParameters,
@@ -54,7 +57,15 @@ export type WriterReturnType = WriteContractReturnType | ViemWriteContractReturn
 
 export type ContractType = 'CONTROLLER' | 'VAULT' | 'VAULT FACTORY'
 
+export enum BonkersContractType {
+    CONTROLLER = 'CONTROLLER',
+    VAULT = 'VAULT',
+    VAULT_FACTORY = 'VAULT FACTORY'
+}
+
 export type FormattedContractType = 'controller' | 'vault' | 'vaultFactory'
+
+export type ContractVersion = string
 
 /**
  * @category Base Class
@@ -102,7 +113,11 @@ export type ServerConfig = {
     privateKey: Hex
     transports?: Record<
         ChainId,
-        HttpTransport | WebSocketTransport | CustomTransport | FallbackTransport
+        | Transport<string, Record<string, any>, EIP1193RequestFn>
+        | HttpTransport
+        | WebSocketTransport
+        | CustomTransport
+        | FallbackTransport
     >
 }
 
@@ -132,7 +147,13 @@ export type Config = {
 
 export type ChainId = Chain['id']
 
-export type ChainReturnType = { chainId: ChainId; name: string }
+export type ChainReturnType = {
+    /** @deprecated use `id` instead of `chainId` */
+    chainId: ChainId
+    id: ChainId
+    name: string
+    symbol?: string
+}
 
 // export type ContractVersions = Partial<Record<ChainId, Record<FormattedContractType, string[]>>>
 
@@ -156,12 +177,34 @@ export interface IBase extends IClientInteraction {
     contractAbi: Abi
 
     /**
+     * Method used to interact with contracts by reading into them
+     * and is used by all Read Enabled Methods for all class extending from
+     * the Base class
+     *
+     * @param params
+     * @returns
+     */
+    reader(params: ReaderParams): Promise<ReaderReturnType>
+
+    /**
+     * Method used to interact with contracts by writing into them
+     * and is used by all Write Enabled Methods for all class extending from
+     * the Base class
+     *
+     * @param params
+     * @returns
+     */
+    writer(params: WriterParams): Promise<ContractInteractionReturnType<WriterReturnType>>
+
+    /**
      * Method used to upgrade (Controller|Vault|VaultFactory) contract in an unsafe manner
      * since there will be no storage layout check during upgrade
      *
      * it is only recommended to use this method when upgrading to official verified implementations
      * to make sure no storage collisions will happen which would overwrite the contract storage values
      * causing data to be corrupted rendering the contract unusable and or exploitable
+     *
+     * @group Params Required
      *
      * @param newImplementationAddress
      * @param params upgrade params or calldata
@@ -182,7 +225,7 @@ export interface IBase extends IClientInteraction {
      * @param address
      * @returns
      */
-    getContractVersion(address: Address): Promise<string>
+    getContractVersion(address: Address): Promise<ContractVersion>
 
     /**
      * Method used to get the contract type of the given contract address
@@ -196,9 +239,28 @@ export interface IBase extends IClientInteraction {
     /**
      * Method used to retrieve the implementation address of the proxy contract
      *
+     * @group Params Required
+     *
      * @returns
      */
     implementationAddress(): Promise<Address>
+
+    /**
+     * Method used to retrieve the ETH/Native token balance of the contract being used
+     *
+     * @group Params Required
+     *
+     * @returns
+     */
+    balance(): Promise<bigint>
+
+    /**
+     * Method used to retrieve the ETH/Native token balance of an account
+     *
+     * @param account
+     * @returns
+     */
+    balanceOf(account: Address): Promise<bigint>
 }
 
 /**
@@ -244,7 +306,17 @@ export interface IClientInteraction {
     ): Promise<ConnectReturnType<WagmiConfig>>
 
     /**
-     * Method to disconnect all connected connectors
+     * Method used to reconnect to a connector
+     *
+     * @param connectors
+     *
+     * @group Client Only
+     * @returns
+     */
+    reconnect(connectors: Connector[]): Promise<ReconnectReturnType>
+
+    /**
+     * Method used to disconnect all connected connectors
      *
      * @group Client Only
      * @returns
@@ -252,7 +324,7 @@ export interface IClientInteraction {
     disconnect(): Promise<DisconnectReturnType>
 
     /**
-     * Method to switch chain for the currently connected connector
+     * Method used to switch chain for the currently connected connector
      *
      * @param chainId
      * @param callback callback used to watch for chain changes
@@ -263,14 +335,21 @@ export interface IClientInteraction {
     switchChain(chainId: ChainId, callback?: SwitchChainCallback): Promise<SwitchChainReturnType>
 
     /**
-     * Method to retrieve the chain currently being used
+     * Method used to retrieve the chain currently being used
      *
      * @returns
      */
     chain(): ChainReturnType
 
     /**
-     * Method to switch chain for viem clients
+     * Method used to retrieve the list of all available chains from the sdk config
+     *
+     * @returns
+     */
+    chains(): Readonly<Chain[]>
+
+    /**
+     * Method used to switch chain for viem clients
      *
      * @param chainId
      *
@@ -280,7 +359,7 @@ export interface IClientInteraction {
     useChain(chainId: ChainId): void
 
     /**
-     * Method to switch account for the currently connected connector
+     * Method used to switch account for the currently connected connector
      *
      * @param connector
      * @param callback callback used to watch for account changes
@@ -294,7 +373,7 @@ export interface IClientInteraction {
     ): Promise<SwitchAccountReturnType>
 
     /**
-     * Method to switch account for viem clients
+     * Method used to switch account for viem clients
      *
      * @param privateKey
      *
@@ -304,7 +383,7 @@ export interface IClientInteraction {
     useAccount(privateKey: Hex): void
 
     /**
-     * Method to retrieve the account currently being used
+     * Method used to retrieve the account currently being used
      *
      * @returns
      */
@@ -402,7 +481,17 @@ export interface IClients {
     ): Promise<ConnectReturnType<WagmiConfig>>
 
     /**
-     * Method to disconnect all connected connectors
+     * Method used to reconnect to a connector
+     *
+     * @param connectors
+     *
+     * @group Client Only
+     * @returns
+     */
+    reconnect(connectors: Connector[]): Promise<ReconnectReturnType>
+
+    /**
+     * Method used to disconnect all connected connectors
      *
      * @group Client Only
      * @returns
@@ -410,7 +499,7 @@ export interface IClients {
     disconnect(): Promise<DisconnectReturnType>
 
     /**
-     * Method to switch chain for the currently connected connector
+     * Method used to switch chain for the currently connected connector
      *
      * @param chainId
      * @param callback callback used to watch for chain changes
@@ -421,9 +510,9 @@ export interface IClients {
     switchChain(chainId: ChainId, callback?: SwitchChainCallback): Promise<SwitchChainReturnType>
 
     /**
-     * Method to switch chain for viem clients
+     * Method used to switch chain for viem clients
      *
-     * @param config
+     * @param config sdk config
      * @param chainId
      *
      * @group Server Only
@@ -432,7 +521,7 @@ export interface IClients {
     useChain(config: Config, chainId: ChainId): void
 
     /**
-     * Method to retrieve the chain currently being used
+     * Method used to retrieve the chain currently being used
      *
      * @param clientType
      * @returns
@@ -440,7 +529,7 @@ export interface IClients {
     chain(clientType: ClientType): Readonly<ChainReturnType>
 
     /**
-     * Method to switch account for the currently connected connector
+     * Method used to switch account for the currently connected connector
      *
      * @param connector
      * @param callback callback used to watch for account changes
@@ -454,7 +543,7 @@ export interface IClients {
     ): Promise<SwitchAccountReturnType>
 
     /**
-     * Method to switch account for viem clients
+     * Method used to switch account for viem clients
      *
      * @param privateKey
      *
@@ -464,10 +553,19 @@ export interface IClients {
     useAccount(privateKey: Hex): void
 
     /**
-     * Method to retrieve the account currently being used
+     * Method used to retrieve the account currently being used
      *
      * @param config
      * @returns
      */
     account(config: Config): Readonly<Address | undefined>
+
+    /**
+     * Method used to retrieve the ETH/Native token balance of an account
+     *
+     * @param clientType
+     * @param account
+     * @returns
+     */
+    balanceOf(clientType: ClientType, account: Address): Promise<bigint>
 }

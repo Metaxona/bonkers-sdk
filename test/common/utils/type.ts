@@ -3,6 +3,7 @@ import Controller from '../../../src/sdk/controller'
 import BonkersSDK from '../../../src/sdk/sdk'
 import Vault from '../../../src/sdk/vault'
 import VaultFactory from '../../../src/sdk/vaultFactory'
+import Erc20 from '../../../src/sdk/erc20'
 
 export type TestVars = {
     devToken: Address
@@ -31,4 +32,11 @@ export type TestVars = {
     serverVaultNoParams: Vault
     serverVaultFactoryInvalidAddress: VaultFactory
     serverVaultFactoryNoParams: VaultFactory
+
+    clientErc20Instance: Erc20
+    serverErc20Instance: Erc20
+    clientErc20InvalidAddress: Erc20
+    clientErc20NoParams: Erc20
+    serverErc20InvalidAddress: Erc20
+    serverErc20NoParams: Erc20
 }

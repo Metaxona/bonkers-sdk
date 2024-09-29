@@ -4,6 +4,7 @@ import type {
     ChainId,
     ContractInteractionReturnType,
     ContractType,
+    ContractVersion,
     Receiver,
     Result
 } from './common.js'
@@ -82,7 +83,7 @@ export interface IController {
      *
      * @returns
      */
-    version(): Promise<string>
+    version(): Promise<ContractVersion>
 
     /**
      * Method used to retrieve the current owner of the contract
@@ -113,6 +114,8 @@ export interface IController {
 
     /**
      * Method used to call another contract in a more general way using solidity low level call
+     *
+     * @group Params Required
      *
      * @param targetContract
      * @param callData

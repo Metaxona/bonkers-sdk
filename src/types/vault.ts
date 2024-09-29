@@ -4,6 +4,7 @@ import type {
     ChainId,
     ContractInteractionReturnType,
     ContractType,
+    ContractVersion,
     Receiver,
     Result
 } from './common.js'
@@ -111,7 +112,7 @@ export interface IVault {
      *
      * @returns
      */
-    version(): Promise<string>
+    version(): Promise<ContractVersion>
 
     /**
      * Method used to retrieve the vault information which includes
@@ -137,7 +138,7 @@ export interface IVault {
      *
      * @returns
      */
-    rewardPool(): Promise<number>
+    rewardPool(): Promise<bigint>
 
     /**
      * Method used to check the limits of a controller
@@ -365,7 +366,7 @@ export interface IVaultFactory {
      *
      * @returns
      */
-    version(): Promise<string>
+    version(): Promise<ContractVersion>
 
     /**
      * Method used to retrieve a vault's information which includes

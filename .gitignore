@@ -4,5 +4,6 @@ tsconfig.tsbuildinfo
 lib
 dist
 docs
+package
 
 test/reports/

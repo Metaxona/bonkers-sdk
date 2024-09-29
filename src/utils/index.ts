@@ -2,16 +2,22 @@ import {
     type Address,
     type Chain,
     createPublicClient,
+    type CustomTransport,
+    type EIP1193RequestFn,
     fallback,
+    type FallbackTransport,
     getAddress,
     type Hex,
     hexToBigInt,
     http,
+    type HttpTransport,
     keccak256,
     type PublicClient,
     toBytes,
     toHex,
+    type Transport,
     trim,
+    type WebSocketTransport,
     zeroAddress
 } from 'viem'
 import type {
@@ -26,6 +32,7 @@ import { InvalidChainId, MissingRequiredParams } from './errors.js'
 import prepareConfig from './prepareConfig.js'
 
 export * from './constants.js'
+export * from './contractInteraction.js'
 export * from './errors.js'
 export * from './getParameters.js'
 export * from './logger.js'
@@ -37,13 +44,31 @@ export { prepareConfig }
  *
  * > useful for censoring secret strings like private keys
  *
- * @category Utils */
+ * @category Utils
+ */
 export function censor(str: string) {
     try {
         return Array(str.length).fill('*').join('')
     } catch (_) {
         return str
     }
+}
+
+/**
+ * A helper function used to retrieve all chains available for use from the
+ * sdk config
+ *
+ * @category Utils
+ *
+ * @param config sdk config
+ * @returns
+ */
+export function getChains(config: Config): Readonly<Chain[]> {
+    if (config.mode === 'client') {
+        return (config.options as ClientConfig)?.wagmiConfig?.chains || []
+    }
+
+    return (config.options as ServerConfig)?.chains || []
 }
 
 /**
@@ -107,6 +132,22 @@ export function getDefaultTransportFromChains(chains: Chain[]) {
 }
 
 /**
+ * A Helper function to retrieve the custom transport from config and
+ * falls back to the default http() when no custom transport is present
+ *
+ * @category Utils
+ */
+export function getTransportFromConfig(config: Config, chainId: ChainId) {
+    if (config.mode === 'client') {
+        const transports = (config.options as ClientConfig)?.wagmiConfig?.transports
+        return transports && Object.keys(transports).length > 0 ? transports[chainId] : http()
+    }
+
+    const transports = (config.options as ServerConfig)?.transports
+    return transports && Object.keys(transports).length > 0 ? transports[chainId] : http()
+}
+
+/**
  * A Helper function to stringify an object containing bigints
  *
  * @category Utils
@@ -143,11 +184,20 @@ export function contractTypeFormatter(contractType: ContractType): FormattedCont
  *
  * @category Utils
  */
-export async function getImplementation(chain: Chain, address: Address): Promise<Address> {
+export async function getImplementation(
+    chain: Chain,
+    address: Address,
+    transport?:
+        | Transport<string, Record<string, any>, EIP1193RequestFn>
+        | HttpTransport
+        | WebSocketTransport
+        | CustomTransport
+        | FallbackTransport
+): Promise<Address> {
     try {
         const publicClient = createPublicClient({
             chain: chain,
-            transport: getDefaultTransportFromChains([chain])[chain.id]
+            transport: transport || http()
         }) as PublicClient
 
         const returnData = (await publicClient.getStorageAt({

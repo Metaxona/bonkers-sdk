@@ -1,4 +1,4 @@
-import type { Address, Hex } from 'viem'
+import { getAddress, type Address, type Hex } from 'viem'
 import type {
     Call3,
     Call3Value,
@@ -6,6 +6,7 @@ import type {
     Config,
     ContractInteractionReturnType,
     ContractType,
+    ContractVersion,
     ControllerParams,
     ControllerRole,
     IController,
@@ -34,6 +35,7 @@ export default class Controller extends Base implements IController {
     useNewController(chainId: ChainId, params: ControllerParams) {
         this.logger.info(`Controller Changed To: ${params.address}`)
         this._changeBase(chainId, params)
+        return this
     }
 
     async getParams(chainId: ChainId, address: Address) {
@@ -45,7 +47,7 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'multicallAddress'
             })
@@ -67,7 +69,7 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'feeReceiver'
             })
@@ -89,7 +91,7 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'contractType'
             })
@@ -106,12 +108,12 @@ export default class Controller extends Base implements IController {
         }
     }
 
-    async version(): Promise<string> {
+    async version(): Promise<ContractVersion> {
         try {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'version'
             })
@@ -128,7 +130,7 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'owner'
             })
@@ -146,10 +148,10 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'hasControllerRole',
-                args: [role, account]
+                args: [role, getAddress(account)]
             })
 
             return result as boolean
@@ -171,10 +173,10 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const { status, result, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'call',
-                args: [targetContract, callData]
+                args: [getAddress(targetContract), callData]
             })
 
             return { status, result, txHash, receipt }
@@ -193,10 +195,16 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const { status, result, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'callBatch',
-                args: [calls],
+                args: [
+                    calls.map((call) => ({
+                        target: getAddress(call.target),
+                        allowFailure: call.allowFailure,
+                        callData: call.callData
+                    }))
+                ],
                 value: BigInt(value)
             })
             return { status, result: result as unknown as Result[], txHash, receipt }
@@ -212,10 +220,17 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const { status, result, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'callBatchValue',
-                args: [calls],
+                args: [
+                    calls.map((call) => ({
+                        target: getAddress(call.target),
+                        allowFailure: call.allowFailure,
+                        value: call.value,
+                        callData: call.callData
+                    }))
+                ],
                 value: BigInt(calls.reduce((acc, curr) => Number(acc) + Number(curr.value), 0))
             })
             return { status, result: result as unknown as Result[], txHash, receipt }
@@ -239,10 +254,10 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'transferERC20Token',
-                args: [tokenAddress, receiver, amount]
+                args: [getAddress(tokenAddress), getAddress(receiver), amount]
             })
             return { status, txHash, receipt }
         } catch (error: any) {
@@ -261,10 +276,10 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'changeControllerOwner',
-                args: [newOwner]
+                args: [getAddress(newOwner)]
             })
             return { status, txHash, receipt }
         } catch (error: any) {
@@ -286,10 +301,10 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'addControllerRole',
-                args: [role, account]
+                args: [role, getAddress(account)]
             })
             return { status, txHash, receipt }
         } catch (error: any) {
@@ -311,10 +326,10 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'removeControllerRole',
-                args: [role, account]
+                args: [role, getAddress(account)]
             })
             return { status, txHash, receipt }
         } catch (error: any) {
@@ -333,10 +348,10 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'setFeeReceiver',
-                args: [newFeeReceiver]
+                args: [getAddress(newFeeReceiver)]
             })
             return { status, txHash, receipt }
         } catch (error: any) {
@@ -357,10 +372,10 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'setMulticallAddress',
-                args: [newMulticallAddress]
+                args: [getAddress(newMulticallAddress)]
             })
             return { status, txHash, receipt }
         } catch (error: any) {
@@ -386,10 +401,15 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const { status, result, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'createVault',
-                args: [targetVaultFactory, projectOwner, rewardToken, projectName]
+                args: [
+                    getAddress(targetVaultFactory),
+                    getAddress(projectOwner),
+                    getAddress(rewardToken),
+                    projectName
+                ]
             })
             return { status, result: result as Address, txHash, receipt }
         } catch (error: any) {
@@ -412,10 +432,10 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const { status, result, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'vaultReward',
-                args: [targetVault, to, amount]
+                args: [getAddress(targetVault), getAddress(to), amount]
             })
             return { status: status, result: result as unknown as boolean, txHash, receipt }
         } catch (error: any) {
@@ -437,10 +457,16 @@ export default class Controller extends Base implements IController {
             this.checkParamsPresence()
 
             const { status, result, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'vaultRewardBatch',
-                args: [targetVault, receivers]
+                args: [
+                    getAddress(targetVault),
+                    receivers.map((receiver) => ({
+                        receiver: getAddress(receiver.receiver),
+                        amount: receiver.amount
+                    }))
+                ]
             })
             return { status, result: result as unknown as Result[], txHash, receipt }
         } catch (error: any) {

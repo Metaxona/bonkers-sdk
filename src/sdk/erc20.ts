@@ -8,109 +8,61 @@ import {
     writeContract
 } from '@wagmi/core'
 import {
-    getAddress,
     type Abi,
     type Account,
     type Address,
     type Chain,
+    erc20Abi,
     type Hex,
     type ReadContractParameters as ViemReadContractParameters
 } from 'viem'
-import { baseAbi } from '../abi/index.js'
 import type {
-    BaseParams,
     ChainId,
     ChainReturnType,
-    ClientConfig,
     Config,
     ConnectCallback,
     ConnectionState,
     ContractInteractionReturnType,
-    ContractType,
-    ContractVersion,
-    ControllerParams,
-    IBonkersSDK,
+    IErc20,
     Mode,
     ReaderParams,
     ReaderReturnType,
-    ServerConfig,
     SwitchAccountCallback,
     SwitchChainCallback,
-    VaultFactoryParams,
-    VaultParams,
     WriterParams,
     WriterReturnType
 } from '../types/index.js'
 import {
     ContractInteractionFailed,
     getChains,
-    getParameters,
-    getTransportFromConfig,
-    InvalidChainId,
-    InvalidContractType,
-    InvalidContractVersion,
     InvalidSDKMode,
     type Logger,
+    MissingRequiredParams,
     prepareConfig
 } from '../utils/index.js'
 import { clients, type Clients } from './clients.js'
-import Controller from './controller.js'
-import Erc20 from './erc20.js'
-import Vault from './vault.js'
-import VaultFactory from './vaultFactory.js'
 
-const CLASS_NAME = 'BonkersSDK'
+const CLASS_NAME = 'ERC20'
 
-/**
- *
- * @category SDK
- */
-export default class BonkersSDK implements IBonkersSDK {
+/** @category Erc20 */
+export default class Erc20 implements IErc20 {
     readonly mode: Mode
     readonly config: Config
 
-    /** @group Internal */
-    protected logger: Logger
+    tokenAddress: Address
+    tokenAbi: Abi
 
-    /** @group Private */
+    private logger: Logger
     private clients: Clients
 
-    /** @group Private */
-    private controllerClass: Controller
-    /** @group Private */
-    private vaultClass: Vault
-    /** @group Private */
-    private vaultFactoryClass: VaultFactory
-
-    /** @group Private */
-    private erc20Class: Erc20
-
-    constructor(config: Config) {
-        this.config = prepareConfig(config as Config)
-
+    constructor(config: Config, tokenAddress?: Address) {
+        this.config = prepareConfig(config)
         this.mode = this.config.mode
-        this.logger = this.config?.logger as Logger
+        this.logger = this.config.logger as Logger
         this.clients = clients
-        this.clients.logger = this.logger
 
-        this.logger.info({
-            mode: this.mode,
-            from: 'SDK',
-            status: 'Initialized'
-        })
-
-        if (this.mode === 'client' && !this.clients.clientsExist('wagmi')) {
-            this.clients.setClients(config)
-        }
-
-        if (this.mode === 'server' && !this.clients.clientsExist('viem')) {
-            this.clients.setClients(config)
-        }
-
-        this.controllerClass = new Controller(this.config)
-        this.vaultClass = new Vault(this.config)
-        this.vaultFactoryClass = new VaultFactory(this.config)
-        this.erc20Class = new Erc20(this.config)
+        this.tokenAddress = (tokenAddress || undefined) as Address
+        this.tokenAbi = erc20Abi
     }
 
     connectors(): Readonly<Connector[]> {
@@ -211,6 +163,36 @@ export default class BonkersSDK implements IBonkersSDK {
         }
     }
 
+    useChain(chainId: ChainId) {
+        try {
+            if (!this.onServerMode()) {
+                throw new InvalidSDKMode(
+                    'This function is only available on Server Mode/Environment'
+                )
+            }
+
+            this.clients.useChain(this.config, chainId)
+
+            return this
+        } catch (error: any) {
+            this.logger.error(`FROM: ${CLASS_NAME} Function: useChain`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: useChain`, error.stack)
+            throw error
+        }
+    }
+
+    chain(): Readonly<ChainReturnType> {
+        if (this.onClientMode()) {
+            return this.clients.chain('wagmi')
+        }
+
+        return this.clients.chain('viem')
+    }
+
+    chains(): Readonly<Chain[]> {
+        return getChains(this.config)
+    }
+
     async switchAccount(
         connector: Connector,
         callback?: SwitchAccountCallback
@@ -256,116 +238,32 @@ export default class BonkersSDK implements IBonkersSDK {
         return this.clients.account(this.config)
     }
 
-    useChain(chainId: ChainId) {
-        try {
-            if (!this.onServerMode()) {
-                throw new InvalidSDKMode(
-                    'This function is only available on Server Mode/Environment'
-                )
-            }
-
-            this.clients.useChain(this.config, chainId)
-            return this
-        } catch (error: any) {
-            this.logger.error(`FROM: ${CLASS_NAME} Function: useChain`, error.name, error.message)
-            this.logger.trace(`FROM: ${CLASS_NAME} Function: useChain`, error.stack)
-            throw error
-        }
+    /**
+     * An Internal Method used to check if the current environment is a client environment or not
+     *
+     * @group Internal
+     *
+     * @returns
+     */
+    protected onClientMode(): Readonly<boolean> {
+        return this.mode === 'client'
     }
 
-    chain(): Readonly<ChainReturnType> {
-        if (this.onClientMode()) {
-            return this.clients.chain('wagmi')
-        }
-
-        return this.clients.chain('viem')
-    }
-
-    chains(): Readonly<Chain[]> {
-        return getChains(this.config)
-    }
-
-    async balanceOf(account: Address) {
-        try {
-            if (this.onClientMode()) {
-                return await this.clients.balanceOf('wagmi', getAddress(account))
-            }
-
-            return await this.clients.balanceOf('viem', getAddress(account))
-        } catch (error: any) {
-            this.logger.error(`FROM: ${CLASS_NAME} Function: balanceOf`, error.name, error.message)
-            this.logger.trace(`FROM: ${CLASS_NAME} Function: balanceOf`, error.stack)
-            throw error
-        }
-    }
-
-    controller(controllerParams?: ControllerParams) {
-        if (controllerParams) {
-            this.controllerClass.contractAddress = controllerParams.address as Address
-            this.controllerClass.contractAbi = controllerParams.abi as Abi
-        }
-        return this.controllerClass
-    }
-
-    vault(vaultParams?: VaultParams) {
-        if (vaultParams) {
-            this.vaultClass.contractAddress = vaultParams.address as Address
-            this.vaultClass.contractAbi = vaultParams.abi as Abi
-        }
-        return this.vaultClass
-    }
-
-    vaultFactory(vaultFactoryParams?: VaultFactoryParams) {
-        if (vaultFactoryParams) {
-            this.vaultFactoryClass.contractAddress = vaultFactoryParams.address as Address
-            this.vaultFactoryClass.contractAbi = vaultFactoryParams.abi as Abi
-        }
-        return this.vaultFactoryClass
-    }
-
-    erc20(tokenAddress?: Address) {
-        if (tokenAddress) {
-            this.erc20Class.tokenAddress = tokenAddress as Address
-        }
-        return this.erc20Class
-    }
-
-    async getParams(
-        chainId: ChainId,
-        address: Address,
-        contractType: ContractType
-    ): Promise<BaseParams> {
-        const config = this.config
-        let chain: Chain | undefined
-        if (this.onClientMode()) {
-            chain = (config.options as ClientConfig).wagmiConfig.chains.filter(
-                (ch: Chain) => ch.id === chainId
-            )[0]
-        }
-        if (this.onServerMode()) {
-            chain = (config.options as ServerConfig).chains.filter(
-                (ch: Chain) => ch.id === chainId
-            )[0]
-        }
-
-        if (chain === undefined) {
-            throw new InvalidChainId(`Chain Id [${chainId}] Does Not Exist On The Provided Chains`)
-        }
-
-        return await getParameters(
-            {
-                chain: chain,
-                address: address,
-                expectedType: contractType
-            },
-            getTransportFromConfig(this.config, this.chain().id)
-        )
+    /**
+     * An Internal Method used to check if the current environment is a server environment or not
+     *
+     * @group Internal
+     *
+     * @returns
+     */
+    protected onServerMode(): Readonly<boolean> {
+        return this.mode === 'server'
     }
 
     async reader(params: ReaderParams): Promise<ReaderReturnType> {
         try {
             this.logger.debug({
-                from: 'SDK',
+                from: 'ERC20',
                 address: params.address,
                 functionName: params.functionName,
                 args: params.args,
@@ -398,7 +296,7 @@ export default class BonkersSDK implements IBonkersSDK {
     async writer(params: WriterParams): Promise<ContractInteractionReturnType<WriterReturnType>> {
         try {
             this.logger.debug({
-                from: 'SDK',
+                from: 'ERC20',
                 address: params.address,
                 functionName: params.functionName,
                 args: params.args,
@@ -445,63 +343,192 @@ export default class BonkersSDK implements IBonkersSDK {
         }
     }
 
-    async getContractType(address: Address): Promise<ContractType> {
-        try {
-            // @ts-ignore
-            return (await this.reader({
-                address: getAddress(address),
-                abi: baseAbi,
-                functionName: 'contractType'
-            })) as ContractType
-        } catch (error: any) {
-            this.logger.error(
-                `FROM: ${CLASS_NAME} Function: getContractType`,
-                error.name,
-                error.message
-            )
-            this.logger.trace(`FROM: ${CLASS_NAME} Function: getContractType`, error.stack)
-            throw new InvalidContractType('Can Not Find Contract Type From The Given Address')
-        }
+    useToken(tokenAddress: Address) {
+        this.tokenAddress = tokenAddress
+        return this
     }
 
-    async getContractVersion(address: Address): Promise<ContractVersion> {
+    useAbi(tokenAbi: Abi) {
+        this.tokenAbi = tokenAbi
+        return this
+    }
+
+    protected hasTokenAddress() {
+        return this.tokenAddress !== undefined
+    }
+
+    async name() {
         try {
-            // @ts-ignore
+            if (!this.hasTokenAddress()) {
+                throw new MissingRequiredParams('Token Address')
+            }
+
             return (await this.reader({
-                address: getAddress(address),
-                abi: baseAbi,
-                functionName: 'version'
+                address: this.tokenAddress,
+                abi: this.tokenAbi,
+                functionName: 'name'
             })) as string
         } catch (error: any) {
-            this.logger.error(
-                `FROM: ${CLASS_NAME} Function: getContractVersion`,
-                error.name,
-                error.message
-            )
-            this.logger.trace(`FROM: ${CLASS_NAME} Function: getContractVersion`, error.stack)
-            throw new InvalidContractVersion('Can Not Find Version From The Given Address')
+            this.logger.error(`FROM: ${CLASS_NAME} Function: name`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: name`, error.stack)
+            throw error
         }
     }
 
-    /**
-     * An Internal Method used to check if the current environment is a client environment or not
-     *
-     * @group Internal
-     *
-     * @returns
-     */
-    protected onClientMode(): boolean {
-        return this.mode === 'client'
+    async symbol() {
+        try {
+            if (!this.hasTokenAddress()) {
+                throw new MissingRequiredParams('Token Address')
+            }
+
+            return (await this.reader({
+                address: this.tokenAddress,
+                abi: this.tokenAbi,
+                functionName: 'symbol'
+            })) as string
+        } catch (error: any) {
+            this.logger.error(`FROM: ${CLASS_NAME} Function: symbol`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: symbol`, error.stack)
+            throw error
+        }
     }
 
-    /**
-     * An Internal Method used to check if the current environment is a server environment or not
-     *
-     * @group Internal
-     *
-     * @returns
-     */
-    protected onServerMode(): boolean {
-        return this.mode === 'server'
+    async decimals() {
+        try {
+            if (!this.hasTokenAddress()) {
+                throw new MissingRequiredParams('Token Address')
+            }
+
+            return (await this.reader({
+                address: this.tokenAddress,
+                abi: this.tokenAbi,
+                functionName: 'decimals'
+            })) as number
+        } catch (error: any) {
+            this.logger.error(`FROM: ${CLASS_NAME} Function: decimals`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: decimals`, error.stack)
+            throw error
+        }
+    }
+
+    async balanceOf(account: Address) {
+        try {
+            if (!this.hasTokenAddress()) {
+                throw new MissingRequiredParams('Token Address')
+            }
+
+            return (await this.reader({
+                address: this.tokenAddress,
+                abi: this.tokenAbi,
+                functionName: 'balanceOf',
+                args: [account]
+            })) as bigint
+        } catch (error: any) {
+            this.logger.error(`FROM: ${CLASS_NAME} Function: balanceOf`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: balanceOf`, error.stack)
+            throw error
+        }
+    }
+
+    async allowance(owner: Address, spender: Address) {
+        try {
+            if (!this.hasTokenAddress()) {
+                throw new MissingRequiredParams('Token Address')
+            }
+
+            return (await this.reader({
+                address: this.tokenAddress,
+                abi: this.tokenAbi,
+                functionName: 'allowance',
+                args: [owner, spender]
+            })) as bigint
+        } catch (error: any) {
+            this.logger.error(`FROM: ${CLASS_NAME} Function: allowance`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: allowance`, error.stack)
+            throw error
+        }
+    }
+
+    async approve(spender: Address, amount: number | bigint) {
+        try {
+            if (!this.hasTokenAddress()) {
+                throw new MissingRequiredParams('Token Address')
+            }
+
+            return await this.writer({
+                address: this.tokenAddress,
+                abi: this.tokenAbi,
+                functionName: 'approve',
+                args: [spender, amount]
+            })
+        } catch (error: any) {
+            this.logger.error(`FROM: ${CLASS_NAME} Function: approve`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: approve`, error.stack)
+            throw error
+        }
+    }
+
+    async transfer(to: Address, amount: number | bigint) {
+        try {
+            if (!this.hasTokenAddress()) {
+                throw new MissingRequiredParams('Token Address')
+            }
+
+            return await this.writer({
+                address: this.tokenAddress,
+                abi: this.tokenAbi,
+                functionName: 'transfer',
+                args: [to, amount]
+            })
+        } catch (error: any) {
+            this.logger.error(`FROM: ${CLASS_NAME} Function: transfer`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: transfer`, error.stack)
+            throw error
+        }
+    }
+
+    async transferFrom(from: Address, to: Address, amount: number | bigint) {
+        try {
+            if (!this.hasTokenAddress()) {
+                throw new MissingRequiredParams('Token Address')
+            }
+
+            return await this.writer({
+                address: this.tokenAddress,
+                abi: this.tokenAbi,
+                functionName: 'transferFrom',
+                args: [from, to, amount]
+            })
+        } catch (error: any) {
+            this.logger.error(
+                `FROM: ${CLASS_NAME} Function: transferFrom`,
+                error.name,
+                error.message
+            )
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: transferFrom`, error.stack)
+            throw error
+        }
+    }
+
+    async totalSupply() {
+        try {
+            if (!this.hasTokenAddress()) {
+                throw new MissingRequiredParams('Token Address')
+            }
+
+            return (await this.reader({
+                address: this.tokenAddress,
+                abi: this.tokenAbi,
+                functionName: 'totalSupply'
+            })) as bigint
+        } catch (error: any) {
+            this.logger.error(
+                `FROM: ${CLASS_NAME} Function: totalSupply`,
+                error.name,
+                error.message
+            )
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: totalSupply`, error.stack)
+            throw error
+        }
     }
 }

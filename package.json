@@ -19,14 +19,11 @@
 		"format": "biome format --write .",
 		"check": "biome check",
 		"build": "npm run build:tsc",
-		"build:tsup": "rm -rf dist && tsup",
 		"build:tsc": "rm -rf dist && tsc --project tsconfig.json",
 		"build:tsc:watch": "rm -rf dist && tsc --project tsconfig.json --watch",
 		"build:docs": "typedoc",
 		"build:docs:watch": "typedoc --watch",
 		"build:badge": "npx istanbul-badges-readme --coverageDir=\"./test/reports/html/coverage\"",
-		"local:link": "npm link",
-		"local:unlink": "npm unlink bonkers-sdk",
 		"changeset": "npx changeset",
 		"changeset:publish": "npx changeset publish",
 		"changeset:status": "npx changeset status --verbose && npx changeset version",
@@ -37,9 +34,14 @@
 		"anvil:stop": "lsof -t -i tcp:8545 | xargs kill",
 		"test": "npm run anvil:start && echo \"waiting\" && sleep 10 && vitest",
 		"test:watch": "npm run anvil:start && echo \"waiting\" && sleep 10 && vitest --watch",
+		"test:fg": "vitest",
+		"test:fg:watch": "vitest --watch",
 		"preview:report": "npx vite preview --host --outDir test/reports/html",
 		"preview:docs": "npx vite preview --host --outDir docs",
-		"release": "npm run build && npm run changeset:publish"
+		"pre:release": "npm run format && npm run check && npm run test && npm run anvil:stop && npm run build:badge && npm run build",
+		"release": "npm run build && npm run changeset:publish",
+		"pack": "mkdir -p package && npm pack --pack-destination package >> package/pack_result.txt 2>> package/pack_result.txt",
+		"pack:dry": "npm pack --dry-run >> package/pack_result_dry.txt 2>> package/pack_result_dry.txt"
 	},
 	"keywords": [
 		"bonkers",
@@ -57,6 +59,9 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/Metaxona/bonkers-sdk.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Metaxona/bonkers-sdk/issues"
 	},
 	"dependencies": {
 		"@wagmi/core": "^2.12.2",
@@ -79,9 +84,18 @@
 		"@changesets/cli": "^2.27.7",
 		"@vitest/coverage-v8": "^2.0.5",
 		"@vitest/ui": "^2.0.4",
-		"tsup": "^8.2.3",
 		"typedoc": "^0.26.5",
 		"typescript": "^5.5.4",
 		"vitest": "^2.0.4"
+	},
+	"pnpm": {
+		"overrides": {
+			"micromatch@<4.0.8": ">=4.0.8",
+			"send@<0.19.0": ">=0.19.0",
+			"serve-static@<1.16.0": ">=1.16.0",
+			"vite@>=5.4.0 <5.4.6": ">=5.4.6",
+			"vite@>=5.4.0 <=5.4.5": ">=5.4.6",
+			"rollup@>=4.0.0 <4.22.4": ">=4.22.4"
+		}
 	}
 }

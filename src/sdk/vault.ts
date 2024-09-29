@@ -1,9 +1,10 @@
-import { type Address, erc20Abi, formatUnits } from 'viem'
+import { type Address, getAddress } from 'viem'
 import type {
     ChainId,
     Config,
     ContractInteractionReturnType,
     ContractType,
+    ContractVersion,
     ControllerLimits,
     IVault,
     Receiver,
@@ -34,6 +35,7 @@ export default class Vault extends Base implements IVault {
     useNewVault(chainId: ChainId, params: VaultParams) {
         this.logger.info(`Vault Changed To: ${params.address}`)
         this._changeBase(chainId, params)
+        return this
     }
 
     async getParams(chainId: ChainId, address: Address) {
@@ -45,7 +47,7 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'contractType'
             })
@@ -62,12 +64,12 @@ export default class Vault extends Base implements IVault {
         }
     }
 
-    async version(): Promise<string> {
+    async version(): Promise<ContractVersion> {
         try {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'version'
             })
@@ -85,7 +87,7 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'getVaultInfo'
             })
@@ -98,25 +100,15 @@ export default class Vault extends Base implements IVault {
         }
     }
 
-    async rewardPool(): Promise<number> {
+    async rewardPool(): Promise<bigint> {
         try {
             this.checkParamsPresence()
 
-            const result = await this.reader({
-                address: this.contractAddress,
+            return (await this.reader({
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'rewardPool'
-            })
-
-            const decimals = await this.reader({
-                address: (await this.getVaultInfo()).rewardToken as Address,
-                abi: erc20Abi,
-                functionName: 'decimals'
-            })
-
-            return Number(
-                formatUnits(result as unknown as bigint, Number(decimals as unknown as bigint))
-            )
+            })) as unknown as bigint
         } catch (error: any) {
             this.logger.error(`FROM: ${CLASS_NAME} Function: rewardPool`, error.name, error.message)
             this.logger.trace(`FROM: ${CLASS_NAME} Function: rewardPool`, error.stack)
@@ -129,10 +121,10 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'controllerLimits',
-                args: [controller]
+                args: [getAddress(controller)]
             })
 
             return deepStringifyBigInts({
@@ -155,7 +147,7 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'defaultControllerLimits'
             })
@@ -180,7 +172,7 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'controllerLimitsEnabled'
             })
@@ -202,7 +194,7 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'toggleControllerLimits'
             })
@@ -228,10 +220,10 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'setControllerLimits',
-                args: [controller, quota, allowance]
+                args: [getAddress(controller), quota, allowance]
             })
             return { status, txHash, receipt }
         } catch (error: any) {
@@ -252,7 +244,7 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'setDefaultControllerLimits',
                 args: [quota, allowance]
@@ -277,10 +269,10 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'updateRewardToken',
-                args: [tokenAddress]
+                args: [getAddress(tokenAddress)]
             })
             return { status, txHash, receipt }
         } catch (error: any) {
@@ -302,10 +294,10 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'withdrawToken',
-                args: [tokenAddress, amount]
+                args: [getAddress(tokenAddress), amount]
             })
             return { status, txHash, receipt }
         } catch (error: any) {
@@ -324,10 +316,10 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'changeVaultOwner',
-                args: [newOwner]
+                args: [getAddress(newOwner)]
             })
             return { status, txHash, receipt }
         } catch (error: any) {
@@ -349,10 +341,10 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const { status, result, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'reward',
-                args: [to, amount]
+                args: [getAddress(to), amount]
             })
             return { status, result: result as unknown as boolean, txHash, receipt }
         } catch (error: any) {
@@ -367,10 +359,15 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const { status, result, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'rewardBatch',
-                args: [receivers]
+                args: [
+                    receivers.map((receiver) => ({
+                        receiver: getAddress(receiver.receiver),
+                        amount: receiver.amount
+                    }))
+                ]
             })
 
             return { status, result: result as unknown as Result[], txHash, receipt }
@@ -390,10 +387,10 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'grantPermit',
-                args: [controller]
+                args: [getAddress(controller)]
             })
             return { status, txHash, receipt }
         } catch (error: any) {
@@ -412,10 +409,10 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const { status, txHash, receipt } = await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'revokePermit',
-                args: [controller]
+                args: [getAddress(controller)]
             })
             return { status, txHash, receipt }
         } catch (error: any) {
@@ -434,10 +431,10 @@ export default class Vault extends Base implements IVault {
             this.checkParamsPresence()
 
             const result = await this.reader({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'isController',
-                args: [account]
+                args: [getAddress(account)]
             })
             return result as unknown as boolean
         } catch (error: any) {

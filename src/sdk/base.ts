@@ -16,7 +16,8 @@ import {
     getAddress,
     type Hex,
     toHex,
-    type ReadContractParameters as ViemReadContractParameters
+    type ReadContractParameters as ViemReadContractParameters,
+    zeroAddress
 } from 'viem'
 import { baseAbi } from '../abi/index.js'
 import type {
@@ -29,6 +30,7 @@ import type {
     ConnectionState,
     ContractInteractionReturnType,
     ContractType,
+    ContractVersion,
     IBase,
     Mode,
     ReaderParams,
@@ -44,9 +46,12 @@ import {
     censor,
     ContractInteractionFailed,
     getChainById,
+    getChains,
     getImplementation,
     getParameters,
+    getTransportFromConfig,
     InvalidChainId,
+    InvalidContract,
     InvalidContractType,
     InvalidContractVersion,
     InvalidSDKMode,
@@ -87,7 +92,7 @@ export default class Base implements IBase {
         this.contractAbi = params?.abi as Abi
 
         this.logger.debug({
-            from: 'Base',
+            from: CLASS_NAME,
             config: {
                 mode: this.mode,
                 server_options: {
@@ -136,11 +141,13 @@ export default class Base implements IBase {
                 this.clients.useChain(this.config, chainId)
             }
 
+            if (params.address === zeroAddress) throw new InvalidContract('Can Not Be Zero Address')
+
             this.contractAddress = getAddress(params.address as Address)
             this.contractAbi = params.abi as Abi
 
             this.logger.debug({
-                from: 'Base',
+                from: CLASS_NAME,
                 status: 'Base Changed',
                 affected: ['Chain Id', 'Contract Address', 'Contract Abi'],
                 result: [chainId, params.address, params.abi?.length]
@@ -181,11 +188,14 @@ export default class Base implements IBase {
             throw new InvalidChainId(`Chain Id [${chainId}] Does Not Exist On The Provided Chains`)
         }
 
-        return await getParameters({
-            chain: chain,
-            address: address,
-            expectedType: contractType
-        })
+        return await getParameters(
+            {
+                chain: chain,
+                address: getAddress(address),
+                expectedType: contractType
+            },
+            getTransportFromConfig(this.config, this.chain().id)
+        )
     }
 
     /**
@@ -210,20 +220,10 @@ export default class Base implements IBase {
         return this.mode === 'server'
     }
 
-    /**
-     * An Internal Method used to interact with contracts by reading into them
-     * and is used by all Read Enabled Methods for all class extending from
-     * the Base class
-     *
-     * @group Internal
-     *
-     * @param params
-     * @returns
-     */
-    protected async reader(params: ReaderParams): Promise<ReaderReturnType> {
+    async reader(params: ReaderParams): Promise<ReaderReturnType> {
         try {
             this.logger.debug({
-                from: 'Base',
+                from: CLASS_NAME,
                 address: params.address,
                 functionName: params.functionName,
                 args: params.args,
@@ -253,22 +253,10 @@ export default class Base implements IBase {
         }
     }
 
-    /**
-     * An Internal Method used to interact with contracts by writing into them
-     * and is used by all Write Enabled Methods for all class extending from
-     * the Base class
-     *
-     * @group Internal
-     *
-     * @param params
-     * @returns
-     */
-    protected async writer(
-        params: WriterParams
-    ): Promise<ContractInteractionReturnType<WriterReturnType>> {
+    async writer(params: WriterParams): Promise<ContractInteractionReturnType<WriterReturnType>> {
         try {
             this.logger.debug({
-                from: 'Base',
+                from: CLASS_NAME,
                 address: params.address,
                 functionName: params.functionName,
                 args: params.args,
@@ -361,6 +349,22 @@ export default class Base implements IBase {
         }
     }
 
+    async reconnect() {
+        try {
+            if (!this.onClientMode()) {
+                throw new InvalidSDKMode(
+                    'This function is only available on Client Mode/Environment'
+                )
+            }
+
+            return await this.clients.reconnect(this.connectors() as Connector[])
+        } catch (error: any) {
+            this.logger.error(`FROM: ${CLASS_NAME} Function: reconnect`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: reconnect`, error.stack)
+            throw error
+        }
+    }
+
     async disconnect() {
         try {
             if (!this.onClientMode()) {
@@ -423,6 +427,10 @@ export default class Base implements IBase {
         return this.clients.chain('viem')
     }
 
+    chains(): Readonly<Chain[]> {
+        return getChains(this.config)
+    }
+
     async switchAccount(
         connector: Connector,
         callback?: SwitchAccountCallback
@@ -468,12 +476,43 @@ export default class Base implements IBase {
         return this.clients.account(this.config)
     }
 
+    async balance() {
+        try {
+            this.checkParamsPresence()
+            if (this.onClientMode()) {
+                return await this.clients.balanceOf('wagmi', getAddress(this.contractAddress))
+            }
+
+            return await this.clients.balanceOf('viem', getAddress(this.contractAddress))
+        } catch (error: any) {
+            this.logger.error(`FROM: ${CLASS_NAME} Function: balance`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: balance`, error.stack)
+            throw error
+        }
+    }
+
+    async balanceOf(account: Address) {
+        try {
+            if (this.onClientMode()) {
+                return await this.clients.balanceOf('wagmi', getAddress(account))
+            }
+
+            return await this.clients.balanceOf('viem', getAddress(account))
+        } catch (error: any) {
+            this.logger.error(`FROM: ${CLASS_NAME} Function: balanceOf`, error.name, error.message)
+            this.logger.trace(`FROM: ${CLASS_NAME} Function: balanceOf`, error.stack)
+            throw error
+        }
+    }
+
     async implementationAddress(): Promise<Address> {
         try {
             this.checkParamsPresence()
+            const chainId = this.chain().id
             return await getImplementation(
-                getChainById(this.config, this.chain().chainId) as Chain,
-                this.contractAddress
+                getChainById(this.config, chainId) as Chain,
+                this.contractAddress,
+                getTransportFromConfig(this.config, chainId)
             )
         } catch (error: any) {
             this.logger.error(
@@ -489,7 +528,7 @@ export default class Base implements IBase {
     async getContractType(address: Address): Promise<ContractType> {
         try {
             return (await this.reader({
-                address: address,
+                address: getAddress(address),
                 abi: baseAbi,
                 functionName: 'contractType'
             })) as ContractType
@@ -504,10 +543,10 @@ export default class Base implements IBase {
         }
     }
 
-    async getContractVersion(address: Address): Promise<string> {
+    async getContractVersion(address: Address): Promise<ContractVersion> {
         try {
             return (await this.reader({
-                address: address,
+                address: getAddress(address),
                 abi: baseAbi,
                 functionName: 'version'
             })) as string
@@ -568,7 +607,7 @@ export default class Base implements IBase {
             value = (value as bigint) || 0n
 
             return await this.writer({
-                address: this.contractAddress,
+                address: getAddress(this.contractAddress),
                 abi: this.contractAbi,
                 functionName: 'upgradeToAndCall',
                 args: [getAddress(newImplementationAddress), callData]

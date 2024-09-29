@@ -1,9 +1,26 @@
-import { type Address, type Chain, createPublicClient, type PublicClient } from 'viem'
+import {
+    type Address,
+    type Chain,
+    createPublicClient,
+    type CustomTransport,
+    type EIP1193RequestFn,
+    type FallbackTransport,
+    getAddress,
+    http,
+    type HttpTransport,
+    type PublicClient,
+    type Transport,
+    type WebSocketTransport
+} from 'viem'
 import { abis, baseAbi } from '../abi/index.js'
-import type { BaseParams, ContractType, FormattedContractType } from '../types/index.js'
+import type {
+    BaseParams,
+    ContractType,
+    ContractVersion,
+    FormattedContractType
+} from '../types/index.js'
 import { reader } from './contractInteraction.js'
 import { ContractAbiNotFound, InvalidContract, InvalidContractType } from './errors.js'
-import { getDefaultTransportFromChains } from './index.js'
 
 /**
  * A helper function that retrieves existing abi from the library
@@ -24,32 +41,41 @@ import { getDefaultTransportFromChains } from './index.js'
  *
  * @category Utils
  */
-export async function getParameters({
-    chain,
-    address,
-    expectedType
-}: {
-    chain: Chain
-    address: Address
-    expectedType: ContractType
-}): Promise<BaseParams> {
+export async function getParameters(
+    {
+        chain,
+        address,
+        expectedType
+    }: {
+        chain: Chain
+        address: Address
+        expectedType: ContractType
+    },
+    transport?:
+        | Transport<string, Record<string, any>, EIP1193RequestFn>
+        | HttpTransport
+        | WebSocketTransport
+        | CustomTransport
+        | FallbackTransport
+): Promise<BaseParams> {
     try {
         const publicClient = createPublicClient({
             chain: chain,
-            transport: getDefaultTransportFromChains([chain])[chain.id]
+            transport: transport || http()
         }) as PublicClient
 
-        const contractType = (await reader(publicClient, {
-            address: address,
-            abi: baseAbi,
-            functionName: 'contractType'
-        })) as ContractType
-
-        const contractVersion = (await reader(publicClient, {
-            address: address,
-            abi: baseAbi,
-            functionName: 'version'
-        })) as string
+        const [contractType, contractVersion] = await Promise.all([
+            (await reader(publicClient, {
+                address: getAddress(address),
+                abi: baseAbi,
+                functionName: 'contractType'
+            })) as ContractType,
+            (await reader(publicClient, {
+                address: getAddress(address),
+                abi: baseAbi,
+                functionName: 'version'
+            })) as ContractVersion
+        ])
 
         if (expectedType !== contractType) {
             throw new InvalidContractType('Contract Type and Expected Contract Type Does Not Match')
@@ -74,7 +100,7 @@ export async function getParameters({
             )
         }
 
-        return { address, abi: abi }
+        return { address: getAddress(address), abi: abi }
     } catch (error: any) {
         throw new InvalidContract(
             `Failed To Verify Contract Existence On ${chain.name} Chain | Cause: ${error.message}`

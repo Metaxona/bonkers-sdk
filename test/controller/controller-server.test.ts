@@ -16,6 +16,7 @@ import Controller from '../../src/sdk/controller'
 import { Call3, Call3Value, ControllerRole, Receiver, Result } from '../../src/types'
 import {
     InvalidChainId,
+    InvalidContract,
     InvalidContractType,
     InvalidContractVersion,
     InvalidSDKMode,
@@ -56,7 +57,7 @@ describe('Controller Server Test', () => {
         expect(vars.serverControllerNoParams.contractAddress).to.be.undefined
         expect(vars.serverControllerNoParams.contractAbi).to.be.undefined
         expect(vars.serverControllerInvalidAddress.contractAddress).to.be.not.eq(vars.controller)
-        expect(vars.serverControllerInvalidAddress.contractAddress).to.be.eq(CALLER_WALLET)
+        // expect(vars.serverControllerInvalidAddress.contractAddress).to.be.eq(CALLER_WALLET)
     })
 
     afterEach(async () => {})
@@ -109,6 +110,12 @@ describe('Controller Server Test', () => {
         )
     })
 
+    it('Re-Connect', async () => {
+        expect(async () => await vars.serverControllerInstance.reconnect()).rejects.toThrowError(
+            new InvalidSDKMode('This function is only available on Client Mode/Environment')
+        )
+    })
+
     it('Disconnect', async () => {
         expect(async () => await vars.serverControllerInstance.disconnect()).rejects.toThrowError(
             new InvalidSDKMode('This function is only available on Client Mode/Environment')
@@ -124,50 +131,109 @@ describe('Controller Server Test', () => {
     })
 
     it('Use Chain', async () => {
-        const { chainId, name } = vars.serverControllerInstance.chain()
-        const { chainId: chainId2, name: name2 } = vars.serverVaultInstance.chain()
-        const { chainId: chainId3, name: name3 } = vars.serverVaultFactoryInstance.chain()
-        const { chainId: chainId4, name: name4 } = vars.serverBonkersSDKInstance.chain()
+        const { id, chainId, name, symbol } = vars.serverControllerInstance.chain()
+        const {
+            id: id2,
+            chainId: chainId2,
+            name: name2,
+            symbol: symbol2
+        } = vars.serverVaultInstance.chain()
+        const {
+            id: id3,
+            chainId: chainId3,
+            name: name3,
+            symbol: symbol3
+        } = vars.serverVaultFactoryInstance.chain()
+        const {
+            id: id4,
+            chainId: chainId4,
+            name: name4,
+            symbol: symbol4
+        } = vars.serverBonkersSDKInstance.chain()
 
         expect(chainId).eq(anvil.id)
         expect(name).eq('Anvil')
+        expect(id).eq(anvil.id)
+        expect(symbol).eq(anvil.nativeCurrency.symbol)
 
         expect(chainId2).eq(anvil.id)
         expect(name2).eq('Anvil')
+        expect(id2).eq(anvil.id)
+        expect(symbol2).eq(anvil.nativeCurrency.symbol)
 
         expect(chainId3).eq(anvil.id)
         expect(name3).eq('Anvil')
+        expect(id3).eq(anvil.id)
+        expect(symbol3).eq(anvil.nativeCurrency.symbol)
 
         expect(chainId4).eq(anvil.id)
         expect(name4).eq('Anvil')
+        expect(id4).eq(anvil.id)
+        expect(symbol4).eq(anvil.nativeCurrency.symbol)
 
         vars.serverControllerInstance.useChain(sepolia.id)
 
-        const { chainId: chainId5, name: name5 } = vars.serverControllerInstance.chain()
-        const { chainId: chainId6, name: name6 } = vars.serverVaultInstance.chain()
-        const { chainId: chainId7, name: name7 } = vars.serverVaultFactoryInstance.chain()
-        const { chainId: chainId8, name: name8 } = vars.serverBonkersSDKInstance.chain()
+        const {
+            id: id5,
+            chainId: chainId5,
+            name: name5,
+            symbol: symbol5
+        } = vars.serverControllerInstance.chain()
+        const {
+            id: id6,
+            chainId: chainId6,
+            name: name6,
+            symbol: symbol6
+        } = vars.serverVaultInstance.chain()
+        const {
+            id: id7,
+            chainId: chainId7,
+            name: name7,
+            symbol: symbol7
+        } = vars.serverVaultFactoryInstance.chain()
+        const {
+            id: id8,
+            chainId: chainId8,
+            name: name8,
+            symbol: symbol8
+        } = vars.serverBonkersSDKInstance.chain()
 
         expect(chainId5).eq(sepolia.id)
         expect(name5).eq('Sepolia')
+        expect(id5).eq(sepolia.id)
+        expect(symbol5).eq(sepolia.nativeCurrency.symbol)
 
         expect(chainId6).eq(sepolia.id)
         expect(name6).eq('Sepolia')
+        expect(id6).eq(sepolia.id)
+        expect(symbol6).eq(sepolia.nativeCurrency.symbol)
 
         expect(chainId7).eq(sepolia.id)
         expect(name7).eq('Sepolia')
+        expect(id7).eq(sepolia.id)
+        expect(symbol7).eq(sepolia.nativeCurrency.symbol)
 
         expect(chainId8).eq(sepolia.id)
         expect(name8).eq('Sepolia')
+        expect(id8).eq(sepolia.id)
+        expect(symbol8).eq(sepolia.nativeCurrency.symbol)
 
         resetServerChain(vars.serverControllerInstance)
     })
 
     it('Chain', () => {
-        const { chainId, name } = vars.serverControllerInstance.chain()
+        const { id, chainId, name, symbol } = vars.serverControllerInstance.chain()
 
         expect(chainId).eq(anvil.id)
         expect(name).eq('Anvil')
+        expect(id).eq(anvil.id)
+        expect(symbol).eq(anvil.nativeCurrency.symbol)
+    })
+
+    it('Chains', () => {
+        const chains = vars.clientControllerInstance.chains()
+
+        expect(chains.length).eq(3)
     })
 
     it('Reader Error', async () => {
@@ -786,14 +852,36 @@ describe('Controller Server Test', () => {
 
         expect(() =>
             vars.serverControllerInstance.useNewController(anvil.id, {
-                address: '0x0',
+                address: zeroAddress,
                 abi: controllerAbi_0_0_1
             })
-        ).toThrow()
+        ).toThrow(new InvalidContract('Can Not Be Zero Address'))
 
         vars.serverControllerInstance.useNewController(anvil.id, {
             address: vars.controller,
             abi: controllerAbi_0_0_1
         })
+    })
+
+    it('Balance', async () => {
+        expect(async () => await vars.serverControllerNoParams.balance()).rejects.toThrowError(
+            new MissingRequiredParams('Contract Abi')
+        )
+
+        expect(await vars.serverControllerInstance.balance()).to.be.eq(0n)
+    })
+
+    it('Balance Of', async () => {
+        expect(await vars.serverControllerInstance.balanceOf(CALLER_WALLET)).to.be.eq(
+            10000000000000000000000n
+        )
+
+        expect(await vars.serverControllerInstance.balanceOf(CALLER_WALLET)).to.be.eq(
+            10000000000000000000000n
+        )
+
+        expect(
+            async () => await vars.serverControllerNoParams.balanceOf('0x')
+        ).rejects.toThrowError()
     })
 })

@@ -5,12 +5,14 @@ import { vaultAbi_0_0_1 } from '../../src/abi'
 import Vault from '../../src/sdk/vault'
 import { Receiver } from '../../src/types'
 import {
+    InvalidContract,
     InvalidContractType,
     InvalidContractVersion,
     InvalidSDKMode,
     MissingRequiredParams
 } from '../../src/utils'
 import {
+    CALLER_WALLET,
     clientAndContractSetup,
     DEPLOYER_WALLET,
     prepareVault,
@@ -65,7 +67,7 @@ describe('Vault Client Test', () => {
     })
 
     it('Connectors', async () => {
-        expect(vars.clientVaultInstance.connectors().length).to.be.eq(5)
+        expect(vars.clientVaultInstance.connectors().length).to.be.eq(6)
         vars.clientVaultInstance.connectors().forEach((item) => {
             expect(item.name).to.be.eq('Mock Connector')
         })
@@ -100,6 +102,25 @@ describe('Vault Client Test', () => {
         await resetClientConnection(vars.clientVaultInstance)
     })
 
+    it('Connect', async () => {
+        expect(
+            async () =>
+                await vars.clientVaultInstance.connect(vars.clientVaultInstance.connectors().at(2)!)
+        ).rejects.toThrow()
+
+        await vars.clientVaultInstance.connect(vars.clientVaultInstance.connectors().at(0)!)
+
+        await vars.clientVaultInstance.connect(vars.clientVaultInstance.connectors().at(5)!)
+
+        const res = await vars.clientVaultInstance.reconnect()
+
+        expect(res.length).to.eq(1)
+
+        expect(vars.clientBonkersSDKInstance.connection()).to.eq('connected')
+
+        await resetClientConnection(vars.clientVaultInstance)
+    })
+
     it('Disconnect', async () => {
         await vars.clientVaultInstance.connect(vars.clientVaultInstance.connectors().at(0)!)
 
@@ -113,44 +134,95 @@ describe('Vault Client Test', () => {
     })
 
     it('Switch Chain', async () => {
-        const { chainId, name } = vars.clientVaultInstance.chain()
-        const { chainId: chainId2, name: name2 } = vars.clientVaultInstance.chain()
-        const { chainId: chainId3, name: name3 } = vars.clientVaultFactoryInstance.chain()
-        const { chainId: chainId4, name: name4 } = vars.clientBonkersSDKInstance.chain()
+        const { id, chainId, name, symbol } = vars.clientVaultInstance.chain()
+        const {
+            id: id2,
+            chainId: chainId2,
+            name: name2,
+            symbol: symbol2
+        } = vars.clientVaultInstance.chain()
+        const {
+            id: id3,
+            chainId: chainId3,
+            name: name3,
+            symbol: symbol3
+        } = vars.clientVaultFactoryInstance.chain()
+        const {
+            id: id4,
+            chainId: chainId4,
+            name: name4,
+            symbol: symbol4
+        } = vars.clientBonkersSDKInstance.chain()
 
         expect(chainId).eq(anvil.id)
         expect(name).eq('Anvil')
+        expect(id).eq(anvil.id)
+        expect(symbol).eq(anvil.nativeCurrency.symbol)
 
         expect(chainId2).eq(anvil.id)
         expect(name2).eq('Anvil')
+        expect(id2).eq(anvil.id)
+        expect(symbol2).eq(anvil.nativeCurrency.symbol)
 
         expect(chainId3).eq(anvil.id)
         expect(name3).eq('Anvil')
+        expect(id3).eq(anvil.id)
+        expect(symbol3).eq(anvil.nativeCurrency.symbol)
 
         expect(chainId4).eq(anvil.id)
         expect(name4).eq('Anvil')
+        expect(id4).eq(anvil.id)
+        expect(symbol4).eq(anvil.nativeCurrency.symbol)
 
         const switchR = await vars.clientVaultInstance.switchChain(sepolia.id)
 
         expect(switchR.id).to.be.eq(sepolia.id)
         expect(switchR.name).to.be.eq(sepolia.name)
 
-        const { chainId: chainId5, name: name5 } = vars.clientVaultInstance.chain()
-        const { chainId: chainId6, name: name6 } = vars.clientVaultInstance.chain()
-        const { chainId: chainId7, name: name7 } = vars.clientVaultFactoryInstance.chain()
-        const { chainId: chainId8, name: name8 } = vars.clientBonkersSDKInstance.chain()
+        const {
+            id: id5,
+            chainId: chainId5,
+            name: name5,
+            symbol: symbol5
+        } = vars.clientVaultInstance.chain()
+        const {
+            id: id6,
+            chainId: chainId6,
+            name: name6,
+            symbol: symbol6
+        } = vars.clientVaultInstance.chain()
+        const {
+            id: id7,
+            chainId: chainId7,
+            name: name7,
+            symbol: symbol7
+        } = vars.clientVaultFactoryInstance.chain()
+        const {
+            id: id8,
+            chainId: chainId8,
+            name: name8,
+            symbol: symbol8
+        } = vars.clientBonkersSDKInstance.chain()
 
         expect(chainId5).eq(sepolia.id)
         expect(name5).eq('Sepolia')
+        expect(id5).eq(sepolia.id)
+        expect(symbol5).eq(sepolia.nativeCurrency.symbol)
 
         expect(chainId6).eq(sepolia.id)
         expect(name6).eq('Sepolia')
+        expect(id6).eq(sepolia.id)
+        expect(symbol6).eq(sepolia.nativeCurrency.symbol)
 
         expect(chainId7).eq(sepolia.id)
         expect(name7).eq('Sepolia')
+        expect(id7).eq(sepolia.id)
+        expect(symbol7).eq(sepolia.nativeCurrency.symbol)
 
         expect(chainId8).eq(sepolia.id)
         expect(name8).eq('Sepolia')
+        expect(id8).eq(sepolia.id)
+        expect(symbol8).eq(sepolia.nativeCurrency.symbol)
 
         await resetClientChain(vars.clientVaultInstance)
     })
@@ -162,10 +234,18 @@ describe('Vault Client Test', () => {
     })
 
     it('Chain', () => {
-        const { chainId, name } = vars.clientVaultInstance.chain()
+        const { id, chainId, name, symbol } = vars.clientVaultInstance.chain()
 
         expect(chainId).eq(anvil.id)
         expect(name).eq('Anvil')
+        expect(id).eq(anvil.id)
+        expect(symbol).eq(anvil.nativeCurrency.symbol)
+    })
+
+    it('Chains', () => {
+        const chains = vars.clientVaultInstance.chains()
+
+        expect(chains.length).eq(3)
     })
 
     it('Reader Error', async () => {
@@ -238,8 +318,11 @@ describe('Vault Client Test', () => {
         expect(vars.clientVaultInstance.contractAddress).to.not.be.eq(vars.vault)
 
         expect(() =>
-            vars.clientVaultInstance.useNewVault(anvil.id, { address: '0x0', abi: vaultAbi_0_0_1 })
-        ).toThrow()
+            vars.clientVaultInstance.useNewVault(anvil.id, {
+                address: zeroAddress,
+                abi: vaultAbi_0_0_1
+            })
+        ).toThrow(new InvalidContract('Can Not Be Zero Address'))
 
         vars.clientVaultInstance.useNewVault(anvil.id, { address: vars.vault, abi: vaultAbi_0_0_1 })
     })
@@ -300,11 +383,11 @@ describe('Vault Client Test', () => {
     })
 
     it('Reward Pool', async () => {
-        expect(await vars.clientVaultInstance.rewardPool()).to.be.eq(0)
+        expect(await vars.clientVaultInstance.rewardPool()).to.be.eq(0n)
 
         await requestToken(vars.devToken, vars.vault, parseEther('100'))
 
-        expect(await vars.clientVaultInstance.rewardPool()).to.be.eq(100)
+        expect(await vars.clientVaultInstance.rewardPool()).to.be.eq(parseEther('100'))
 
         expect(async () => await vars.clientVaultNoParams.rewardPool()).rejects.toThrow(
             new MissingRequiredParams('Contract Abi')
@@ -538,8 +621,7 @@ describe('Vault Client Test', () => {
         ).rejects.toThrow(new MissingRequiredParams('Contract Abi'))
 
         expect(
-            // @ts-ignore
-            async () => await vars.clientVaultInstance.updateRewardToken('0x0')
+            async () => await vars.clientVaultInstance.updateRewardToken(zeroAddress)
         ).rejects.toThrow('Failed To Execute Write on: updateRewardToken')
 
         await resetClientConnection(vars.clientVaultInstance)
@@ -552,11 +634,9 @@ describe('Vault Client Test', () => {
             new MissingRequiredParams('Contract Abi')
         )
 
-        expect(
-            async () =>
-                // @ts-ignore
-                await vars.clientVaultInvalidAddress.grantPermit('0x0')
-        ).rejects.toThrow('Failed To Execute Write on: grantPermit')
+        expect(async () => await vars.clientVaultInstance.grantPermit(zeroAddress)).rejects.toThrow(
+            'Failed To Execute Write on: grantPermit'
+        )
 
         expect(await vars.clientVaultInstance.isController(vars.controller)).to.be.false
 
@@ -575,9 +655,7 @@ describe('Vault Client Test', () => {
         ).rejects.toThrow(new MissingRequiredParams('Contract Abi'))
 
         expect(
-            async () =>
-                // @ts-ignore
-                await vars.clientVaultInvalidAddress.revokePermit('0x0')
+            async () => await vars.clientVaultInstance.revokePermit(zeroAddress)
         ).rejects.toThrow('Failed To Execute Write on: revokePermit')
 
         // expect(await vars.clientVaultInstance.isController(vars.controller)).to.be.false
@@ -631,6 +709,40 @@ describe('Vault Client Test', () => {
         expect((await vars.clientVaultInstance.getVaultInfo()).projectOwner).to.be.eq(
             DEPLOYER_WALLET
         )
+
+        await resetClientConnection(vars.clientVaultInstance)
+    })
+
+    it('Balance', async () => {
+        expect(async () => await vars.clientVaultNoParams.balance()).rejects.toThrowError(
+            new MissingRequiredParams('Contract Abi')
+        )
+
+        expect(await vars.clientVaultInstance.balance()).to.be.eq(0n)
+
+        const connector1 = vars.clientVaultInstance.connectors()[0]!
+
+        await vars.clientVaultInstance.connect(connector1)
+
+        expect(await vars.clientVaultInstance.balance()).to.be.eq(0n)
+
+        await resetClientConnection(vars.clientVaultInstance)
+    })
+
+    it('Balance Of', async () => {
+        expect(await vars.clientVaultInstance.balanceOf(CALLER_WALLET)).to.be.eq(
+            10000000000000000000000n
+        )
+
+        const connector1 = vars.clientVaultInstance.connectors()[0]!
+
+        await vars.clientVaultInstance.connect(connector1)
+
+        expect(await vars.clientVaultInstance.balanceOf(CALLER_WALLET)).to.be.eq(
+            10000000000000000000000n
+        )
+
+        expect(async () => await vars.clientVaultNoParams.balanceOf('0x')).rejects.toThrowError()
 
         await resetClientConnection(vars.clientVaultInstance)
     })
