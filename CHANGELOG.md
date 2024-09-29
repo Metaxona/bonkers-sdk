@@ -1,5 +1,48 @@
 # bonkers-sdk
 
+## 0.1.0
+
+### Minor Changes
+
+- #### Deprecated
+
+  - chainId on chain output
+
+  #### Added
+
+  - Reconnect
+  - Native Token Balance Checker
+  - Balance to check native balance of [controller, vault, vault factory]
+  - Chains which returns an array of chains being used
+  - getContractVersion and getContractType at the SDK class level
+  - reader and writer in sdk class level
+  - Erc20 Class for easier erc20 token interactions
+  - erc20Abi and erc20Abi_bytes32 from viem
+  - Optional transport param for getParameters and getImplementation
+  - New function getTransportFromConfig used in getParameters allowing it to use the same transport the sdk is using instead of relying on the default transport resulting in errors when being rate limited
+  - Zero Address check on useNew[ContractType] function to prevent zero address from being used
+  - getAddress for converting evm address to their checksum counterpart
+  - getAddress on addresses on contract functions to make sure they are using checksum addresses
+
+  #### Updated
+
+  - chain output
+  - useNew[ContractType] now return `this` allowing it to be chained after being used
+  - reader and writer visibility from protected to public allowing access to them which grants more extensive functionality to the sdk
+  - Some types
+  - Docs
+  - Contract version type from string to ContractVersion
+  - Release github action to delete dev dependencies using npm pkg delete to exclude it on the released package
+  - transport type on server config
+  - Tests for the updated getParameters
+  - Tests for the updated functions using getAddress
+  - rewardPool output from number and formatted by the tokens decimal to unformatted bigint to reduce the amount of request being sent each time rewardPool is called
+  - vulnerable packages by running `npm audit fix` and `pnpm audit --fix`
+
+  #### Removed
+
+  - anything related to tsup
+
 ## 0.0.6
 
 ### Patch Changes
