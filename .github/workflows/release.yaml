@@ -23,8 +23,8 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - name: Remove Dev Dependencies
-        run: npm pkg delete devDependencies
+      # - name: Remove Dev Dependencies
+      #   run: npm pkg delete devDependencies
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
