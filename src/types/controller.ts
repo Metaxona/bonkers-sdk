@@ -48,11 +48,22 @@ export interface IController {
      * @param chainId
      * @param params
      *
-     * @group Params Required
+     * @deprecated use `useNewContract` instead
      *
      * @returns
      */
     useNewController(chainId: ChainId, params: ControllerParams): void
+
+    /**
+     * Method used to change the controller being used by the sdk/class
+     * same as useNewController
+     *
+     * @param chainId
+     * @param params
+     *
+     * @returns
+     */
+    useNewContract(chainId: ChainId, params: ControllerParams): void
 
     /**
      * Method used to get the params needed to interact with the controller contract

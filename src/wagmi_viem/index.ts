@@ -33,8 +33,28 @@ import {
     type WebSocketTransport,
     zeroAddress,
     zeroHash,
-    getAddress
+    getAddress,
+    hashMessage,
+    hashTypedData,
+    verifyMessage,
+    verifyTypedData,
+    recoverMessageAddress,
+    recoverTypedDataAddress,
+    type TypedData,
+    type SignableMessage
 } from 'viem'
+
+export {
+    toBytes,
+    fromBytes,
+    toHex,
+    fromHex,
+    toRlp,
+    fromRlp,
+    isHex,
+    isHash,
+    isBytes
+} from 'viem/utils'
 
 import { type Account, privateKeyToAccount, privateKeyToAddress } from 'viem/accounts'
 
@@ -58,8 +78,16 @@ export {
     privateKeyToAccount,
     privateKeyToAddress,
     webSocket,
+    hashMessage,
+    hashTypedData,
+    verifyMessage,
+    verifyTypedData,
+    recoverMessageAddress,
+    recoverTypedDataAddress,
     zeroAddress,
     zeroHash,
+    type TypedData,
+    type SignableMessage,
     type Abi,
     type Account,
     type Address,

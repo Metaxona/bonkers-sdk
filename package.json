@@ -33,6 +33,7 @@
 		"anvil:start": "anvil &",
 		"anvil:stop": "lsof -t -i tcp:8545 | xargs kill",
 		"test": "npm run anvil:start && echo \"waiting\" && sleep 10 && vitest",
+		"test:clean": "npm run test && npm run anvil:stop",
 		"test:watch": "npm run anvil:start && echo \"waiting\" && sleep 10 && vitest --watch",
 		"test:fg": "vitest",
 		"test:fg:watch": "vitest --watch",

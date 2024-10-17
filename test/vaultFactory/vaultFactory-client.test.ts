@@ -357,6 +357,33 @@ describe('Vault Factory Client Test', () => {
         })
     })
 
+    it('Use New Contract', async () => {
+        const vaultFactory = await prepareVaultFactory(vars.devToken, VAULT_IMPLEMENTATION_ADDRESS)
+
+        expect(vaultFactory).to.not.eq(vars.vaultFactory)
+
+        const params = await vars.clientVaultFactoryInstance.getParams(
+            anvil.id,
+            vaultFactory as Address
+        )
+
+        vars.clientVaultFactoryInstance.useNewContract(anvil.id, params)
+
+        expect(vars.clientVaultFactoryInstance.contractAddress).to.not.be.eq(vars.vaultFactory)
+
+        expect(() =>
+            vars.clientVaultFactoryInstance.useNewContract(anvil.id, {
+                address: zeroAddress,
+                abi: vaultFactoryAbi_0_0_1
+            })
+        ).toThrow(new InvalidContract('Can Not Be Zero Address'))
+
+        vars.clientVaultFactoryInstance.useNewContract(anvil.id, {
+            address: vars.vaultFactory,
+            abi: vaultFactoryAbi_0_0_1
+        })
+    })
+
     it('Get Params', async () => {
         const { address, abi } = await vars.clientVaultFactoryInstance.getParams(
             anvil.id,

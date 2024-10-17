@@ -77,11 +77,22 @@ export interface IVault {
      * @param chainId
      * @param params
      *
-     * @group Params Required
+     * @deprecated use `useNewContract` instead
      *
      * @returns
      */
     useNewVault(chainId: ChainId, params: VaultParams): void
+
+    /**
+     * Method used to change the vault being used by the sdk/class
+     * same as useNewVault
+     *
+     * @param chainId
+     * @param params
+     *
+     * @returns
+     */
+    useNewContract(chainId: ChainId, params: VaultParams): void
 
     /**
      * Method used to get the params needed to interact with the vault contract
@@ -331,11 +342,22 @@ export interface IVaultFactory {
      * @param chainId
      * @param params
      *
-     * @group Params Required
+     * @deprecated use `useNewContract` instead
      *
      * @returns
      */
     useNewVaultFactory(chainId: ChainId, params: VaultFactoryParams): void
+
+    /**
+     * Method used to change the vault factory being used by the sdk/class
+     * same as useNewVaultFactory
+     *
+     * @param chainId
+     * @param params
+     *
+     * @returns
+     */
+    useNewContract(chainId: ChainId, params: VaultFactoryParams): void
 
     /**
      * Method used to get the params needed to interact with the vaultFactory contract

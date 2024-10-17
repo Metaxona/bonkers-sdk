@@ -863,6 +863,33 @@ describe('Controller Server Test', () => {
         })
     })
 
+    it('Use New Contract', async () => {
+        const controller = await prepareController()
+
+        expect(controller).to.not.eq(vars.controller)
+
+        const params = await vars.serverControllerInstance.getParams(
+            anvil.id,
+            controller as Address
+        )
+
+        vars.serverControllerInstance.useNewContract(anvil.id, params)
+
+        expect(vars.serverControllerInstance.contractAddress).to.not.be.eq(vars.controller)
+
+        expect(() =>
+            vars.serverControllerInstance.useNewContract(anvil.id, {
+                address: zeroAddress,
+                abi: controllerAbi_0_0_1
+            })
+        ).toThrow(new InvalidContract('Can Not Be Zero Address'))
+
+        vars.serverControllerInstance.useNewContract(anvil.id, {
+            address: vars.controller,
+            abi: controllerAbi_0_0_1
+        })
+    })
+
     it('Balance', async () => {
         expect(async () => await vars.serverControllerNoParams.balance()).rejects.toThrowError(
             new MissingRequiredParams('Contract Abi')

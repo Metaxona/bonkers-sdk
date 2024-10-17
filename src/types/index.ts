@@ -19,6 +19,7 @@ export * from './common.js'
 export * from './controller.js'
 export * from './vault.js'
 export * from './erc20.js'
+export * from './signature.js'
 
 /**
  * Interface that ensures all important SDK methods

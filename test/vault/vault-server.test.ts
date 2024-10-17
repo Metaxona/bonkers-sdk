@@ -652,6 +652,30 @@ describe('Vault Server Test', () => {
         vars.serverVaultInstance.useNewVault(anvil.id, { address: vars.vault, abi: vaultAbi_0_0_1 })
     })
 
+    it('Use New Contract', async () => {
+        const vault = await prepareVault(vars.devToken)
+
+        expect(vault).to.not.eq(vars.vault)
+
+        const params = await vars.serverVaultInstance.getParams(anvil.id, vault as Address)
+
+        vars.serverVaultInstance.useNewContract(anvil.id, params)
+
+        expect(vars.serverVaultInstance.contractAddress).to.not.be.eq(vars.vault)
+
+        expect(() =>
+            vars.serverVaultInstance.useNewContract(anvil.id, {
+                address: zeroAddress,
+                abi: vaultAbi_0_0_1
+            })
+        ).toThrow(new InvalidContract('Can Not Be Zero Address'))
+
+        vars.serverVaultInstance.useNewContract(anvil.id, {
+            address: vars.vault,
+            abi: vaultAbi_0_0_1
+        })
+    })
+
     it('Balance', async () => {
         expect(async () => await vars.serverVaultNoParams.balance()).rejects.toThrowError(
             new MissingRequiredParams('Contract Abi')

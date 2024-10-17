@@ -30,13 +30,14 @@ import type {
 } from '../types/index.js'
 import { InvalidChainId, MissingRequiredParams } from './errors.js'
 import prepareConfig from './prepareConfig.js'
+import { base64Encode, base64Decode } from './encoding.js'
 
 export * from './constants.js'
 export * from './contractInteraction.js'
 export * from './errors.js'
 export * from './getParameters.js'
 export * from './logger.js'
-export { prepareConfig }
+export { prepareConfig, base64Encode, base64Decode }
 
 /**
  * A helper function to censors any string by replacing everything

@@ -53,6 +53,18 @@ describe('Utils Test', () => {
         expect(censor(DEPLOYER_PRIVATE_KEY)).to.be.eq(
             Array(DEPLOYER_PRIVATE_KEY.length).fill('*').join('')
         )
+        // @ts-ignore
+        expect(censor(undefined)).to.be.eq(undefined)
+        // @ts-ignore
+        expect(censor(null)).to.be.eq(null)
+        // @ts-ignore
+        expect(censor(NaN)).to.be.eq('*')
+        // @ts-ignore
+        expect(censor([])).to.be.eq('')
+        // @ts-ignore
+        expect(censor({})).to.be.eq('*')
+        // @ts-ignore
+        expect(censor(1)).to.be.eq('*')
     })
 
     it('getChainById', async () => {

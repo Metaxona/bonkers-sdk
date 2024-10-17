@@ -327,6 +327,30 @@ describe('Vault Client Test', () => {
         vars.clientVaultInstance.useNewVault(anvil.id, { address: vars.vault, abi: vaultAbi_0_0_1 })
     })
 
+    it('Use New Contract', async () => {
+        const vault = await prepareVault(vars.devToken)
+
+        expect(vault).to.not.eq(vars.vault)
+
+        const params = await vars.clientVaultInstance.getParams(anvil.id, vault as Address)
+
+        vars.clientVaultInstance.useNewContract(anvil.id, params)
+
+        expect(vars.clientVaultInstance.contractAddress).to.not.be.eq(vars.vault)
+
+        expect(() =>
+            vars.clientVaultInstance.useNewContract(anvil.id, {
+                address: zeroAddress,
+                abi: vaultAbi_0_0_1
+            })
+        ).toThrow(new InvalidContract('Can Not Be Zero Address'))
+
+        vars.clientVaultInstance.useNewContract(anvil.id, {
+            address: vars.vault,
+            abi: vaultAbi_0_0_1
+        })
+    })
+
     it('Get Params', async () => {
         const { address, abi } = await vars.clientVaultInstance.getParams(anvil.id, vars.vault)
 

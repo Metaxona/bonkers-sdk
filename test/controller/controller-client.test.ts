@@ -362,6 +362,33 @@ describe('Controller Client Test', () => {
         })
     })
 
+    it('Use New Contract', async () => {
+        const controller = await prepareController()
+
+        expect(controller).to.not.eq(vars.controller)
+
+        const params = await vars.clientControllerInstance.getParams(
+            anvil.id,
+            controller as Address
+        )
+
+        vars.clientControllerInstance.useNewContract(anvil.id, params)
+
+        expect(vars.clientControllerInstance.contractAddress).to.not.be.eq(vars.controller)
+
+        expect(() =>
+            vars.clientControllerInstance.useNewContract(anvil.id, {
+                address: zeroAddress,
+                abi: controllerAbi_0_0_1
+            })
+        ).toThrow(new InvalidContract('Can Not Be Zero Address'))
+
+        vars.clientControllerInstance.useNewContract(anvil.id, {
+            address: vars.controller,
+            abi: controllerAbi_0_0_1
+        })
+    })
+
     it('Get Params', async () => {
         const { address, abi } = await vars.clientControllerInstance.getParams(
             anvil.id,

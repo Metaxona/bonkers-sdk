@@ -58,6 +58,7 @@ import Controller from './controller.js'
 import Erc20 from './erc20.js'
 import Vault from './vault.js'
 import VaultFactory from './vaultFactory.js'
+import Signature from './signature.js'
 
 const CLASS_NAME = 'BonkersSDK'
 
@@ -69,8 +70,7 @@ export default class BonkersSDK implements IBonkersSDK {
     readonly mode: Mode
     readonly config: Config
 
-    /** @group Internal */
-    protected logger: Logger
+    readonly logger: Logger
 
     /** @group Private */
     private clients: Clients
@@ -85,6 +85,8 @@ export default class BonkersSDK implements IBonkersSDK {
     /** @group Private */
     private erc20Class: Erc20
 
+    signature: Signature
+
     constructor(config: Config) {
         this.config = prepareConfig(config as Config)
 
@@ -93,6 +95,7 @@ export default class BonkersSDK implements IBonkersSDK {
         this.clients = clients
         this.clients.logger = this.logger
 
+        this.signature = new Signature(this.config, this.clients)
         this.logger.info({
             mode: this.mode,
             from: 'SDK',

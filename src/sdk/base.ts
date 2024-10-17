@@ -31,6 +31,7 @@ import type {
     ContractInteractionReturnType,
     ContractType,
     ContractVersion,
+    ControllerParams,
     IBase,
     Mode,
     ReaderParams,
@@ -60,6 +61,7 @@ import {
     prepareConfig
 } from '../utils/index.js'
 import { clients, type Clients } from './clients.js'
+import Signature from './signature.js'
 
 const CLASS_NAME = 'Base'
 
@@ -74,11 +76,12 @@ export default class Base implements IBase {
     contractAddress: Address
     contractAbi: Abi
 
-    /** @group Internal */
-    protected logger: Logger
+    readonly logger: Logger
 
     /** @group Private */
     private clients: Clients
+
+    signature: Signature
 
     constructor(config: Config, params?: BaseParams) {
         this.config = prepareConfig(config)
@@ -88,6 +91,7 @@ export default class Base implements IBase {
         this.clients = clients
         this.clients.logger = this.logger
 
+        this.signature = new Signature(this.config, this.clients)
         this.contractAddress = params?.address as Address
         this.contractAbi = params?.abi as Abi
 
@@ -161,6 +165,21 @@ export default class Base implements IBase {
             this.logger.trace(`FROM: ${CLASS_NAME} Function: _changeBase`, error.stack)
             throw error
         }
+    }
+
+    /**
+     * Method used to change the contract being used by the sdk/class
+     * same as useNewController | useNewVault | useNewVaultFactory
+     *
+     * @param chainId
+     * @param params
+     *
+     * @returns
+     */
+    useNewContract(chainId: ChainId, params: ControllerParams) {
+        this.logger.info(`Contract Changed To: ${params.address}`)
+        this._changeBase(chainId, params)
+        return this
     }
 
     /**
