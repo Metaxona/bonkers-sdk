@@ -1,5 +1,30 @@
 # bonkers-sdk
 
+## 0.2.0
+
+### Minor Changes
+
+- Deprecated
+
+  - useNew(Controller|Vault|VaultFactory), use `useNewContract` instead
+
+  Added
+
+  - Signatures
+    - (Message | Typed Data) Signing
+    - (Message | Typed Data) verification
+    - (Message | Typed Data) Signer Recovery
+  - Signatures Tests
+  - Signatures Documentation and Examples
+  - Base64 encoding and decoding utils
+  - useNewContract function to replace useNew(Controller|Vault|VaultFactory)
+
+  Updated
+
+  - Logger visibility from internal/protected to readonly
+  - censor utility function tests
+  - controller|vault|vaultFactory tests
+
 ## 0.1.0
 
 ### Minor Changes
